@@ -1,0 +1,26 @@
+navbar-wrapper {
+  height: 70px;
+  background-color: black;
+  padding: 5px 50px 5px 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+navbar-wrapper > img {
+  height: 50px;
+  cursor: pointer
+}
+
+
+/*! NAVBAR MEDIA QUERIES !*/
+@media only screen and (max-width: 576px) {
+  navbar-wrapper {
+    height: 60px;
+    justify-content: center;
+  }
+  navbar-wrapper > img {
+    height: 40px
+  };
+}
+/*! NAVBAR MEDIA QUERIES END !*/

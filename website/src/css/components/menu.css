@@ -1,0 +1,14 @@
+menu-wrapper {
+  display: block;
+  grid-area: menu;
+}
+.menu-content > ul > li {
+  list-style: none;
+}
+.menu-content > ul > li > a {
+  color: black !important;
+  font-size: 17px;
+}
+#langEN {
+  margin-top: 50px;
+}
