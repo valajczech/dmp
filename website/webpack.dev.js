@@ -6,6 +6,8 @@ module.exports = {
 
 	entry: {
 		main: './src/js/main.js',
+		index: './src/js/index.js',
+		bio: './src/js/bio.js'
 	},
 
 	devServer: {
@@ -55,6 +57,13 @@ module.exports = {
 			inject: true,
 			chunks: ['main', 'index'],
 			filename: 'index.html'
+		}),
+		/* BIOGRAPHY */
+		new HtmlWebpackPlugin({
+			template: './src/bio.html',
+			inject: true,
+			chunks: ['main', 'bio'],
+			filename: 'bio.html'
 		})
 	]
 };

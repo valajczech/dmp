@@ -1,0 +1,23 @@
+.bio-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+.portrait {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.maininfo {
+  margin-bottom: 15px;
+}
+
+.history {
+  width: 70%;
+}
+.history > p {
+  text-align: justify;
+}

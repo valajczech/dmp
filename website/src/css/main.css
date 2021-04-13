@@ -1,5 +1,6 @@
 /*! IMPORTS! */
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 /*! IMPORTS END !*/
 
 /*! GLOBALS !*/
@@ -12,7 +13,16 @@ html {
 }
 body {
   background-color: #fff;
-  
+}
+h1 {
+  font-family: 'Roboto', sans-serif;
+}
+h2 {
+  font-family: 'Roboto', sans-serif;
+}
+
+h3 {
+  font-family: 'Roboto', sans-serif;
 }
 a,
 a:hover,
@@ -23,9 +33,9 @@ a:active {
   font-family:'Roboto', sans-serif;
 }
 p {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
-
+/*Main - includes menu and main conntent (photos etc)*/
 .main {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -37,10 +47,25 @@ p {
     "menu content content content";
   padding: 50px 10vw 20px 10vw; 
 }
+/*! MAIN CONTENT - all pics and text and data are injected here!*/
 .main-content {
   grid-area: content;
 }
+/*! Headline is on top of every article, includes .date paragraph !*/
+.headline {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.date {
+  color: #6e6e6e;
+}
+.text > p {
+  text-align: justify;
+}
 /*! GLOBALS END !*/
 
-/*! MEDIA QUERIES !*/
-/*! MEDIA QUERIES END!*/
+/*! GLOBAL MEDIA QUERIES !*/
+/*! GLOBAL MEDIA QUERIES END!*/

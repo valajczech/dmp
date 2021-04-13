@@ -1,0 +1,18 @@
+footer-wrapper {
+  display: block;
+  height: 80px;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  background-color: white !important;
+  color: #6e6e6e;
+}
+.orexin-promo > a {
+  color: #6e6e6e;
+  transition-duration: 0.5s;
+}
+.orexin-promo > a:hover {
+  color: #4508bd;
+}

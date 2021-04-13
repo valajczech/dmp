@@ -6,8 +6,12 @@ menu-wrapper {
   list-style: none;
 }
 .menu-content > ul > li > a {
-  color: black !important;
+  color: #6e6e6e;
   font-size: 17px;
+  transition-duration: 0.3s;
+}
+.menu-content > ul > li > a:hover {
+  color: black;
 }
 #langEN {
   margin-top: 50px;
