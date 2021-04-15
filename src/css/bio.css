@@ -1,22 +1,25 @@
+
+.maininfo {
+  margin-bottom: 15px;
+}
 .bio-text {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  gap: 20px;
+  gap: 50px;
+  height: fit-content;
 }
 .portrait {
-  width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  height: 100% !important;
 }
-.maininfo {
-  margin-bottom: 15px;
-}
-
 .history {
-  width: 70%;
+}
+.portrait > img {
+  height: auto;
+  width: 100%;
+}
+.autograph {
+  text-align: center;
 }
 .history > p {
   text-align: justify;

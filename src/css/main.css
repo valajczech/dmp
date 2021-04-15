@@ -1,10 +1,10 @@
 /*! IMPORTS! */
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 /*! IMPORTS END !*/
 
 /*! GLOBALS !*/
-*{
+* {
   margin: 0;
   padding: 0;
 }
@@ -13,39 +13,46 @@ html {
 }
 body {
   background-color: #fff;
+  max-width: 100vw !important;
 }
 h1 {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 h2 {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 h3 {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 a,
 a:hover,
 a:visited,
 a:active {
-	text-decoration: none;
-	color: #fff;
-  font-family:'Roboto', sans-serif;
+  text-decoration: none;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
 }
 p {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+/*
+.blurred {
+  filter: blur(10px)
+}*/
+
 /*Main - includes menu and main conntent (photos etc)*/
 .main {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 0px 0px;
-  grid-template-areas:
-    "menu content content content"
-    "menu content content content"
-    "menu content content content";
-  padding: 50px 10vw 20px 10vw; 
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 100px;
+  padding: 50px 10vw 70px 10vw;
 }
 /*! MAIN CONTENT - all pics and text and data are injected here!*/
 .main-content {
@@ -68,4 +75,9 @@ p {
 /*! GLOBALS END !*/
 
 /*! GLOBAL MEDIA QUERIES !*/
+@media only screen and (max-width: 950px) {
+  .main {
+    gap: 50px;
+  }
+}
 /*! GLOBAL MEDIA QUERIES END!*/
