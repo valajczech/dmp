@@ -7,7 +7,8 @@ module.exports = {
 	entry: {
 		main: './src/js/main.js',
 		index: './src/js/index.js',
-		bio: './src/js/bio.js'
+		bio: './src/js/bio.js',
+		contact: './src/js/contact.js'
 	},
 
 	devServer: {
@@ -70,6 +71,13 @@ module.exports = {
       minify: {
 				removeRedundantAttributes: false,
 			}
+		}),
+		/* CONTACT */
+		new HtmlWebpackPlugin({
+			template: './src/contact.html',
+			inject: true,
+			chunks: ['main', 'contact'],
+			filename: 'contact.html'
 		})
 	]
 };

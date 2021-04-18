@@ -15,7 +15,7 @@ class Menu extends HTMLElement {
     <li><a href="#">Soubory</a></li>
     <li><a href="./bio.html">Biografie</a></li>
     <li><a href="#">Výstavy</a></li>
-    <li><a href="#">Kontakt</a></li>
+    <li><a href="./contact.html">Kontakt</a></li>
     <li id="langEN"><a href="#">EN</a></li>
   </ul>
 </div>

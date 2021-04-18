@@ -57,6 +57,7 @@ p {
 /*! MAIN CONTENT - all pics and text and data are injected here!*/
 .main-content {
   grid-area: content;
+  width: 100%;
 }
 /*! Headline is on top of every article, includes .date paragraph !*/
 .headline {
