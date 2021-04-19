@@ -2,7 +2,6 @@
   --input-gray: #f0f0f0;
 }
 .contact-area {
-
 }
 .contact-form {
 }
@@ -65,8 +64,8 @@ textarea:hover {
 }
 .submitter button {
   outline: none;
-  font-family: 'Roboto', sans-serif;
-  font-size :15px;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
   padding: 5px 15px;
   color: white;
   border: solid black 1px;
@@ -74,7 +73,7 @@ textarea:hover {
   cursor: pointer;
   transition-duration: 0.3s;
 }
-.submitter> button:hover {
+.submitter > button:hover {
   color: black;
   background-color: white;
 }
@@ -109,14 +108,50 @@ textarea:hover {
 .card > p {
   color: black;
 }
+.row {
+  display: flex;
+  gap: 20px;
+}
 
 @media only screen and (max-width: 1300px) {
   .form-wrapper {
     flex-direction: column;
   }
+  .cards {
+    justify-content: center;
+  }
+  .headline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
-@media only screen and (min-with: 768px) {
-  .msg > textarea {
-    width: auto;
+
+@media only screen and (max-width: 768px) {
+  input {
+    width: unset !important;
+  }
+  .msg {
+    width: -webkit-fill-available;
+  }
+  textarea {
+    width: calc(100% - 21px) !important;
+  }
+  .inputbox {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+  .submitter {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .card {
+    width: 100px;
+    height: 100px;
+  }
+  .card > p{
+    display: none !important;
   }
 }

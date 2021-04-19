@@ -9,6 +9,10 @@ footer-wrapper {
   background-color: white !important;
   color: #6e6e6e;
 }
+
+.footer {
+  margin-top: 25px;
+}
 .orexin-promo > a {
   color: #6e6e6e;
   transition-duration: 0.5s;
