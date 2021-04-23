@@ -1,0 +1,19 @@
+body {
+  background-color: var(--background);
+}
+.page {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 1fr 1fr;
+  grid-template-rows: 0.15fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "leftmenu topnav topnav topnav"
+    "leftmenu content content content"
+    "leftmenu content content content";
+  height: 100vh;
+}
+.content {
+  grid-area: content;
+  border: solid red 1px;
+  padding: 15px;
+}

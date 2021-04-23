@@ -5,7 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
 
 	entry: {
-		main: './src/js/main.js'
+		main: './src/js/main.js',
+		index: './src/js/index.js',
+		dashboard: './src/js/dashboard.js'
 	},
 
 	devServer: {
@@ -49,12 +51,19 @@ module.exports = {
 	},
 
 	plugins: [
-		/* INDEX */
+		/* LOGIN*/
 		new HtmlWebpackPlugin({
 			template: './src/index.html',
 			inject: true,
 			chunks: ['main', 'index'],
 			filename: 'index.html'
-		})
+		}),
+		/* DASHBOARD - INDEX*/
+		new HtmlWebpackPlugin({
+			template: './src/dashboard.html',
+			inject: true,
+			chunks: ['main', 'dashboard'],
+			filename: 'dashboard.html'
+		}),
 	]
 };

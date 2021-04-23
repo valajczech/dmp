@@ -1,0 +1,69 @@
+/*! CORE CSS !*/
+
+/*! IMPORTS !*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+/*! IMPORTS END !*/
+
+/*! GLOBALS !*/
+:root {
+  --mainColor: #1b1b1b;
+  --mainLighter: #363636;
+
+  --accent: #e6f0fd;
+  --background: #f9faff;
+
+  --grayText: #969696;
+}
+body {
+  background-color: var(--background);
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none !important;
+  cursor: pointer;
+  font-family: "Robot", sans-serif;
+}
+p {
+  font-family: "Open Sans", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+  margin: 0 !important;
+}
+/*! Card Like elements !*/
+
+/*! Card Like elements end !*/
+
+/*! Fancy buttons !*/
+.fancy-btn {
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: solid var(--mainColor) 2px;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  color: white;
+  padding: 8px 15px;
+  background: var(--mainColor);
+  margin: 5px;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+}
+
+.fancy-btn:hover {
+  background-color: var(--mainLighter);
+  border-color: var(--mainLighter);
+  color: white;
+}
+
+/*! Fancy buttons end !*/
+/*! GLOBALS END!*/

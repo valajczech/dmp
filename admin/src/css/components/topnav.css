@@ -1,0 +1,11 @@
+topnav-wrapper {
+  grid-area: topnav;
+}
+topnav-wrapper > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightblue;
+  padding: 0px 50px 0px 50px;;
+}
