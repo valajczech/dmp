@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "dmp-bures"
+  },
+  "targets": {
+    "dmp-bures": {
+      "hosting": {
+        "admin-dashboard": [
+          "admin-dmp-bures"
+        ],
+        "webpage": [
+          "dmp-bures"
+        ]
+      }
+    }
   }
 }
