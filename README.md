@@ -4,8 +4,8 @@ Webpage + Content management system fully hosted on Firebase.
  
 *This projects uses custom made CMS, not OrexinCMS*
 
-__Webpage preview:__  [https://dmp-bures.firebaseapp.com/](HERE)  
-__Admin Dashboard preview:__  [https://admin-dmp-bures.firebaseapp.com/](HERE)  
+__Webpage preview:__  [https://www.dmp-bures.firebaseapp.com/](HERE)  
+__Admin Dashboard preview:__  [https://www.admin-dmp-bures.firebaseapp.com/](HERE)  
 ### Webpage
 - Firebase hosting target name: `webpage`
 - Deploy using `firebase deploy --only hosting:webpage`
