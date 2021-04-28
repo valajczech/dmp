@@ -9,7 +9,7 @@ navbar-wrapper {
 
 }
 
-navbar-wrapper > img {
+navbar-wrapper > div > a > img {
   height: 50px;
   cursor: pointer
 }

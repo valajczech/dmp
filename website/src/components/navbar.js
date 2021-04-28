@@ -1,5 +1,5 @@
 import "../css/components/navbar.css";
-
+let logo = require('../img/logo.jpg')
 class Navbar extends HTMLElement {
   constructor() {
     super();
@@ -8,10 +8,7 @@ class Navbar extends HTMLElement {
     this.innerHTML = `
     <div>
     <a href="/">
-      <img
-        src="http://www.milanbures.cz/frontend/html/img/logo_cerna.png"
-        alt=""
-      />
+    <img src="../src/img/logo.jpg">
     </a>
   </div>
   <div id="burger">
@@ -23,19 +20,19 @@ class Navbar extends HTMLElement {
     `;
 
     const burgerButton = document.querySelector("#burger");
-    const slider = document.querySelector('#sliderMenu')
-    const mainContent = document.querySelector('.main');
+    const slider = document.querySelector("#sliderMenu");
+    const mainContent = document.querySelector(".main");
 
     burgerButton.addEventListener("click", () => {
-      burgerButton.classList.toggle('open');
-      slider.classList.toggle('slider-shown');
-     //mainContent.classList.toggle('blurred')
+      burgerButton.classList.toggle("open");
+      slider.classList.toggle("slider-shown");
+      //mainContent.classList.toggle('blurred')
     });
 
-    document.addEventListener('scroll', () => {
-      slider.classList.remove('slider-shown');
-      burgerButton.classList.remove('open')
-    })
+    document.addEventListener("scroll", () => {
+      slider.classList.remove("slider-shown");
+      burgerButton.classList.remove("open");
+    });
   }
 }
 

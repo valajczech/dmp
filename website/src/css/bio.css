@@ -15,12 +15,33 @@
 .history {
 }
 .portrait > img {
-  height: auto;
-  width: 100%;
+  width: 400px;
+
 }
 .autograph {
   text-align: center;
 }
 .history > p {
   text-align: justify;
+}
+
+@media only screen and (max-width: 1260px) {
+  .portrait > img {
+    width: 250px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .bio-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .portrait > img {
+    width: 350px;
+  }
+  .bio-text {
+    gap: 25px;
+  }
 }
