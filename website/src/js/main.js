@@ -8,3 +8,5 @@ import 'typicons.font/src/font/typicons.css';
 import '../components/navbar'
 import '../components/menu'
 import '../components/footer'
+import '../components/preloader'
+
