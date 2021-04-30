@@ -3,9 +3,10 @@
   justify-content: left;
   gap: 10px;
   align-items: center;
+  margin-left: 25px;
 }
 .site-info > p {
-
+color: white;
 }
 .site-info > a {
   text-decoration: none !important;
@@ -29,8 +30,11 @@
   height: inherit;
   gap: 10px;
 }
+.login-wrapper > h2 {
+  color: white;
+}
 .login-wrapper > p {
-  color: var(--grayText);
+  color: white;
   margin: 0px 0px 25px 0px;
 }
 .inputfield {

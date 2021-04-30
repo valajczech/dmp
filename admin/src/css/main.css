@@ -8,16 +8,16 @@
 
 /*! GLOBALS !*/
 :root {
-  --mainColor: #1b1b1b;
-  --mainLighter: #363636;
+  --mainColor: #0e182b;
+  --mainLighter: #182336; 
+  --backg: #000b1f;
 
   --accent: #e6f0fd;
-  --background: #f9faff;
 
-  --grayText: #969696;
+  --grayText: #cfcfcf;
 }
 body {
-  background-color: var(--background);
+  background-color: var(--backg);
   margin: 0;
   padding: 0;
 }
@@ -64,6 +64,13 @@ h6 {
   border-color: var(--mainLighter);
   color: white;
 }
-
 /*! Fancy buttons end !*/
 /*! GLOBALS END!*/
+
+/*! MEDIA QUERIES !*/
+@media only screen and (max-width: 1024px) {
+  * {
+    display: none !important;
+  }
+}
+/*! MEDIA QUERIES END !*/

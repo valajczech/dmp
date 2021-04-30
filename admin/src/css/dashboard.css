@@ -1,6 +1,4 @@
-body {
-  background-color: var(--background);
-}
+
 .page {
   display: grid;
   grid-template-columns: 0.5fr 1fr 1fr 1fr;
@@ -14,6 +12,5 @@ body {
 }
 .content {
   grid-area: content;
-  border: solid red 1px;
   padding: 15px;
 }

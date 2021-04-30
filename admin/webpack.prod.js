@@ -34,14 +34,19 @@ module.exports = {
 				"css-loader"
 				]
 			},
-			// load images (base64 < 8192B)
-			{
-				test: /\.(png|jpg|gif|webp)$/,
-				type: 'asset/resource',
-				generator: {
-					filename: 'img/[name][hash].[ext]'
-				}
-			},
+		// load images (base64 < 8192B)
+		{
+			test: /\.(gif|png|jpe?g|jpg)$/,
+			use: [
+				{
+					loader: "file-loader",
+					options: {
+						name: "[name].[ext]",
+						outputPath: "src/img",
+					},
+				},
+			],
+		},
 			// load icons
 			{
 				test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
