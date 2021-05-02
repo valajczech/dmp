@@ -8,11 +8,11 @@
 
 /*! GLOBALS !*/
 :root {
-  --mainColor: #0e182b;
-  --mainLighter: #182336; 
-  --backg: #000b1f;
+  --mainColor: #131217;
+  --mainLighter: #272727; 
+  --backg: #1b1b1b;
 
-  --accent: #e6f0fd;
+  --accent: #1583fe;
 
   --grayText: #cfcfcf;
 }
@@ -47,21 +47,20 @@ h6 {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  border: solid var(--mainColor) 2px;
+  border: solid var(--mainLighter) 2px;
   border-radius: 10px;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
   color: white;
   padding: 8px 15px;
-  background: var(--mainColor);
-  margin: 5px;
+  background: var(--mainLighter);
   font-family: "Roboto", sans-serif;
   font-size: 15px;
 }
 
 .fancy-btn:hover {
-  background-color: var(--mainLighter);
-  border-color: var(--mainLighter);
+  background-color: var(--accent);
+  border-color: var(--accent);
   color: white;
 }
 /*! Fancy buttons end !*/

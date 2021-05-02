@@ -49,8 +49,8 @@ color: white;
   padding: 10px;
   font-size: 15px;
   border-radius: 7px;
-  border: solid var(--accent) 1px;
-  background-color: var(--accent);
+  border: solid #e6f0fd 1px;
+  background-color: #e6f0fd;
   cursor: pointer;
 }
 

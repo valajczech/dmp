@@ -11,36 +11,42 @@ class Leftmenu extends HTMLElement {
   </div>
   <div class="menu-area" id="main-menu">
     <span>HLAVNÍ</span>
-    <div class="action">
+    <a href="/photos/upload.html"class="action">
       <span class="typcn typcn-camera"></span>
       <p>Upload</p>
-    </div>
-    <div class="action">
+    </a>
+    <a href="/photos/collections.html" class="action">
       <span class="typcn typcn-image"></span>
       <p>Collections</p>
-    </div>
-    <div class="action">
+    </a>
+    <a href="/analytics.html" class="action">
       <span class="typcn typcn-chart-bar"></span>
       <p>Analytics</p>
-    </div>
-    <div class="action">
+    </a>
+    <a href="/users" class="action">
       <span class="typcn typcn-group"></span>
       <p>Users</p>
-    </div>
-    <div class="action">
+    </a>
+    <a href="/about.html" class="action">
       <span class="typcn typcn-info"></span>
       <p>About</p>
-    </div>
+    </a>
   </div>
   <div class="bottom-area">
-    <span id="toggleWidth" class="typcn typcn-arrow-back"></span>
+    <span id="toggleWidth" class="typcn typcn-arrow-right-thick"></span>
   </div>
     `;
 
     const lmenu = document.querySelector('leftmenu-wrapper');
     const toggler = document.querySelector('.bottom-area');
+    const page = document.querySelector('.page');
     toggler.addEventListener('click', () => {
         lmenu.classList.toggle('smol');
+        if(lmenu.classList.contains('smol')) {
+          page.style.gridTemplateColumns = "80px 1fr 1fr 1fr"; 
+        } else {
+          page.style.gridTemplateColumns = "200px 1fr 1fr 1fr";
+        }
     })
   }
 }

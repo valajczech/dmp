@@ -7,7 +7,8 @@ module.exports = {
 	entry: {
 		main: './src/js/main.js',
 		index: './src/js/index.js',
-		dashboard: './src/js/dashboard.js'
+		dashboard: './src/js/dashboard.js',
+		dash_upload: './src/js/dash-upload.js'
 	},
 
 	devServer: {
@@ -69,6 +70,13 @@ module.exports = {
 			inject: true,
 			chunks: ['main', 'dashboard'],
 			filename: 'dashboard.html'
+		}),
+		/* DASHBOARD - UPLOAD*/
+		new HtmlWebpackPlugin({
+			template: './src/photos/upload.html',
+			inject: true,
+			chunks: ['main', 'dashboard', 'uplaod'],
+			filename: 'photos/upload.html'
 		}),
 	]
 };
