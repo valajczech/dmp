@@ -5,12 +5,15 @@ class Leftmenu extends HTMLElement {
   }
   connectedCallback() {
     this.innerHTML = 
-    `
-    <div class="top-panel">
+    `<div class="top-panel">
     <img src="https://raw.githubusercontent.com/Orexin/orexin-web/master/src/img/logos/logo-white-sm.png" alt="">
   </div>
   <div class="menu-area" id="main-menu">
     <span>HLAVNÍ</span>
+    <a href="/dashboard.html"class="action">
+      <span class="typcn typcn-home"></span>
+      <p>Dashboard</p>
+    </a>
     <a href="/photos/upload.html"class="action">
       <span class="typcn typcn-camera"></span>
       <p>Upload</p>

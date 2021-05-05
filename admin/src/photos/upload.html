@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Upload | Mgr.Milan Bureš</title>
-</head>
-<body>
-  <div class="page">
-    <leftmenu-wrapper></leftmenu-wrapper>
-    <topnav-wrapper></topnav-wrapper>
-    <div class="content">
-      <p style="color: white">Hello jsem upload</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload | Mgr.Milan Bureš</title>
+  </head>
+  <body>
+    <div class="page">
+      <leftmenu-wrapper></leftmenu-wrapper>
+      <topnav-wrapper></topnav-wrapper>
+      <div class="content" id="dropzone-content">
+        <div class="upload-dropzone">
+          <div class="guide">
+            <p>
+              <strong>Drop</strong> files or <strong>click</strong> to upload
+              one or more files
+            </p>
+          </div>
+        </div>
+        <div class="uploader">
+          <button class="fancy-btn" onclick="upload()">Upload</button>
+        </div>
+        <div class="uploaded">
+          <p>You haven't uploaded any files yet :(</p>
+          <p><strong>Let's do it!</strong></p>
+        </div>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>

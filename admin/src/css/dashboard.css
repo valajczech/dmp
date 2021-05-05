@@ -8,9 +8,11 @@
     "leftmenu topnav topnav topnav"
     "leftmenu content content content"
     "leftmenu content content content";
-  height: 100vh;
+  height: 100vh  !important;
+  
 }
 .content {
   grid-area: content;
   padding: 15px;
+  max-height: 100% !important;
 }
