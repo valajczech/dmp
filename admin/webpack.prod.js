@@ -75,7 +75,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: './src/photos/upload.html',
 			inject: true,
-			chunks: ['main', 'dash_upload'],
+			chunks: ['main', 'dashboard','dash_upload'],
 			filename: 'photos/upload.html'
 		}),
 	]
