@@ -1,7 +1,7 @@
 import "../css/components/topnav.css";
 import date from "date-and-time";
-let { getName } = require("../js/main");
-
+import { Popup } from "./popup";
+require('./popup');
 class Topnav extends HTMLElement {
   constructor() {
     super();
@@ -20,18 +20,17 @@ class Topnav extends HTMLElement {
       <span class="typcn typcn-user" id="user-btn"></span> <!---This will be a img later-->
     </div>
   </div>
-  
-  <div class="popup" id="user-popup">
-    hi
-  </div>
     `;
+    
+    const popup = new Popup("user");
+    popup.spawn();
 
     const userBtn = document.querySelector("#user-btn");
-    const userPopup = document.querySelector("#user-popup");
     userBtn.addEventListener("click", () => {
-      userPopup.classList.toggle("popped");
+     popup.toggleView();
     });
   }
+  
 }
 
 setInterval(() => {

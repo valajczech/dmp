@@ -36,7 +36,7 @@ class Leftmenu extends HTMLElement {
     </a>
   </div>
   <div class="bottom-area">
-    <span id="toggleWidth" class="typcn typcn-arrow-right-thick"></span>
+    <span id="toggleWidth" class="typcn typcn-arrow-left-thick"></span>
   </div>
     `;
 
