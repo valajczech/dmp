@@ -1,62 +1,66 @@
 import "../css/dash-upload.css";
-import firebase from 'firebase/app';
+import firebase from "firebase/app";
+import "firebase/firebase-storage";
 
-const dropzone = document.querySelector(".upload-dropzone");
+const dropzone = document.querySelector(".upload-input");
+const uploadPreview = document.querySelector(".images");
 
+// Firebase config
+var firebaseConfig = {
+  projectId: "dmp-bures",
+  storageBucket:"gs://dmp-bures.appspot.com",
+};
+
+firebase.initializeApp(firebaseConfig);
 
 // TODO : refactor this mess
 class Upload {
-  static uploadDragHandler(ev) {
-    console.log("Items dropped !");
-    ev.preventDefault();
-
-    if (ev.dataTransfer.items) {
-      // Use DataTransferItemList interface to access the file(s)
-      for (var i = 0; i < ev.dataTransfer.items.length; i++) {
-        // If dropped items aren't files, reject them
-        if (ev.dataTransfer.items[i].kind === "file") {
-          var file = ev.dataTransfer.items[i].getAsFile();
-          console.log("... file[" + i + "].name = " + file.name);
-        }
-      }
-    } else {
-      // Use DataTransfer interface to access the file(s)
-      for (var i = 0; i < ev.dataTransfer.files.length; i++) {
-        console.log(
-          "... file[" + i + "].name = " + ev.dataTransfer.files[i].name
-        );
-      }
-    }
-  }
-  static uploadClickHandler(ev) {
-    console.log("Yeet!");
+  // Determine wheter selected file is a image type
+  static isFileImage(file) {
+    if (file["type"].split("/")[0] === "image") {
+      return true;
+    } else return false;
   }
 
-  static dragOverHandler(ev) {
-    console.log("File(s) in drop zone");
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
-  }
+  // Function to "upload uploaded files to Fireabase Storage"
   static uploadToStorage() {
+    // TODO: rewrite this function for all files in the input storage
+    const ref = firebase.storage().ref();
+    const file = dropzone.files[0];
+    const name = +new Date() + "-" + file.name;
+    const metadata = {
+      contentType: file.type,
+    };
+    const task = ref.child(name).put(file, metadata);
+    task
+      .then((snapshot) => snapshot.ref.getDownloadURL())
+      .then((url) => {
+        console.log(url);
+        // document.querySelector("#image").src = url;
+      })
+      .catch(console.error);
 
+    dropzone.value = "";
+  }
+
+  //Function for uploading files using click (and then opening openFileDialog)
+  static openFileDialog() {
+    dropzone.click();
   }
 }
-
-document.addEventListener("DOMContentLoaded", (ev) => {
-  // Event listeners bcuz wouldnt work in HTML
-  dropzone.addEventListener("click", (ev) => {
-    Upload.uploadClickHandler(ev);
-  });
-  dropzone.addEventListener("drop", (ev) => {
-    Upload.uploadDragHandler(ev);
-  });
-  dropzone.addEventListener("dragover", (ev) => {
-    Upload.dragOverHandler(ev);
-  });
-});
 
 // Event Listeners do not work bcuz theyre not global
 // U gotta maske them global like this:
 window.upload = () => {
   Upload.uploadToStorage();
-}
+};
+window.openFileDialog = () => {
+  Upload.openFileDialog();
+};
+window.uploadsChange = () => {
+  for (var file in dropzone.files) {
+    var img = document.createElement("img");
+    img.src = URL.createObjectURL(file);
+    uploadPreview.appendChild(img);
+  }
+};

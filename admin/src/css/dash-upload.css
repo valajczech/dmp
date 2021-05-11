@@ -13,16 +13,14 @@
   height: 50%;
   width: 90%;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .upload-dropzone:hover {
   border-style: solid;
 }
-.guide {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+
 .uploader {
   margin: 10px;
   text-align: center;
@@ -37,4 +35,16 @@
 .uploaded > p {
   color: var(--grayText);
   margin: 0;
+}
+
+.uploaded > .images {
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+}
+.images > .image {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  margin: 5px;
 }

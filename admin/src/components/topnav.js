@@ -1,7 +1,6 @@
 import "../css/components/topnav.css";
 import date from "date-and-time";
 import { Popup } from "./popup";
-require('./popup');
 class Topnav extends HTMLElement {
   constructor() {
     super();
