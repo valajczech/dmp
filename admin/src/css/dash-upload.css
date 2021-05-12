@@ -10,7 +10,7 @@
   border-radius:  5px;
   margin: auto;
   cursor: pointer;
-  height: 50%;
+  height: 40%;
   width: 90%;
   position: relative;
   display: flex;
@@ -41,10 +41,4 @@
   display: flex;
   flex-direction: row;
   overflow: scroll;
-}
-.images > .image {
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-  margin: 5px;
 }

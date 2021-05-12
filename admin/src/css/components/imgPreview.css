@@ -1,0 +1,15 @@
+img-preview {
+  display: flex;
+  flex-direction: column;
+  border: solid blue 1px;
+  width: 250px;
+}
+img-preview > .wrapper {
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+}
+.wrapper > img {
+  width: 250px;
+  height: auto;
+}

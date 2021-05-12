@@ -1,3 +1,5 @@
+// COMPONENT
+
 import "../css/components/leftmenu.css";
 class Leftmenu extends HTMLElement {
   constructor() {

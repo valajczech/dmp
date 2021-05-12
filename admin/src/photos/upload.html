@@ -12,19 +12,30 @@
       <topnav-wrapper></topnav-wrapper>
       <div class="content" id="dropzone-content">
         <div class="upload-dropzone" onclick="openFileDialog()">
-          <p><strong>Drop</strong> files or <strong>click</strong> to upload
-            one or more files</p>
+          <p>
+            <strong>Drop</strong> files or <strong>click</strong> to upload one
+            or more files
+          </p>
         </div>
         <div class="uploader">
           <button class="fancy-btn" onclick="upload()">Upload</button>
+          <div class="para">
+            <p>You haven't uploaded any files yet :(</p>
+            <p><strong>Let's do it!</strong></p>
+          </div>
         </div>
         <div class="uploaded">
-          <p>You haven't uploaded any files yet :(</p>
-          <p><strong>Let's do it!</strong></p>
           <div class="images"></div>
         </div>
       </div>
     </div>
-    <input type="file" class="upload-input" onchange="uploadsChange()" accept="image/*" style="display: none;">
+    <input
+      type="file"
+      class="upload-input"
+      multiple
+      onchange="uploadsChange()"
+      accept="image/*"
+      style="display: none"
+    />
   </body>
 </html>

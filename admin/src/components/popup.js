@@ -1,3 +1,5 @@
+// COMPONENT
+
 import "../css/components/popup.css";
 
 export class Popup extends HTMLElement {
