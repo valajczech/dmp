@@ -2,14 +2,47 @@ img-preview {
   display: flex;
   flex-direction: column;
   border: solid blue 1px;
-  width: 250px;
-}
-img-preview > .wrapper {
-  width: 250px;
   height: 250px;
+  min-width: 250px;
   overflow: hidden;
+  margin: 5px;
+  cursor: pointer;
+  position: relative;
 }
-.wrapper > img {
+img {
   width: 250px;
   height: auto;
+}
+img-preview:hover > .actions {
+  transform: translateY(0);
+  transition-duration: 0.3s;
+}
+.actions {
+  padding: 5px;
+  position: absolute;
+  top: 60%;
+  width: 100%;
+  transform: translateY(450px);
+}
+.actions > button {
+  padding: 5px 15px;
+  color: white;
+  cursor: pointer;
+  border: none;
+  outline: none !important;
+  margin: 5px;
+  border-radius: 10px;
+  filter: drop-shadow(0px 5px 5px #00000077);
+}
+.actions > button > span {
+  font-size: 20px;
+}
+#action-rename {
+  background-color: var(--accent);
+}
+#action-delete {
+  background-color: red;
+}
+#action-set-album {
+  background-color: var(--accent);
 }

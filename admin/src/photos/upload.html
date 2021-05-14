@@ -18,7 +18,7 @@
           </p>
         </div>
         <div class="uploader">
-          <button class="fancy-btn" onclick="upload()">Upload</button>
+          <button class="fancy-btn" onclick="upload()" disabled>Upload</button>
           <div class="para">
             <p>You haven't uploaded any files yet :(</p>
             <p><strong>Let's do it!</strong></p>
@@ -33,7 +33,7 @@
       type="file"
       class="upload-input"
       multiple
-      onchange="uploadsChange()"
+      onchange="uploadChange()"
       accept="image/*"
       style="display: none"
     />

@@ -1,8 +1,9 @@
+// IMPORT
 import "../css/dash-upload.css";
-import firebase from "firebase/app";
+import firebase from "firebase";
 import "firebase/firebase-storage";
 
-import { imagePreview } from "../components/imgPreview";
+import { imagePreview } from "../components/imgPreview.js";
 
 // Input
 const dropzone = document.querySelector(".upload-input");
@@ -10,6 +11,9 @@ const dropzone = document.querySelector(".upload-input");
 const preview = document.querySelector(".images");
 // No items uploaded msg
 const para = document.querySelector(".para");
+
+/*Array for locally uplaoded images*/
+let locallyUploaded = [];
 
 // Firebase config
 var firebaseConfig = {
@@ -19,90 +23,97 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-// TODO : refactor this mess
 class Upload {
-  // Determine wheter selected file is a image type
   static isFileImage(file) {
+    // Determine whether uploaded file is image filetype
     if (file["type"].split("/")[0] === "image") {
       return true;
     } else return false;
   }
-
-  // Function to "upload uploaded files to Fireabase Storage"
-  static uploadToStorage() {
-    // TODO: rewrite this function for all files in the input storage
-    const ref = firebase.storage().ref();
-    const file = dropzone.files[0];
-    const name = +new Date();
-    const metadata = {
-      contentType: file.type,
-    };
-    const task = ref.child(name).put(file, metadata);
-    task
-      .then((snapshot) => snapshot.ref.getDownloadURL())
-      .then((url) => {
-        console.log(url);
-        // document.querySelector("#image").src = url;
-      })
-      .catch(console.error);
-
-    dropzone.value = "";
-  }
-
-  //Function for uploading files using click (and then opening openFileDialog)
   static openFileDialog() {
+    // So you can upload images using fileDialog
     dropzone.click();
+  }
+  static returnFileSize(number) {
+    // Returns filesize.... wow didnt expect that
+    if (number < 1024) {
+      return number + "bytes";
+    } else if (number >= 1024 && number < 1048576) {
+      return (number / 1024).toFixed(1) + "KB";
+    } else if (number >= 1048576) {
+      return (number / 1048576).toFixed(1) + "MB";
+    }
+  }
+  static uploadToStorage() {
+    // Take all items from locallyUploaded array and upload them to Firebase Storage
+  }
+  static removePreviewImage(name) {
+    locallyUploaded = locallyUploaded.filter((img) => img.name !== name);
+    this.updatePreviewList();
+    console.log(locallyUploaded);
+  }
+  static updatePreviewList() {
+    // Remove all children in preview DOM
+    while (preview.firstChild) {
+      preview.removeChild(preview.firstChild);
+    }
+    // Append those who stayed in locallyUploaded
+    if (locallyUploaded.length >= 1) {
+      locallyUploaded.forEach((img) => {
+        preview.appendChild(img);
+      });
+    } else if (locallyUploaded.length == 0) {
+      preview.style.display = "none";
+      para.style.display = "block";
+    }
+    // Select all buttons
+    // DELETE BUTTONS
+    let deleteBtns = document.querySelectorAll("#action-delete");
+    deleteBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        // dataset is returning correctly in string
+        this.removePreviewImage(btn.dataset.name);
+      });
+    });
   }
 }
 
-// Event Listeners do not work bcuz theyre not global
-// U gotta maske them global like this:
+/*? GLOBAL WINDOW "on-" FUNCTIONS bcuz they are not global by default ?*/
 window.upload = () => {
   Upload.uploadToStorage();
 };
 window.openFileDialog = () => {
   Upload.openFileDialog();
 };
-
-/*Preview script - needs refactor*/
-
-function returnFileSize(number) {
-  if (number < 1024) {
-    return number + "bytes";
-  } else if (number >= 1024 && number < 1048576) {
-    return (number / 1024).toFixed(1) + "KB";
-  } else if (number >= 1048576) {
-    return (number / 1048576).toFixed(1) + "MB";
-  }
-}
-
-window.uploadsChange = () => {
-  while (preview.firstChild) {
-    preview.removeChild(preview.firstChild);
-  }
+window.uploadChange = () => {
+  // Function that handles uploading, renaming and deleting items from upload zone
   const curFiles = dropzone.files;
-  if (curFiles.length === 0) {
+  // Show preview only if there are actualy some images to show
+  if (curFiles.length == 0) {
     preview.style.display = "none";
   } else {
-    // Loop tru currently uploaded files
+    // Loop through currently uploaded files
     for (const file of curFiles) {
       if (Upload.isFileImage(file)) {
         preview.style.display = "flex";
         para.style.display = "none";
-        let img_prev = new imagePreview(
+
+        let previewImage = new imagePreview(
           file.name,
           URL.createObjectURL(file),
-          file.type,
-          returnFileSize(file)
+          Upload.returnFileSize(file)
         );
-        preview.appendChild(img_prev);
+
+        locallyUploaded.push(previewImage);
       } else {
-        alert("Well something went wrong");
+        alert("Some of your files is not a image!");
       }
     }
   }
+  Upload.updatePreviewList();
 };
-// Just to hide those ugly scrollbars
+
+// Just to hide those ugly scrollbars, will be Splide later
 document.addEventListener("DOMContentLoaded", () => {
   preview.style.display = "none";
 });

@@ -1,9 +1,14 @@
 <img-preview>
-  <div class="wrapper">
-    <img src="" alt="">
-  </div>
   <div class="actions">
-    <p>Rename</p>
-    <p>Delete</p>
+    <button id="action-rename" data-name=${this.name}>
+      <span class="typcn typcn-edit"></span>
+    </button>
+    <button id="action-delete" data-name=${this.name}>
+      <span class="typcn typcn-delete-outline"></span>
+    </button>
+    <button id="action-set-album" data-name=${this.name}>
+      <span class="typcn typcn-folder-add"></span>
+    </button>
   </div>
+  <img src="${this.src}" alt="" />
 </img-preview>
