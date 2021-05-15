@@ -46,3 +46,27 @@ img-preview:hover > .actions {
 #action-set-album {
   background-color: var(--accent);
 }
+.rename-area {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+.rename-area > button {
+  outline: none;
+  border: solid var(--mainColor) 1px;
+  color: white;
+  background-color: var(--mainColor);
+  border-radius: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+.rename-area > input {
+  outline: none;
+  border: solid white 1px;
+  border-radius: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+  margin: 5px;;
+}

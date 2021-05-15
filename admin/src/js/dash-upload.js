@@ -50,7 +50,6 @@ class Upload {
   static removePreviewImage(name) {
     locallyUploaded = locallyUploaded.filter((img) => img.name !== name);
     this.updatePreviewList();
-    console.log(locallyUploaded);
   }
   static updatePreviewList() {
     // Remove all children in preview DOM
