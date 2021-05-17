@@ -2,6 +2,7 @@
 
 import "../css/components/imgPreview.css";
 
+import { ImageManipulations } from "../js/core";
 export class imagePreview extends HTMLElement {
   constructor(name, src, fileSize) {
     super();
@@ -12,41 +13,64 @@ export class imagePreview extends HTMLElement {
   }
   connectedCallback() {
     this.innerHTML = `
+    <div class="wrapper">
     <div class="actions">
-    <button id="action-rename" data-name=${this.name}>
-      <span class="typcn typcn-edit"></span>
-    </button>
-    <button id="action-delete" data-name=${this.name}>
-      <span class="typcn typcn-delete-outline"></span>
-    </button>
-    <button id="action-set-album" data-name=${this.name}>
-      <span class="typcn typcn-folder-add"></span>
-    </button>
+      <button id="action-rename" data-name="${this.name}">
+        <span class="typcn typcn-edit"></span>
+      </button>
+      <button id="action-delete" data-name="${this.name}">
+        <span class="typcn typcn-delete-outline"></span>
+      </button>
+      <button id="action-set-album" data-name="${this.name}">
+        <span class="typcn typcn-folder-add"></span>
+      </button>
+    </div>
+    <img src="${this.src}" alt="" />
   </div>
-  <img src="${this.src}" alt="" />
-  <div class="rename-area">
-    <input type="text">
-    <button>Rename</button>
+  <div class="edit-area">
+    <div class="rename">
+      <input class="rename-input" type="text" />
+      <button class="fancy-btn" id="renameSubmit">Rename</button>
+    </div>
+    <div class="change-album">
+      <div class="albums">
+        <div class="album">
+          <input type="radio" />
+          <p>Those are</p>
+        </div>
+        <div class="album">
+          <input type="radio" />
+          <p>Just</p>
+        </div>
+        <div class="album">
+          <input type="radio" />
+          <p>Placeholders</p>
+        </div>
+      </div>
+    </div>
   </div>
     `;
     this.querySelector("#action-rename").addEventListener("click", () => {
       this.rename();
     });
+
+    this.querySelector("#action-set-album").addEventListener("click", () => {
+      this.changeAlbum();
+    });
   }
 
   rename() {
-    let rarea = this.querySelector(".rename-area");
+    let rarea = this.querySelector(".rename");
     if (rarea.style.display == "block") {
       rarea.style.display = "none";
     } else {
       rarea.style.display = "block";
 
-      let input = rarea.querySelector("input");
-      let submit = rarea.querySelector("button");
+      let input = rarea.querySelector(".rename-input");
+      let submit = rarea.querySelector("#renameSubmit");
 
       submit.onclick = () => {
         let newName = input.value;
-        console.log(newName);
         if (newName != "") {
           this.name = newName;
         } else {
@@ -56,8 +80,10 @@ export class imagePreview extends HTMLElement {
       };
     }
   }
-  changeAlbum(albumName) {
-    this.album = albumName;
+  changeAlbum() {
+    // Get a list of existing album so you cannot add to non existing one
+    let list = ImageManipulations.getCollectionsList();
+   
   }
 }
 

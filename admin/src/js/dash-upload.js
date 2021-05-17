@@ -46,6 +46,7 @@ class Upload {
   }
   static uploadToStorage() {
     // Take all items from locallyUploaded array and upload them to Firebase Storage
+    console.log("Uploading functionality is not ready yet!");
   }
   static removePreviewImage(name) {
     locallyUploaded = locallyUploaded.filter((img) => img.name !== name);

@@ -1,18 +1,38 @@
 <img-preview>
-  <div class="actions">
-    <button id="action-rename" data-name=${this.name}>
-      <span class="typcn typcn-edit"></span>
-    </button>
-    <button id="action-delete" data-name=${this.name}>
-      <span class="typcn typcn-delete-outline"></span>
-    </button>
-    <button id="action-set-album" data-name=${this.name}>
-      <span class="typcn typcn-folder-add"></span>
-    </button>
+  <div class="wrapper">
+    <div class="actions">
+      <button id="action-rename" data-name="${this.name}">
+        <span class="typcn typcn-edit"></span>
+      </button>
+      <button id="action-delete" data-name="${this.name}">
+        <span class="typcn typcn-delete-outline"></span>
+      </button>
+      <button id="action-set-album" data-name="${this.name}">
+        <span class="typcn typcn-folder-add"></span>
+      </button>
+    </div>
+    <img src="${this.src}" alt="" />
   </div>
-  <img src="${this.src}" alt="" />
-  <div class="rename-area">
-    <input type="text">
-    <button>Rename</button>
+  <div class="edit-area">
+    <div class="rename">
+      <input class="rename-input" type="text" />
+      <button class="fancy-btn" id="renameSubmit">Rename</button>
+    </div>
+    <div class="change-album">
+      <div class="albums">
+        <div class="album">
+          <input type="radio" />
+          <p>Those are</p>
+        </div>
+        <div class="album">
+          <input type="radio" />
+          <p>Just</p>
+        </div>
+        <div class="album">
+          <input type="radio" />
+          <p>Placeholders</p>
+        </div>
+      </div>
+    </div>
   </div>
 </img-preview>
