@@ -4,6 +4,6 @@ export class ImageManipulations {
   static getCollectionsList() {
    // Get existing collections from Firebase Firestore
    // Dummy albums for now
-    return ["default","album1", "album2"];
+    return ["default","album1",,"Nejake album", "album2"];
   }
 }

@@ -47,7 +47,7 @@ h6 {
 
 /*! Fancy buttons !*/
 .fancy-btn {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   border: solid var(--mainLighter) 2px;
@@ -58,7 +58,6 @@ h6 {
   padding: 8px 15px;
   background: var(--mainLighter);
   font-family: "Roboto", sans-serif;
-  font-size: 15px;
   outline: none !important;
 }
 
@@ -77,3 +76,9 @@ h6 {
   }
 }
 /*! MEDIA QUERIES END !*/
+
+
+/* Blurring background when any pop-up appears */
+.blurred {
+  filter: blur(5px) !important;
+}

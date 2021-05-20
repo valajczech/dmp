@@ -42,3 +42,75 @@
   flex-direction: row;
   overflow: scroll;
 }
+.edit-area {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.edit-area > .rename {
+  display: none;
+}
+.edit-area > .rename > button {
+  outline: none;
+  border: solid var(--mainColor) 2px;
+  color: white;
+  background-color: var(--mainColor);
+  border-radius: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+  filter: drop-shadow(0px 5px 5px #00000077);
+}
+.edit-area > .rename > input {
+  outline: none;
+  border: solid white 1px;
+  border-radius: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+  margin: 5px;
+  filter: drop-shadow(0px 5px 5px #00000077);
+}
+#closeRenameDialog {
+  background-color: red !important;
+  border: solid red 2px;
+}
+#closeAlbumDialog {
+  border: solid red 2px;
+  background-color: red !important;
+}
+#closeAlbumDialog:hover {
+  background-color: transparent !important;
+  border: solid red 2px;
+}
+#closeRenameDialog:hover {
+  background-color: transparent !important;
+  border: solid red 2px;
+}
+.change-album {
+  display: none;
+  background-color: var(--mainColor);
+  padding: 10px;
+  border-radius: 10px;
+  height: auto;
+  width: 400px;
+}.change-album > .wrapper {
+  display: flex; 
+}
+.album-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.album-actions > .wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper button {
+  margin: 5px;
+}
+.album {
+  display: flex;
+  align-items: center;
+}

@@ -71,7 +71,12 @@ leftmenu-wrapper {
   font-size: 30px;
   cursor: pointer;
 }
-
+.menu-area > span {
+/*I just dont want to troubleshoot this*/  
+  color: var(--mainColor);
+  cursor: default;
+  user-select: none;
+}
 /*! SMOL STATE OF LEFTMENU !*/
 .smol {
   width: 80px;

@@ -4,7 +4,7 @@ import firebase from "firebase";
 import "firebase/firebase-storage";
 
 import { imagePreview } from "../components/imgPreview.js";
-
+import {ImageManipulations} from "../js/core"
 // Input
 const dropzone = document.querySelector(".upload-input");
 // Image preview
