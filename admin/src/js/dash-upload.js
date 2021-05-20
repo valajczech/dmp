@@ -117,3 +117,6 @@ window.uploadChange = () => {
 document.addEventListener("DOMContentLoaded", () => {
   preview.style.display = "none";
 });
+
+
+/*Yeah Git je super věc kámo vubec se tu s tim nejebu extremne dlouho*/ 
