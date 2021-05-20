@@ -120,4 +120,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-/*Yeah Git je super věc kámo vubec se tu s tim nejebu extremne dlouho*/ 
+/* I always select wrong backup commit. I am really tired. Let me be. */
