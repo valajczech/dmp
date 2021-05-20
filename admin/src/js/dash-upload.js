@@ -112,6 +112,7 @@ window.uploadChange = () => {
   }
   Upload.updatePreviewList();
 };
+/* I love git merging */
 
 // Just to hide those ugly scrollbars, will be Splide later
 document.addEventListener("DOMContentLoaded", () => {
