@@ -13,7 +13,7 @@
     <leftmenu-wrapper></leftmenu-wrapper>
     <topnav-wrapper></topnav-wrapper>
     <div class="content" id="dropzone-content">
-      <div class="upload-dropzone" onclick="openFileDialog()">
+      <div class="upload-dropzone" >
         <p>
           <strong>Drop</strong> files or <strong>click</strong> to upload one
           or more files
@@ -32,30 +32,6 @@
     </div>
   </div>
   <input type="file" class="upload-input" multiple onchange="uploadChange()" accept="image/*" style="display: none" />
-
-  <div class="edit-area">
-    <div class="rename">
-      <input class="rename-input" placeholder="New name" type="text" />
-      <button class="fancy-btn" id="renameSubmit">Rename</button>
-      <button class="fancy-btn" id="closeRenameDialog">X</button>
-    </div>
-    <div class="change-album">
-      <div class="album-actions">
-        <h3>Albums</h3>
-        <div class="wrapper">
-          <div class="new-album">
-            <button class="fancy-btn" id="newAlbum">New Album</button>
-          </div>
-          <button class="fancy-btn" id="closeAlbumDialog">X</button>
-        </div>
-    </div>
-      <div class="wrapper">
-        <div class="albums">
-          <!--Existing albums are injected here-->
-        </div>
-      </div>
-    </div>
-  </div>
 </body>
 
 </html>

@@ -47,7 +47,7 @@ h6 {
 
 /*! Fancy buttons !*/
 .fancy-btn {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   border: solid var(--mainLighter) 2px;

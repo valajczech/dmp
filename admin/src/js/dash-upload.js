@@ -4,7 +4,8 @@ import firebase from "firebase";
 import "firebase/firebase-storage";
 
 import { imagePreview } from "../components/imgPreview.js";
-import {ImageManipulations} from "../js/core"
+import { ImageManipulations } from "../js/core";
+
 // Input
 const dropzone = document.querySelector(".upload-input");
 // Image preview
@@ -79,9 +80,9 @@ class Upload {
 }
 
 /*? GLOBAL WINDOW "on-" FUNCTIONS bcuz they are not global by default ?*/
-window.upload = () => {
-  Upload.uploadToStorage();
-};
+document.querySelector('.upload-dropzone').addEventListener('click', () => {
+  Upload.openFileDialog();
+})
 window.openFileDialog = () => {
   Upload.openFileDialog();
 };
