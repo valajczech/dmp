@@ -11,49 +11,56 @@ export class imagePreview extends HTMLElement {
     this.fileSize = fileSize;
   }
   connectedCallback() {
+    this.innerHTML = `
+
+  <div class="wrapper">
+  <div class="actions">
+    <button id="action-rename" data-name="${this.name}">
+      <span class="typcn typcn-edit"></span>
+    </button>
+    <button id="action-delete" data-name="${this.name}">
+      <span class="typcn typcn-delete-outline"></span>
+    </button>
+    <button id="action-set-album" data-name="${this.name}">
+      <span class="typcn typcn-folder-add"></span>
+    </button>
+  </div>
+  <img src="${this.src}" alt="" />
+</div>
+<div class="edit-area">
+  <div class="rename">
+    <div class="header">
+      <h3>Rename Image</h3>
+      <button class="fancy-btn" id="closeRenameDialog">X</button>
+    </div>
+    <div class="name-manipulation">
+      <input class="rename-input" placeholder="New name" type="text" />
+      <button class="fancy-btn" id="renameSubmit">Rename</button>
+    </div>
+  </div>
+  <div class="change-album">
+    <div class="album-actions">
+      <h3>Albums</h3>
+      <div class="wrapper">
+        <div class="new-album">
+          <button class="fancy-btn" id="newAlbum">New Album</button>
+        </div>
+        <button class="fancy-btn" id="closeAlbumDialog">X</button>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="albums">
+        <!--Existing albums are injected here-->
+      </div>
+    </div>
+  </div>
+</div>
+    `;
+
     let rename = this.querySelector(".rename");
     let changeAlbum = this.querySelector(".change-album");
     let albumsWrapper = this.querySelector(".albums");
 
-    this.innerHTML = `
-    <div class="wrapper">
-    <div class="actions">
-      <button id="action-rename" data-name="${this.name}">
-        <span class="typcn typcn-edit"></span>
-      </button>
-      <button id="action-delete" data-name="${this.name}">
-        <span class="typcn typcn-delete-outline"></span>
-      </button>
-      <button id="action-set-album" data-name="${this.name}">
-        <span class="typcn typcn-folder-add"></span>
-      </button>
-    </div>
-    <img src="${this.src}" alt="" />
-  </div>
-  <div class="edit-area">
-    <div class="rename">
-      <input class="rename-input" placeholder="New name" type="text" />
-      <button class="fancy-btn" id="renameSubmit">Rename</button>
-      <button class="fancy-btn" id="closeRenameDialog">X</button>
-    </div>
-    <div class="change-album">
-      <div class="album-actions">
-        <h3>Albums</h3>
-        <div class="wrapper">
-          <div class="new-album">
-            <button class="fancy-btn" id="newAlbum">New Album</button>
-          </div>
-          <button class="fancy-btn" id="closeAlbumDialog">X</button>
-        </div>
-    </div>
-      <div class="wrapper">
-        <div class="albums">
-          <!--Existing albums are injected here-->
-        </div>
-      </div>
-    </div>
-  </div>
-    `;
     /* RENAME IMAGE */
     this.querySelector("#action-rename").addEventListener("click", () => {
       this.showRenamedialog();
@@ -61,7 +68,6 @@ export class imagePreview extends HTMLElement {
     /* SET IMAGE'S ALBUM */
     this.querySelector("#action-set-album").addEventListener("click", () => {
       this.showAlbumDialog();
-      sourceImageElement = this.dataset.name;
     });
 
     // Dialog maniplations
@@ -74,6 +80,7 @@ export class imagePreview extends HTMLElement {
     // Close album dialog btn
     let closeAlbumBtn = this.querySelector("#closeAlbumDialog");
     closeAlbumBtn.onclick = () => {
+      albumsWrapper.style.display = "none";
       //  let checkBtns = document.querySelectorAll('#album-checkbox');
       //  let list = ImageManipulations.getCollectionsList();
 
@@ -132,7 +139,7 @@ export class imagePreview extends HTMLElement {
       album_area.style.display = "none";
     } else {
       album_area.style.display = "block";
-
+      /*
       //Code for selecting or adding albums (collections)
       if (list.length != 0) {
         list.forEach((item) => {
@@ -149,7 +156,9 @@ export class imagePreview extends HTMLElement {
       } else {
         albumParentEl.innerHTML =
           "<p>There are no albums yet. You can create one.</p>";
-      }
+      }*/
+      albumParentEl.innerHTML =
+        "<p>There are no albums yet. You can create one.</p>";
     }
   }
 }
