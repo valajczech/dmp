@@ -1,3 +1,8 @@
+/*
+
+WARNING: THIS PIECE OF CODE REQUIRES REFACTOR AND OPTIMIZATION!
+
+*/
 // COMPONENT
 // IMPORTS
 import "../css/components/imgPreview.css";
@@ -7,7 +12,7 @@ export class imagePreview extends HTMLElement {
     super();
     this.name = name;
     this.src = src;
-    this.albums = "default"; //Can be changed using changeAlbum function!
+    this.albums = ["default"]; //Can be changed using changeAlbum function!
     this.fileSize = fileSize;
   }
   connectedCallback() {
@@ -76,25 +81,35 @@ export class imagePreview extends HTMLElement {
     let closeRenameBtn = this.querySelector("#closeRenameDialog");
     closeRenameBtn.onclick = () => {
       rename.style.display = "none";
+      let renameBtns = document.querySelectorAll("#action-rename");
+
+      // undisable all rename btns
+      renameBtns.forEach((btn) => {
+        btn.disabled = false;
+      });
     };
     // Close album dialog btn
     let closeAlbumBtn = this.querySelector("#closeAlbumDialog");
     closeAlbumBtn.onclick = () => {
+      // get clicked checkboxes to determine added albums
+      let checks = albumsWrapper.querySelectorAll("#albumCheck");
+      checks.forEach((check) => {
+        if (check.checked) {
+          this.addAlbum(check.value);
+        }
+      });
+      console.log(this.albums);
+
+      // Hide all stuff
       albumsWrapper.style.display = "none";
-      //  let checkBtns = document.querySelectorAll('#album-checkbox');
-      //  let list = ImageManipulations.getCollectionsList();
-
-      // add to image's albums property selected albums
-      //  checkBtns.forEach(element => {
-      //    list.forEach(item => {
-      //      if(item == element.value) {
-
-      //      }
-      //    })
-      //  });
-
       changeAlbum.style.display = "none";
       albumsWrapper.innerHTML = "";
+
+      let albumBtns = document.querySelectorAll("#action-set-album");
+      // undisable all album btns
+      albumBtns.forEach((btn) => {
+        btn.disabled = false;
+      });
     };
     // New album btn
     let newAlbumBtn = this.querySelector("#newAlbum");
@@ -104,16 +119,29 @@ export class imagePreview extends HTMLElement {
   }
 
   addAlbum(albumName) {
-    this.albums = [...albumName];
+    if (!this.albums.includes(albumName)) {
+      this.albums.push(albumName);
+    }
   }
 
   // Do some refactor down there after please
   showRenamedialog() {
     let rarea = document.querySelector(".rename");
+    let renameBtns = document.querySelectorAll("#action-rename");
+
+    // Toggling
     if (rarea.style.display == "block") {
       rarea.style.display = "none";
+      // undisable all rename btns
+      renameBtns.forEach((btn) => {
+        btn.disabled = false;
+      });
     } else {
       rarea.style.display = "block";
+      // disable all rename btns
+      renameBtns.forEach((btn) => {
+        btn.disabled = true;
+      });
       let input = rarea.querySelector(".rename-input");
       let submit = rarea.querySelector("#renameSubmit");
 
@@ -125,40 +153,59 @@ export class imagePreview extends HTMLElement {
           alert("New name cannot be empty!");
         }
         rarea.style.display = "none";
+        // undisable all rename btns
+        renameBtns.forEach((btn) => {
+          btn.disabled = false;
+        });
       };
     }
   }
   showAlbumDialog() {
     // Get a list of existing album so you cannot add to non existing one
-
     let list = ImageManipulations.getCollectionsList();
 
-    let album_area = document.querySelector(".change-album");
-    let albumParentEl = document.querySelector(".albums");
+    let album_area = this.querySelector(".change-album");
+    let albumParentEl = this.querySelector(".albums");
+    let albumBtns = document.querySelectorAll("#action-set-album");
+
     if (album_area.style.display == "block") {
       album_area.style.display = "none";
+      albumParentEl.style.display = "none";
+      // undisable all album btns
+      albumBtns.forEach((btn) => {
+        btn.disabled = false;
+      });
     } else {
       album_area.style.display = "block";
-      /*
-      //Code for selecting or adding albums (collections)
-      if (list.length != 0) {
+      albumParentEl.style.display = "block";
+      // disable all album btns
+      albumBtns.forEach((btn) => {
+        btn.disabled = true;
+      });
+      // For each album in list create a input div
+      if (list.length > 0) {
         list.forEach((item) => {
-          let itemDOM = document.createElement("div");
-          itemDOM.classList.add("album");
-          itemDOM.innerHTML = `
-          <div class="album">
-           <input type="checkbox" name=${item} value=${item} id= "album-checkbox"/>
-           <p>${item}</p>
-          </div>
+          let album = document.createElement("div");
+          album.classList.add("album");
+          // Add some kind of check whether this album is already set
+          // and if so, check this checkbox
+          if (this.albums.includes(item)) {
+            album.innerHTML = `
+            <input type="checkbox" checked value=${item} id="albumCheck">
+            <p>${item}<p>
           `;
-          albumParentEl.appendChild(itemDOM);
+          } else {
+            album.innerHTML = `
+            <input type="checkbox" value=${item} id="albumCheck">
+            <p>${item}<p>
+          `;
+          }
+          albumParentEl.appendChild(album);
         });
       } else {
         albumParentEl.innerHTML =
           "<p>There are no albums yet. You can create one.</p>";
-      }*/
-      albumParentEl.innerHTML =
-        "<p>There are no albums yet. You can create one.</p>";
+      }
     }
   }
 }
