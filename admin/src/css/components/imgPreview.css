@@ -89,7 +89,7 @@ img-preview:hover > .wrapper > .actions {
   justify-content: center;
   align-items: center;
 }
-.edit-area > .rename > .name-manipulation > input {
+input {
   outline: none;
   border: solid white 1px;
   border-radius: 5px;
@@ -138,6 +138,9 @@ img-preview:hover > .wrapper > .actions {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.wrapper > .album-prompt {
+  display: none;
 }
 .wrapper button {
   margin: 5px;
