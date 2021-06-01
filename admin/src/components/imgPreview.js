@@ -8,12 +8,14 @@ like a hell of refactoring
 import "../css/components/imgPreview.css";
 import { ImageManipulations } from "../js/core";
 export class imagePreview extends HTMLElement {
-  constructor(name, src, fileSize) {
+  constructor(name, src,DOMsrc,fileSize, type) {
     super();
     this.name = name;
     this.src = src;
+    this.DOMsrc = DOMsrc;
     this.albums = ["default"]; //Can be changed using changeAlbum function!
     this.fileSize = fileSize;
+    this.type = type;
   }
   connectedCallback() {
     this.innerHTML = `
@@ -29,7 +31,7 @@ export class imagePreview extends HTMLElement {
         <span class="typcn typcn-folder-add"></span>
       </button>
     </div>
-    <img src="${this.src}" alt="" />
+    <img src="${this.DOMsrc}" alt="" />
   </div>
   <div class="edit-area">
     <div class="rename">

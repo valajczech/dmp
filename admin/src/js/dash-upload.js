@@ -47,7 +47,22 @@ class Upload {
   }
   static uploadToStorage() {
     // Take all items from locallyUploaded array and upload them to Firebase Storage
-    console.log("Uploading functionality is not ready yet!");
+    //! Get blob file from blob URL and after uploading revoke it for memory management
+    locallyUploaded.forEach((img) => {
+      const ref = firebase.storage().ref();
+      const name = img.name;
+      let src= img.src 
+      const metadata = {
+        contentType: img.type,
+      };
+      const task = ref.child(name).put(src, metadata);
+      task
+        .then((snapshot) => snapshot.ref.getDownloadURL())
+        .then((url) => {
+          console.log(url);
+        })
+        .catch(console.error);
+    });
   }
   static removePreviewImage(name) {
     locallyUploaded = locallyUploaded.filter((img) => img.name !== name);
@@ -80,11 +95,14 @@ class Upload {
 }
 
 /*? GLOBAL WINDOW "on-" FUNCTIONS bcuz they are not global by default ?*/
-document.querySelector('.upload-dropzone').addEventListener('click', () => {
+document.querySelector(".upload-dropzone").addEventListener("click", () => {
   Upload.openFileDialog();
-})
+});
 window.openFileDialog = () => {
   Upload.openFileDialog();
+};
+window.upload = () => {
+  Upload.uploadToStorage();
 };
 window.uploadChange = () => {
   // Function that handles uploading, renaming and deleting items from upload zone
@@ -101,8 +119,10 @@ window.uploadChange = () => {
 
         let previewImage = new imagePreview(
           file.name,
+          file,
           URL.createObjectURL(file),
-          Upload.returnFileSize(file)
+          Upload.returnFileSize(),
+          file.type
         );
 
         locallyUploaded.push(previewImage);
@@ -119,6 +139,5 @@ window.uploadChange = () => {
 document.addEventListener("DOMContentLoaded", () => {
   preview.style.display = "none";
 });
-
 
 /* I always select wrong backup commit. I am really tired. Let me be. */
