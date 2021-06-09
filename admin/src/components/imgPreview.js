@@ -6,9 +6,12 @@ like a hell of refactoring
 // COMPONENT
 // IMPORTS
 import "../css/components/imgPreview.css";
-import { ImageManipulations } from "../js/core";
+import { Collections } from "../js/core";
+import "regenerator-runtime/runtime.js";
+
+let collectionList = [];
 export class imagePreview extends HTMLElement {
-  constructor(name, src,DOMsrc,fileSize, type) {
+  constructor(name, src, DOMsrc, fileSize, type) {
     super();
     this.name = name;
     this.src = src;
@@ -16,7 +19,13 @@ export class imagePreview extends HTMLElement {
     this.albums = ["default"]; //Can be changed using changeAlbum function!
     this.fileSize = fileSize;
     this.type = type;
+
+    //this.init();
   }
+  /*async init() {
+    //Rewrite this to the showAlbumDialog function
+    collectionList = await Collections.getCollectionsList();
+  }*/
   connectedCallback() {
     this.innerHTML = `
     <div class="wrapper">
@@ -135,11 +144,18 @@ export class imagePreview extends HTMLElement {
       list.style.display = "none";
       prompt.style.display = "flex";
 
-      let nameInput = this.querySelector('.new-album-input');
-      let submitBtn = this.querySelector('#newAlbumSubmit')
-      submitBtn.onclick = () => {
-        ImageManipulations.updateColectionList(nameInput.value);
-      }
+      let nameInput = this.querySelector(".new-album-input");
+      let submitBtn = this.querySelector("#newAlbumSubmit");
+      submitBtn.onclick = async () => {
+        try {
+          // Add new album to the DB
+          await Collections.updateColectionList(nameInput.value);
+          // Update the list of albums
+          collectionList = await Collections.getCollectionsList();
+        } catch (error) {
+          console.log(error);
+        }
+      };
     };
   }
 
@@ -187,8 +203,6 @@ export class imagePreview extends HTMLElement {
   }
   showAlbumDialog() {
     // Get a list of existing album so you cannot add to non existing one
-    let list = ImageManipulations.getCollectionsList();
-
     let album_area = this.querySelector(".change-album");
     let albumParentEl = this.querySelector(".albums");
     let albumBtns = document.querySelectorAll("#action-set-album");
@@ -208,29 +222,34 @@ export class imagePreview extends HTMLElement {
         btn.disabled = true;
       });
       // For each album in list create a input div
-      if (list.length > 0) {
-        list.forEach((item) => {
-          let album = document.createElement("div");
-          album.classList.add("album");
-          // Add some kind of check whether this album is already set
-          // and if so, check this checkbox
-          if (this.albums.includes(item)) {
-            album.innerHTML = `
-            <input type="checkbox" checked value=${item} id="albumCheck">
-            <p>${item}<p>
-          `;
-          } else {
-            album.innerHTML = `
-            <input type="checkbox" value=${item} id="albumCheck">
-            <p>${item}<p>
-          `;
-          }
-          albumParentEl.appendChild(album);
-        });
-      } else {
-        albumParentEl.innerHTML =
-          "<p>There are no albums yet. You can create one.</p>";
-      }
+      albumParentEl.innerHTML = `<p>Getting info about albums, please wait.</p>`;
+      setTimeout(async () => {
+        collectionList = await Collections.getCollectionsList();
+        albumParentEl.innerHTML = "";
+        if (collectionList.length > 0) {
+          collectionList.forEach((item) => {
+            let album = document.createElement("div");
+            album.classList.add("album");
+            // Add some kind of check whether this album is already set
+            // and if so, check this checkbox
+            if (this.albums.includes(item)) {
+              album.innerHTML = `
+              <input type="checkbox" checked value=${item} id="albumCheck">
+              <p>${item}<p>
+            `;
+            } else {
+              album.innerHTML = `
+              <input type="checkbox" value=${item} id="albumCheck">
+              <p>${item}<p>
+            `;
+            }
+            albumParentEl.appendChild(album);
+          });
+        } else {
+          albumParentEl.innerHTML =
+            "<p>There are no albums yet. You can create one.</p>";
+        }
+      }, 300);
     }
   }
 }

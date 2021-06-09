@@ -1,10 +1,6 @@
 // IMPORT
 import "../css/dash-upload.css";
-import firebase from "firebase";
-import "firebase/firebase-storage";
-
 import { imagePreview } from "../components/imgPreview.js";
-import { ImageManipulations } from "../js/core";
 
 // Input
 const dropzone = document.querySelector(".upload-input");
@@ -16,13 +12,12 @@ const para = document.querySelector(".para");
 /*Array for locally uplaoded images*/
 let locallyUploaded = [];
 
-// Firebase config
-var firebaseConfig = {
-  projectId: "dmp-bures",
-  storageBucket: "gs://dmp-bures.appspot.com",
-};
+// Firebase init
+import firebase from "firebase";
+import "firebase/firebase-storage";
+require("firebase/firestore");
 
-firebase.initializeApp(firebaseConfig);
+import { Collections, db } from "./core";
 
 class Upload {
   static isFileImage(file) {
@@ -48,21 +43,55 @@ class Upload {
   static uploadToStorage() {
     // Take all items from locallyUploaded array and upload them to Firebase Storage
     //! Get blob file from blob URL and after uploading revoke it for memory management
-    locallyUploaded.forEach((img) => {
-      const ref = firebase.storage().ref();
-      const name = img.name;
-      let src= img.src 
-      const metadata = {
-        contentType: img.type,
-      };
-      const task = ref.child(name).put(src, metadata);
-      task
-        .then((snapshot) => snapshot.ref.getDownloadURL())
-        .then((url) => {
-          console.log(url);
-        })
-        .catch(console.error);
-    });
+    if (locallyUploaded.length >= 1) {
+      locallyUploaded.forEach((img) => {
+        const ref = firebase.storage().ref();
+        const name = img.name;
+        let src = img.src;
+        const metadata = {
+          contentType: img.type,
+        };
+        const task = ref.child(name).put(src, metadata);
+        task
+          .then((snapshot) => snapshot.ref.getDownloadURL())
+          .then((url) => {
+            // SUCCESS!
+            URL.revokeObjectURL(img.DOMsrc);
+            //! Upload info about image to db/uploadedPictures
+            db.collection("uploadedPictures")
+              .add({
+                imgName: name,
+                imgPath: url,
+                imgAlbums: img.albums,
+              })
+              .then((docRef) => {
+                console.log("Document written with ID: ", docRef.id); // ID to be referenced in DB/albums/album/connectedImages
+                //! Reference image in albums collection and if some doesnt exist yet, create it.
+                let existingAlbums = Collections.getCollectionsList();
+                img.albums.forEach(album =>{
+                  existingAlbums.forEach(existingAlbum => {
+                    if(album == existingAlbum) {
+                      // Album set in img props exists, reference it
+                      Collections.referenceImageInAlbum(existingAlbum, url);
+                    } else {
+                      // Album set in img props doesnt exist, create new album and reference the image in it
+                      Collections.updateColectionList(album);
+                      Collections.referenceImageInAlbum(existingAlbum, url);
+                    }
+                  })
+                })
+              })
+              .catch((error) => {
+                console.error("Error adding document: ", error);
+              });
+          })
+          .catch(console.error);
+      });
+      // After everything uploaded, clear the array
+      locallyUploaded = [];
+    } else {
+      alert("There is nothing to upload, select some files!");
+    }
   }
   static removePreviewImage(name) {
     locallyUploaded = locallyUploaded.filter((img) => img.name !== name);
@@ -133,11 +162,8 @@ window.uploadChange = () => {
   }
   Upload.updatePreviewList();
 };
-/* I love git merging */
 
 // Just to hide those ugly scrollbars, will be Splide later
 document.addEventListener("DOMContentLoaded", () => {
   preview.style.display = "none";
 });
-
-/* I always select wrong backup commit. I am really tired. Let me be. */
