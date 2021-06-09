@@ -19,13 +19,8 @@ export class imagePreview extends HTMLElement {
     this.albums = ["default"]; //Can be changed using changeAlbum function!
     this.fileSize = fileSize;
     this.type = type;
-
-    //this.init();
   }
-  /*async init() {
-    //Rewrite this to the showAlbumDialog function
-    collectionList = await Collections.getCollectionsList();
-  }*/
+ 
   connectedCallback() {
     this.innerHTML = `
     <div class="wrapper">
@@ -225,6 +220,7 @@ export class imagePreview extends HTMLElement {
       albumParentEl.innerHTML = `<p>Getting info about albums, please wait.</p>`;
       setTimeout(async () => {
         collectionList = await Collections.getCollectionsList();
+        
         albumParentEl.innerHTML = "";
         if (collectionList.length > 0) {
           collectionList.forEach((item) => {

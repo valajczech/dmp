@@ -1,6 +1,7 @@
 // IMPORT
 import "../css/dash-upload.css";
 import { imagePreview } from "../components/imgPreview.js";
+import "regenerator-runtime/runtime.js";
 
 // Input
 const dropzone = document.querySelector(".upload-input");
@@ -43,6 +44,7 @@ class Upload {
   static uploadToStorage() {
     // Take all items from locallyUploaded array and upload them to Firebase Storage
     //! Get blob file from blob URL and after uploading revoke it for memory management
+    let existingAlbums = [];
     if (locallyUploaded.length >= 1) {
       locallyUploaded.forEach((img) => {
         const ref = firebase.storage().ref();
@@ -64,22 +66,18 @@ class Upload {
                 imgPath: url,
                 imgAlbums: img.albums,
               })
-              .then((docRef) => {
+              .then(async (docRef) => {
                 console.log("Document written with ID: ", docRef.id); // ID to be referenced in DB/albums/album/connectedImages
                 //! Reference image in albums collection and if some doesnt exist yet, create it.
-                let existingAlbums = Collections.getCollectionsList();
-                img.albums.forEach(album =>{
-                  existingAlbums.forEach(existingAlbum => {
-                    if(album == existingAlbum) {
-                      // Album set in img props exists, reference it
-                      Collections.referenceImageInAlbum(existingAlbum, url);
-                    } else {
-                      // Album set in img props doesnt exist, create new album and reference the image in it
-                      Collections.updateColectionList(album);
-                      Collections.referenceImageInAlbum(existingAlbum, url);
-                    }
-                  })
-                })
+                existingAlbums = await Collections.getCollectionsList(); //existing albums is undefined
+                console.log("existingAlbums@73:", existingAlbums);
+                // List of albums from Firestore
+                img.albums.forEach(async album => {
+                  if(existingAlbums.includes(album)) {
+                    // Album set on img exists, so reference this image in said album
+                    await Collections.referenceImageInAlbum(album, url);
+                  }
+                });
               })
               .catch((error) => {
                 console.error("Error adding document: ", error);
@@ -130,8 +128,8 @@ document.querySelector(".upload-dropzone").addEventListener("click", () => {
 window.openFileDialog = () => {
   Upload.openFileDialog();
 };
-window.upload = () => {
-  Upload.uploadToStorage();
+window.upload = async () => {
+  await Upload.uploadToStorage();
 };
 window.uploadChange = () => {
   // Function that handles uploading, renaming and deleting items from upload zone
