@@ -12,19 +12,23 @@ class Leftmenu extends HTMLElement {
   </div>
   <div class="menu-area" id="main-menu">
     <span>HLAVNÍ</span>
-    <a href="/dashboard.html"class="action">
+    <a href="/dashboard"class="action">
       <span class="typcn typcn-home"></span>
       <p>Dashboard</p>
     </a>
-    <a href="/photos/upload.html"class="action">
-      <span class="typcn typcn-camera"></span>
+    <a href="/photos/upload"class="action">
+      <span class="typcn typcn-cloud-storage"></span>
       <p>Upload</p>
     </a>
-    <a href="/photos/collections.html" class="action">
+    <a href="/photos/all"class="action">
+      <span class="typcn typcn-camera"></span>
+      <p>Pictures</p>
+    </a>
+    <a href="/collections" class="action">
       <span class="typcn typcn-image"></span>
       <p>Collections</p>
     </a>
-    <a href="/analytics.html" class="action">
+    <a href="/analytics" class="action">
       <span class="typcn typcn-chart-bar"></span>
       <p>Analytics</p>
     </a>

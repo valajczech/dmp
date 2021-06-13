@@ -1,0 +1,88 @@
+body {
+  position: relative;
+}
+#albums {
+  position: relative;
+}
+.top-bar-actions {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 20px;
+  top: 0px;
+}
+.top-bar-actions > button > span {
+  font-size: 20px;
+  margin-right: 10px;
+}
+.album-list {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#deleteAlbum {
+  /*Initial state of this button is not displayed
+    because there has to be something selected first.
+  */
+  display: none;
+}
+#deleteAlbum:hover {
+  color: white;
+  border-color: red;
+  background-color: red;
+}
+.fetchedAlbum {
+  padding: 5px 15px;
+  background-color: var(--mainColor);
+  border-radius: 10px;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: 5px;
+  width: 150px;
+  cursor: pointer;
+}
+
+/* Pop up when creating new albums */
+.new-album-popup {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+
+  padding: 15px;
+  background-color: var(--mainColor);
+  border-radius: 10px;
+}
+.album-prompt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.album-prompt > input {
+  outline: none;
+  border: solid white 1px;
+  border-radius: 5px;
+  padding: 10px 15px;
+  width: 80%;
+}
+.album-prompt > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+#closeNewAlbumDialog{
+  color: white;
+  background-color: red;
+  border: solid red 2px;
+}

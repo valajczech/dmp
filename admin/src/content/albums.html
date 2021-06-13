@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collections | Mgr.Milan Bureš</title>
+  </head>
+
+  <body>
+    <div class="page">
+      <leftmenu-wrapper></leftmenu-wrapper>
+      <topnav-wrapper></topnav-wrapper>
+      <div class="content" id="albums">
+        <div class="top-bar-actions">
+          <button class="fancy-btn" onclick="showNewAlbumInput()">
+            <span class="typcn typcn-folder-add"></span>New Album
+          </button>
+          <button class="fancy-btn" id="renameAlbum">
+            <span class="typcn typcn-edit"></span>Rename
+          </button>
+          <button class="fancy-btn" id="deleteAlbum" disabled>
+            <span class="typcn typcn-delete"></span>Delete
+          </button>
+        </div>
+        <div class="album-list">
+          <!-- Albums auto injected -->
+        </div>
+      </div>
+    </div>
+    <!-- Pop ups -->
+    <div class="new-album-popup">
+      <div class="album-prompt">
+        <input
+          class="new-album-input input"
+          placeholder="New album name"
+          type="text"
+        />
+        <div>
+          <button class="fancy-btn" id="newAlbumSubmit" onclick="createNewAlbum()">
+            Create New Album
+          </button>
+          <button class="fancy-btn" id="closeNewAlbumDialog">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

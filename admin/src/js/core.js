@@ -31,26 +31,59 @@ export class Collections {
 
     return collectionList;
   }
-  static updateColectionList(newAlbumName) {
+
+  static async getDetailedCollectionList() {
+    let detailedCollectionList = [];
+    let query = await db
+      .collection("albums")
+      .where("albumName", "!=", " ")
+      .get()
+      .catch((err) => {
+        console.error(err);
+      });
+    query.docs.forEach((doc) => {
+      let uselessCounter = doc.data().connectedImages; // Can I do .lenght in oneliner?
+      detailedCollectionList.push({
+        albumName: doc.data().albumName,
+        connectedImages: doc.data().connectedImages,
+        numOfImages: uselessCounter.length,
+        docID: doc.id,
+      });
+    });
+    return detailedCollectionList;
+  }
+  static async updateColectionList(newAlbumName_ToCreate) {
     // Create and add newAlbumName to the collection list from Firestore
-    db.collection("albums")
-      .doc(newAlbumName)
+    await db
+      .collection("albums")
+      .doc(newAlbumName_ToCreate)
       .set({
-        albumName: newAlbumName,
+        albumName: newAlbumName_ToCreate,
         connectedImages: [],
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }
-  //! bug - doesnt load new imageURL properly
   static async referenceImageInAlbum(album, imageURL) {
     // To each referenced album doc add imageURL of connected img
-    console.log("update here: ", album);
     await db
-      .collection("albums").doc(album).update({
-        connectedImages: firebase.firestore.FieldValue.arrayUnion(imageURL)
+      .collection("albums")
+      .doc(album)
+      .update({
+        connectedImages: firebase.firestore.FieldValue.arrayUnion(imageURL),
       })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  static async deleteAlbum(albumName) {
+    await db
+      .collection("albums")
+      .doc(albumName)
+      .delete()
+      .catch((error) => {
+        console.error(error);
+      });
   }
 }
-
