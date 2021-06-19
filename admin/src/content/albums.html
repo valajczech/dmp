@@ -16,12 +16,6 @@
           <button class="fancy-btn" onclick="showNewAlbumInput()">
             <span class="typcn typcn-folder-add"></span>New Album
           </button>
-          <button class="fancy-btn" id="renameAlbum">
-            <span class="typcn typcn-edit"></span>Rename
-          </button>
-          <button class="fancy-btn" id="deleteAlbum" disabled>
-            <span class="typcn typcn-delete"></span>Delete
-          </button>
         </div>
         <div class="album-list">
           <!-- Albums auto injected -->
@@ -37,10 +31,20 @@
           type="text"
         />
         <div>
-          <button class="fancy-btn" id="newAlbumSubmit" onclick="createNewAlbum()">
+          <button
+            class="fancy-btn"
+            id="newAlbumSubmit"
+            onclick="createNewAlbum()"
+          >
             Create New Album
           </button>
-          <button class="fancy-btn" id="closeNewAlbumDialog">Cancel</button>
+          <button
+            class="fancy-btn"
+            id="closeNewAlbumDialog"
+            onclick="closeNewAlbumDialog()"
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>

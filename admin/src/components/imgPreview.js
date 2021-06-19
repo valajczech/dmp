@@ -1,5 +1,7 @@
 /*
 
+Image preview component used to show image that is about to get uploaded to the DB in dash_upload
+
 WARNING: THIS PIECE OF CODE REQUIRES REFACTOR AND OPTIMIZATION!
 like a hell of refactoring
 */
@@ -35,7 +37,7 @@ export class imagePreview extends HTMLElement {
         <span class="typcn typcn-folder-add"></span>
       </button>
     </div>
-    <img src="${this.DOMsrc}" alt="" />
+    <img src="${this.DOMsrc || this.src}" alt="" />
   </div>
   <div class="edit-area">
     <div class="rename">

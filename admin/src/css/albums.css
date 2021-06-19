@@ -81,8 +81,58 @@ body {
   align-items: center;
   gap: 10px;
 }
-#closeNewAlbumDialog{
+#closeNewAlbumDialog {
   color: white;
   background-color: red;
   border: solid red 2px;
+}
+.imagePreviewWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80%;
+  width: 80%;
+  background-color: var(--mainLighter);
+  padding: 15px;
+  border-radius: 15px;
+
+  filter: drop-shadow(10px 10px 10px #0000);
+}
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.controls > h2 {
+  margin-bottom: 15px !important;
+}
+.controls > button {
+  color: white;
+  background-color: red;
+  border-color: red;
+  padding: 5px;
+}
+
+.controls > button:hover {
+  background-color: transparent;
+  border-color: red;
+}
+.albumsConnectedImages {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.collectionImageWrapper {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  margin: 5px;
+
+  display: flex;
+  justify-content: center;
+}
+.collectionImage {
+  height: 200px;
+  width: auto;
 }

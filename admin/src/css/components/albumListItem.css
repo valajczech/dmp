@@ -6,8 +6,45 @@ album-item {
   cursor: pointer;
   width: 200px;
 }
-.top-actions > input {
-  margin: 0px !important;
+.top-actions {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 5px;
+  align-items: center;
+}
+.top-actions > #deleteThisAlbum {
+  color: white !important;
+  border: none !important;
+  background-color: var(--mainLighter);
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 3px 6px;
+  font-weight: 700;
+  outline: none !important;
+  font-size: 15px;
+}
+.top-actions > #deleteThisAlbum:hover {
+  color: white !important ;
+  background-color: red;
+  transition-duration: 0.3s;
+}
+.top-actions > #renameThisAlbum {
+  color: white !important;
+  border: none !important;
+  background-color: var(--mainLighter);
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 3px 6px;
+  font-weight: 700;
+  outline: none !important;
+  font-size: 15px;
+}
+.top-actions > #renameThisAlbum:hover {
+  color: white !important ;
+  background-color: var(--accent);
+  transition-duration: 0.3s;
 }
 .album-content > h3 {
   margin: 0px;

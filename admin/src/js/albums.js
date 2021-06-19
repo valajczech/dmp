@@ -5,10 +5,12 @@ import "regenerator-runtime";
 
 // Components
 import { albumListItem } from "../components/albumListItem";
+import { async } from "regenerator-runtime";
 
 // DOM Variables
 const albumList = document.querySelector(".album-list");
 const newAlbumInput = document.querySelector(".new-album-popup");
+const deleteButtons = document.querySelectorAll('#deleteAlbum');
 
 // Variables
 let globalCollectionList = [];
@@ -32,11 +34,20 @@ async function loadExistingCollections() {
         album.docID
       );
       albumList.appendChild(albumDOM);
+      albumDOM.querySelector("#deleteThisAlbum").addEventListener("click", async () => {
+        await Collections.deleteAlbum(albumDOM.albumName);
+        await loadExistingCollections();
+      })
+      albumDOM.querySelector('#renameThisAlbum').addEventListener('click', async () => {
+        // Show input prompt
+        //TODO !!!!
+      })
     });
   } else {
     albumList.innerHTML = `<div><p>There are no collections yet. You can create one though.</p></div>`;
   }
 }
+
 
 // Event for loading albums from Firestore
 document.addEventListener("DOMContentLoaded", async () => {
@@ -64,3 +75,11 @@ window.createNewAlbum = async () => {
     alert("Name cannot be empty!");
   }
 };
+window.closeNewAlbumDialog = () => {
+   // Toggle new album in put pop up
+   if (newAlbumInput.style.display == "block") {
+    newAlbumInput.style.display = "none";
+  } else {
+    newAlbumInput.style.display = "block";
+  }
+}

@@ -1,10 +1,11 @@
 <div id="doNotCopy">
   <div class="top-actions">
-    <input type="checkbox" value=${this.docID}>
+    <button id="deleteThisAlbum"><span class="typcn typcn-delete"></span></button>
+    <button id="renameThisAlbum"><span class="typcn typcn-edit"></span></button>
   </div>
   <div class="album-content">
     <h3>${this.albumName}</h3>
-    <p>Total ${this.numOfImages} images are in this album</p>
+    <p>Total ${this.numOfImages} images</p>
     <div class="show">
       <button class="show-album-content"><span class="typcn typcn-eye"></span></button>
     </div>
