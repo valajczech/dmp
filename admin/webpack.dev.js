@@ -2,7 +2,6 @@ const path = require("path");
 const buildPath = path.resolve(__dirname, "dist");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-let list = [1,2,3];
 
 module.exports = {
   entry: {
@@ -15,7 +14,7 @@ module.exports = {
   },
 
   devServer: {
-    port: 5500,
+    port: 5501,
     contentBase: buildPath,
   },
 

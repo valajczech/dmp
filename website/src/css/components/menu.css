@@ -19,7 +19,20 @@ menu-wrapper {
 #langEN {
   margin-top: 50px;
 }
-
+.menu-list > .collections {
+  margin-top: 15px;
+}
+.menu-list > .collections > li {
+  list-style: none;
+}
+.menu-list > .collections > li > a {
+ color: #6e6e6e;
+ font-size: 17px;
+ transition-duration: 0.3s;
+}
+.menu-list > .collections > li > a:hover {
+  color:black;
+  }
 #sliderMenu {
   height: 75%;
   width: 75%;

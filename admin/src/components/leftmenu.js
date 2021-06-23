@@ -1,13 +1,15 @@
 // COMPONENT
 
+// Imports
 import "../css/components/leftmenu.css";
+import { Collections } from "../js/core";
+
 class Leftmenu extends HTMLElement {
   constructor() {
     super();
   }
   connectedCallback() {
-    this.innerHTML = 
-    `<div class="top-panel">
+    this.innerHTML = `<div class="top-panel">
     <img src="https://raw.githubusercontent.com/Orexin/orexin-web/master/src/img/logos/logo-white-sm.png" alt="">
   </div>
   <div class="menu-area" id="main-menu">
@@ -46,17 +48,17 @@ class Leftmenu extends HTMLElement {
   </div>
     `;
 
-    const lmenu = document.querySelector('leftmenu-wrapper');
-    const toggler = document.querySelector('.bottom-area');
-    const page = document.querySelector('.page');
-    toggler.addEventListener('click', () => {
-        lmenu.classList.toggle('smol');
-        if(lmenu.classList.contains('smol')) {
-          page.style.gridTemplateColumns = "80px 1fr 1fr 1fr"; 
-        } else {
-          page.style.gridTemplateColumns = "200px 1fr 1fr 1fr";
-        }
-    })
+    const lmenu = document.querySelector("leftmenu-wrapper");
+    const toggler = document.querySelector(".bottom-area");
+    const page = document.querySelector(".page");
+    toggler.addEventListener("click", () => {
+      lmenu.classList.toggle("smol");
+      if (lmenu.classList.contains("smol")) {
+        page.style.gridTemplateColumns = "80px 1fr 1fr 1fr";
+      } else {
+        page.style.gridTemplateColumns = "200px 1fr 1fr 1fr";
+      }
+    });
   }
 }
 

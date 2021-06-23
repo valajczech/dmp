@@ -82,6 +82,7 @@ export class Collections {
       .set({
         albumName: newAlbumName_ToCreate,
         connectedImages: [],
+        albumURL: UrlLinks.transformToURL(newAlbumName_ToCreate)
       })
       .catch((error) => {
         console.error(error);
@@ -132,5 +133,11 @@ export class Collections {
       .catch((error) => {
         console.error(error);
       });
+  }
+}
+
+export class UrlLinks {
+  static transformToURL(string) {
+    return new String(string).toLowerCase().trim().replaceAll(" ", "-")
   }
 }
