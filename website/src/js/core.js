@@ -35,6 +35,18 @@ export class Collections {
     let list = await this.getCollectionsList();
     Storage.saveToStorage(list);
   }
+  static async getCollection(collectionURL) {
+    //? Maybe should be refactored
+    let query = await db
+      .collection("albums")
+      .doc(collectionURL)
+      .get()
+      .catch((err) => {
+        console.error(err);
+      });
+
+    return query.data();
+  }
 }
 
 export class Storage {

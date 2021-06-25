@@ -24,8 +24,8 @@ class Menu extends HTMLElement {
         <li><a href="/">Úvodem</a></li>
         <li><a href="#">Nejnovější</a></li>
         <li><a href="#">Soubory</a></li>
-        <li><a href="./bio.html">Biografie</a></li>
-        <li><a href="./contact.html">Kontakt</a></li>
+        <li><a href="/bio">Biografie</a></li>
+        <li><a href="/contact">Kontakt</a></li>
         
         <div class="collections">
           <!-- Collections auto injected --->
@@ -40,7 +40,7 @@ class Menu extends HTMLElement {
     collections.forEach((item) => {
       let albumDOM = document.createElement("li");
       albumDOM.innerHTML = `
-      <a href="${UrlLinks.transformToURL(item)}">${item}</a>
+      <a href="collection?collection=${UrlLinks.transformToURL(item)}">${item}</a>
       `;
 
       menuLists.forEach((domNode) => {
