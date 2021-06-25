@@ -18,7 +18,7 @@ import firebase from "firebase";
 import "firebase/firebase-storage";
 require("firebase/firestore");
 
-import { Collections, db } from "./core";
+import { Collections, db, UrlLinks } from "./core";
 
 class Upload {
   static isFileImage(file) {
@@ -60,11 +60,15 @@ class Upload {
             // SUCCESS!
             URL.revokeObjectURL(img.DOMsrc);
             //! Upload info about image to db/uploadedPictures
+            let rawAlbums = [];
+            img.albums.forEach((album) => {
+              rawAlbums.push(UrlLinks.transformToURL(album));
+            });
             db.collection("uploadedPictures")
               .add({
                 imgName: name,
                 imgPath: url,
-                imgAlbums: img.albums,
+                imgAlbums: rawAlbums
               })
               .then(async (docRef) => {
                 console.log("Document written with ID: ", docRef.id); // ID to be referenced in DB/albums/album/connectedImages
@@ -72,8 +76,8 @@ class Upload {
                 existingAlbums = await Collections.getCollectionsList(); //existing albums is undefined
                 console.log("existingAlbums@73:", existingAlbums);
                 // List of albums from Firestore
-                img.albums.forEach(async album => {
-                  if(existingAlbums.includes(album)) {
+                img.albums.forEach(async (album) => {
+                  if (existingAlbums.includes(album)) {
                     // Album set on img exists, so reference this image in said album
                     await Collections.referenceImageInAlbum(album, url);
                   }

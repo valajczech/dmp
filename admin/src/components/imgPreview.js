@@ -8,7 +8,7 @@ like a hell of refactoring
 // COMPONENT
 // IMPORTS
 import "../css/components/imgPreview.css";
-import { Collections } from "../js/core";
+import { Collections, UrlLinks } from "../js/core";
 import "regenerator-runtime/runtime.js";
 
 let collectionList = [];
@@ -106,7 +106,7 @@ export class imagePreview extends HTMLElement {
       let checks = albumsWrapper.querySelectorAll("#albumCheck");
       checks.forEach((check) => {
         if (check.checked) {
-          this.addAlbum(check.value);
+          this.addAlbum(UrlLinks.transformToURL(check.value));
         }
       });
       console.log(this.albums);
@@ -232,13 +232,13 @@ export class imagePreview extends HTMLElement {
             // and if so, check this checkbox
             if (this.albums.includes(item)) {
               album.innerHTML = `
-              <input type="checkbox" checked value=${item} id="albumCheck">
-              <p>${item}<p>
+              <input type="checkbox" checked value="${item}" id="albumCheck">
+              <p>${UrlLinks.transformToText(item)}<p>
             `;
             } else {
               album.innerHTML = `
-              <input type="checkbox" value=${item} id="albumCheck">
-              <p>${item}<p>
+              <input type="checkbox" value="${item}" id="albumCheck">
+              <p>${UrlLinks.transformToText(item)}<p>
             `;
             }
             albumParentEl.appendChild(album);

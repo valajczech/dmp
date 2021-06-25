@@ -48,7 +48,7 @@ export class Collections {
         console.log(err);
       });
     query.docs.forEach((doc) => {
-      collectionList.push(doc.data().albumName);
+      collectionList.push(doc.data().albumURL);
     });
 
     return collectionList;
@@ -78,7 +78,7 @@ export class Collections {
     // Create and add newAlbumName to the collection list from Firestore
     await db
       .collection("albums")
-      .doc(newAlbumName_ToCreate)
+      .doc(UrlLinks.transformToURL(newAlbumName_ToCreate))
       .set({
         albumName: newAlbumName_ToCreate,
         connectedImages: [],
@@ -88,11 +88,11 @@ export class Collections {
         console.error(error);
       });
   }
-  static async referenceImageInAlbum(album, imageURL) {
+  static async referenceImageInAlbum(album, imageURL) { //! bug apperentely
     // To each referenced album doc add imageURL of connected img
     await db
       .collection("albums")
-      .doc(album)
+      .doc(UrlLinks.transformToURL(album))
       .update({
         connectedImages: firebase.firestore.FieldValue.arrayUnion(imageURL),
       })
@@ -128,7 +128,7 @@ export class Collections {
   static async deleteAlbum(albumName) {
     await db
       .collection("albums")
-      .doc(albumName)
+      .doc(UrlLinks.transformToURL(albumName))
       .delete()
       .catch((error) => {
         console.error(error);
@@ -139,5 +139,8 @@ export class Collections {
 export class UrlLinks {
   static transformToURL(string) {
     return new String(string).toLowerCase().trim().replaceAll(" ", "-")
+  }
+  static transformToText(string) {
+    return new String(string).toUpperCase().trim().replaceAll("-", " ");
   }
 }
