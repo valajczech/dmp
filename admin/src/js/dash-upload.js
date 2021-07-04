@@ -68,7 +68,7 @@ class Upload {
               .add({
                 imgName: name,
                 imgPath: url,
-                imgAlbums: rawAlbums
+                imgAlbums: rawAlbums,
               })
               .then(async (docRef) => {
                 console.log("Document written with ID: ", docRef.id); // ID to be referenced in DB/albums/album/connectedImages
@@ -79,7 +79,10 @@ class Upload {
                 img.albums.forEach(async (album) => {
                   if (existingAlbums.includes(album)) {
                     // Album set on img exists, so reference this image in said album
-                    await Collections.referenceImageInAlbum(album, url);
+                    await Collections.referenceImageInAlbum(album, {
+                      imgName: name,
+                      imgURL: url
+                    });
                   }
                 });
               })

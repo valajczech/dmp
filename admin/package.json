@@ -29,6 +29,7 @@
     "date-and-time": "^1.0.0",
     "dotenv": "^9.0.2",
     "firebase": "^8.5.0",
+    "firebaseui": "^4.8.0",
     "regenerator-runtime": "^0.13.7",
     "typicons.font": "^2.1.1"
   }

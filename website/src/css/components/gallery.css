@@ -1,0 +1,19 @@
+.text { 
+  text-align: center;
+}
+.gallery-first-item {
+  margin: auto;
+  display: none;
+  height: 60vh;
+  width: 60%;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gallery-preview-item {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}

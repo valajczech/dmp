@@ -1,5 +1,6 @@
-// Core functions for frondend
+// Core functions for frontdend
 
+//TODO: handle all error cases!
 // Imports
 import firebase from "firebase";
 import "regenerator-runtime";
@@ -44,11 +45,27 @@ export class Collections {
       .catch((err) => {
         console.error(err);
       });
-
     return query.data();
   }
 }
-
+export class Images {
+  static imageLoop(arr, imgElementSrcAttr) {
+    // Forever iterate through image array and set it as src attribute of image
+    let count = 0;
+    console.log("arr:", arr);
+    // Set first image
+    imgElementSrcAttr.setAttribute("src", arr[0].imgURL);
+    //! TODO: perform transition effect
+    setInterval(() => {
+      if (count < arr.length) {
+        imgElementSrcAttr.setAttribute("src", arr[count].imgURL);
+        count += 1;
+      } else {
+        count = 0;
+      }
+    }, 2000);
+  }
+}
 export class Storage {
   static saveToStorage(item) {
     localStorage.setItem("Collections", JSON.stringify(item));

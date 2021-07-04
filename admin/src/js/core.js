@@ -1,5 +1,6 @@
 // Main (core) functions
 
+//TODO: handle all error cases!
 // Imports
 
 import firebase from "firebase";
@@ -7,8 +8,12 @@ import "regenerator-runtime/runtime.js";
 
 require("firebase/firestore");
 var firebaseConfig = {
+  apiKey: "AIzaSyDaAIrhvH2h6IfWzeYtO0xkUxP5NOd9Bm8",
+  authDomain: "dmp-bures.firebaseapp.com",
   projectId: "dmp-bures",
-  storageBucket: "gs://dmp-bures.appspot.com",
+  storageBucket: "dmp-bures.appspot.com",
+  messagingSenderId: "58363618586",
+  appId: "1:58363618586:web:18b6f64d4b44fd7abd38a3",
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -58,7 +63,6 @@ export class Collections {
     let detailedCollectionList = [];
     let query = await db
       .collection("albums")
-      .where("albumName", "!=", " ")
       .get()
       .catch((err) => {
         console.error(err);
@@ -82,19 +86,19 @@ export class Collections {
       .set({
         albumName: newAlbumName_ToCreate,
         connectedImages: [],
-        albumURL: UrlLinks.transformToURL(newAlbumName_ToCreate)
+        albumURL: UrlLinks.transformToURL(newAlbumName_ToCreate),
       })
       .catch((error) => {
         console.error(error);
       });
   }
-  static async referenceImageInAlbum(album, imageURL) { //! bug apperentely
+  static async referenceImageInAlbum(album, image) {
     // To each referenced album doc add imageURL of connected img
     await db
       .collection("albums")
       .doc(UrlLinks.transformToURL(album))
       .update({
-        connectedImages: firebase.firestore.FieldValue.arrayUnion(imageURL),
+        connectedImages: firebase.firestore.FieldValue.arrayUnion(image),
       })
       .catch((error) => {
         console.error(error);
@@ -138,7 +142,7 @@ export class Collections {
 
 export class UrlLinks {
   static transformToURL(string) {
-    return new String(string).toLowerCase().trim().replaceAll(" ", "-")
+    return new String(string).toLowerCase().trim().replaceAll(" ", "-");
   }
   static transformToText(string) {
     return new String(string).toUpperCase().trim().replaceAll("-", " ");

@@ -4,7 +4,9 @@
 // Imports
 import { async } from "regenerator-runtime";
 import "../css/collections.css";
-import { Collections } from "./core";
+import "lightgallery/css/lightgallery-bundle.css";
+import { Collections, Images } from "./core";
+import { Gallery } from "../components/gallery";
 
 // Variables
 let desiredCollection = new URL(document.location).searchParams.get(
@@ -13,6 +15,8 @@ let desiredCollection = new URL(document.location).searchParams.get(
 
 // DOM Variables
 const collectionNameDOM = document.querySelector(".collectionName");
+const galleryPreview = document.querySelector(".gallery-first-item");
+const galleryPreviewItem = document.querySelector(".gallery-preview-item");
 
 document.addEventListener("DOMContentLoaded", async () => {
   if (!desiredCollection) {
@@ -20,25 +24,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     //! BUG: when relocating to index.html, menu collection adding doesnt work
     window.location.replace("/");
   } else {
+    galleryPreview.style.display = "block";
     // Fetch desired collection info and connectedImages
     // and then add them to gallery
     let fetchedCollection = new Object(
-      await Collections.getCollection(desiredCollection)
+      await Collections.getCollection(desiredCollection).catch((err) => {
+        console.log(err);
+        galleryPreview.style.display = "none";
+        return;
+      })
     );
-    // Set correct collection name
-    collectionNameDOM.innerHTML = fetchedCollection.albumName;
-   
-    // Let's work with gallery!
+    // Set the name in DOM
+    collectionNameDOM.innerText = fetchedCollection.albumName;
+    //console.log(fetchedCollection);
 
-    //! test if it works 
-    /*const content = document.querySelector('.text');
-    fetchedCollection.connectedImages.forEach(element => {
-      let imgDOM = document.createElement('img');
-      imgDOM.setAttribute('src', element);
-      imgDOM.style.height = "150px";
-      imgDOM.style.width = "150px";
-      content.appendChild(imgDOM);
-    });*/ 
-
+    // Generate previewImage, onclick open LighGallery
+    if (fetchedCollection.connectedImages.length <= 1) {
+      // There are no connected Images
+      galleryPreview.innerHTML = "<h3>There are no images yet!</h3>"
+    } else {
+      Images.imageLoop(fetchedCollection.connectedImages, galleryPreviewItem);
+    }
   }
 });

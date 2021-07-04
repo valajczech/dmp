@@ -49,7 +49,7 @@ export class albumListItem extends HTMLElement {
           let imageDOM = document.createElement("div");
           imageDOM.classList.add("collectionImageWrapper");
           imageDOM.innerHTML = `
-          <img src="${element}" class="collectionImage"></img>
+          <img src="${element.imgURL}" class="collectionImage"></img>
   
           `;
           imagePreviewWrapper
