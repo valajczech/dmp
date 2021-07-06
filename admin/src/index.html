@@ -14,23 +14,31 @@
     <div class="login-wrapper">
       <h2>Vítejte zpět!</h2>
       <p>Přihlaste se a jdeme na to!</p>
-      <!-- Firebase UI login element -->
-      <div id="firebaseui-auth-container"></div>
-      <div id="loader">Loading...</div>
-      <!-- 
-    <form action="#">
-      <div class="inputfield">
-        <input name="username" type="text" placeholder="Vaše uživatelské jméno">
+      <div>
+        <div class="inputfield">
+          <input
+            id="userInput"
+            name="username"
+            type="text"
+            placeholder="Vaše uživatelské jméno"
+          />
+        </div>
+        <div class="inputfield">
+          <input
+            name="password"
+            id="passwdInput"
+            type="password"
+            placeholder="Heslo"
+          />
+        </div>
+        <div class="submitter">
+          <button class="fancy-btn" id="submitBtn" type="submit">
+            Přihlásit se
+          </button>
+        </div>
       </div>
-      <div class="inputfield">
-        <input name="password" type="password" placeholder="Heslo">
-      </div>
-      <div class="submitter">
-        <button class="fancy-btn" type="submit">Přihlásit se</button>
-      </div>
-    </form>
-      -->
     </div>
     <div class="footer"></div>
   </body>
 </html>
+

@@ -1,15 +1,16 @@
 // Imports
 import "../css/index.css";
-var firebase = require("firebase");
-var ui = require("firebaseui");
+import firebase from "firebase";
+import { Users } from "../js/core";
 
 // Variables
 
-// Code:
+// DOM Variables
+const submitBtn = document.querySelector("#submitBtn");
+const userInput = document.querySelector("#userInput");
+const passwdInput = document.querySelector("#passwdInput");
 
-// Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
-ui.start("#firebaseui-auth-container", {
-  signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
-  // Other config options...
-});
+//
+submitBtn.onclick = async () => {
+  await Users.login(userInput.value, passwdInput.value);
+};

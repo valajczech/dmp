@@ -79,6 +79,7 @@ export class Collections {
     return detailedCollectionList;
   }
   static async updateColectionList(newAlbumName_ToCreate) {
+    //! TODO: add dateTime info about the album
     // Create and add newAlbumName to the collection list from Firestore
     await db
       .collection("albums")
@@ -146,5 +147,61 @@ export class UrlLinks {
   }
   static transformToText(string) {
     return new String(string).toUpperCase().trim().replaceAll("-", " ");
+  }
+}
+
+export class Users {
+  static async login(email, password) {
+    // Login (sign up) existing users into the system
+    //! TODO: rewrite this so client can use only username and doesnt have to use email!
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        window.location.replace("/dashboard");
+        console.log("should be replaced");
+        // ...
+      })
+      .catch((error) => {
+        //!(todo) HANDLE THIS !!!
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(
+          "This user either doesnt exist or provided credentials are wrong"
+        );
+        alert("You have entered wrong credentials!");
+      });
+  }
+  static async logout() {
+    // User logout function
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        window.location.replace("/");
+      });
+  }
+  static attachAuthObserver() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        var uid = user.uid;
+        // Redirect based on location when signed in
+        if (window.location.pathname == "/") {
+          window.location.replace("/dashboard");
+        }
+      } else {
+        if (window.location.pathname != "/") {
+          window.location.replace("/");
+        }
+      }
+    });
+  }
+  static getCurrentLoggedUser() {
+    // Returns currently logged in user and his information (I guess)
+    //! wtf!, something's buggy in here (todo)
   }
 }

@@ -7,3 +7,8 @@ import "../components/topnav";
 
 // Other stuff
 import "typicons.font/src/font/typicons.css";
+import { Users } from "../js/core";
+
+
+//! Auth observer
+Users.attachAuthObserver();

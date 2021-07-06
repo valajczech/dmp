@@ -22,7 +22,7 @@ color: white;
   width: 250px;
   padding: 15px 25px 15px 25px;
 }
-.login-wrapper > form {
+.login-wrapper > div {
   display: flex;
   flex-direction: column;
   align-items: center;
