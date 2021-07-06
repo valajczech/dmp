@@ -8,6 +8,7 @@ module.exports = {
     index: "./src/js/index.js",
     bio: "./src/js/bio.js",
     contact: "./src/js/contact.js",
+    collection: "./src/js/collection.js"
   },
 
   devServer: {
@@ -86,14 +87,21 @@ module.exports = {
       template: "./src/bio.html",
       inject: true,
       chunks: ["main", "bio"],
-      filename: "bio.html",
+      filename: "bio",
     }),
     /* CONTACT */
     new HtmlWebpackPlugin({
       template: "./src/contact.html",
       inject: true,
       chunks: ["main", "contact"],
-      filename: "contact.html",
+      filename: "contact",
     }),
+    /* COLLECTION */ 
+    new HtmlWebpackPlugin({
+      template: "./src/collection.html",
+      inject: true,
+      chunks: ["main", "collection"],
+      filename: "collection"
+    })
   ],
 };
