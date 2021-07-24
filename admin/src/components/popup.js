@@ -5,14 +5,12 @@ import "../css/components/popup.css";
 import { Users } from "../js/core";
 
 // Variables
-let currentuser = Users.getCurrentLoggedUser();
-console.log("lulw: ", currentuser); //! undefined
 export class Popup extends HTMLElement {
   constructor(type, content) {
     super();
 
     this.type = type;
-    this.title = currentuser;
+    this.title = JSON.parse(localStorage.getItem("currentUser"));
     this.content = `
       <button class="fancy-btn" id="userLogout" onclick="userLogout()">Logout</button>
       `;
@@ -24,7 +22,9 @@ export class Popup extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
     <div> 
-      <img src="#" id="profilePic" alt="">
+      <div class="user">
+        <span class="typcn typcn-user" id="user-btn"></span> <!---This will be a img later-->
+      </div>
       <h1>${this.title}</h1>
       <p>${this.content}</p>
     </div>

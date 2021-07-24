@@ -21,7 +21,7 @@ class Menu extends HTMLElement {
     this.innerHTML = `
     <div class="menu-content">
       <ul class="menu-list">
-        <li><a href="/">Úvodem</a></li>
+        <li><a href="/prologue">Úvodem</a></li>
         <li><a href="#">Nejnovější</a></li>
         <li><a href="#">Soubory</a></li>
         <li><a href="/bio">Biografie</a></li>

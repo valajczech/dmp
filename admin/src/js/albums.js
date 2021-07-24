@@ -55,6 +55,7 @@ async function loadExistingCollections() {
 }
 
 // Event for loading albums from Firestore
+//? Is self-invoking function better for this?
 document.addEventListener("DOMContentLoaded", async () => {
   await loadExistingCollections();
 });

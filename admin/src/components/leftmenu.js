@@ -14,15 +14,19 @@ class Leftmenu extends HTMLElement {
   </div>
   <div class="menu-area" id="main-menu">
     <span>HLAVNÍ</span>
-    <a href="/dashboard"class="action">
+    <a href="/dashboard" class="action">
       <span class="typcn typcn-home"></span>
       <p>Dashboard</p>
     </a>
-    <a href="/photos/upload"class="action">
+    <a href="/mainpage_edit" class="action">
+      <span class="typcn typcn-star-full-outline"></span>
+      <p>Main page</p>
+    </a>
+    <a href="/photos/upload" class="action">
       <span class="typcn typcn-cloud-storage"></span>
       <p>Upload</p>
     </a>
-    <a href="/photos/all"class="action">
+    <a href="/photos/all" class="action">
       <span class="typcn typcn-camera"></span>
       <p>Pictures</p>
     </a>

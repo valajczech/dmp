@@ -37,9 +37,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Set the name in DOM
     collectionNameDOM.innerText = fetchedCollection.albumName;
     //console.log(fetchedCollection);
-
     // Generate previewImage, onclick open LighGallery
-    if (fetchedCollection.connectedImages.length <= 1) {
+    if (fetchedCollection.connectedImages.length < 1) {
       // There are no connected Images
       galleryPreview.innerHTML = "<h3>There are no images yet!</h3>"
     } else {

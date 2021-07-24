@@ -49,10 +49,16 @@ export class Collections {
   }
 }
 export class Images {
-  static imageLoop(arr, imgElementSrcAttr) {
+  static async getSlideshowInterval() {
+    return await (
+      await db.collection("settings").doc("mainpage_slideshow").get()
+    ).data().image_interval;
+  }
+
+  static async imageLoop(arr, imgElementSrcAttr) {
+    let interval = await this.getSlideshowInterval();
     // Forever iterate through image array and set it as src attribute of image
     let count = 0;
-    console.log("arr:", arr);
     // Set first image
     imgElementSrcAttr.setAttribute("src", arr[0].imgURL);
     //! TODO: perform transition effect
@@ -63,7 +69,20 @@ export class Images {
       } else {
         count = 0;
       }
-    }, 2000);
+    }, interval * 1000);
+  }
+  static async getSlideshowImages() {
+    // Returns URL of every uploaded image, so it can be appended to the DOM
+    let imgList = [];
+    let query = await db.collection("uploadedPictures").get();
+    query.forEach((img) => {
+      if (img.data().isInMainpageSlideshow) {
+        imgList.push({
+          imgURL: img.data().imgURL,
+        });
+      }
+    });
+    return imgList;
   }
 }
 export class Storage {

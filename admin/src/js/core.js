@@ -25,7 +25,7 @@ export class Images {
     let imgList = [];
     let query = await db.collection("uploadedPictures").get();
     query.forEach((img) => {
-      imgList.push(img.data().imgPath);
+      imgList.push(img.data().imgURL);
     });
     return imgList;
   }
@@ -34,8 +34,10 @@ export class Images {
     let query = await db.collection("uploadedPictures").get();
     query.forEach((img) => {
       imgList.push({
+        docID: img.id,
         name: img.data().imgName,
-        src: img.data().imgPath,
+        src: img.data().imgURL,
+        isInMainpageSlideshow: img.data().isInMainpageSlideshow,
       });
     });
     return imgList;
@@ -159,15 +161,16 @@ export class Users {
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Signed in
-        var user = userCredential.user;
+        let user = firebase.auth().currentUser;
+        // Set currentUser so we can use it in user popup
+        localStorage.setItem("currentUser", JSON.stringify(user.email));
         window.location.replace("/dashboard");
-        console.log("should be replaced");
         // ...
       })
       .catch((error) => {
         //!(todo) HANDLE THIS !!!
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        /*var errorCode = error.code;
+        var errorMessage = error.message; */
         console.log(
           "This user either doesnt exist or provided credentials are wrong"
         );
@@ -180,6 +183,7 @@ export class Users {
       .auth()
       .signOut()
       .then(() => {
+        localStorage.setItem("currentUser", JSON.stringify(""));
         window.location.replace("/");
       });
   }
@@ -200,8 +204,69 @@ export class Users {
       }
     });
   }
-  static getCurrentLoggedUser() {
-    // Returns currently logged in user and his information (I guess)
-    //! wtf!, something's buggy in here (todo)
+}
+
+export class MainPageSlideshow {
+  static async add(imageObjectReference) {
+    /* await db
+      .collection("settings")
+      .doc("mainpage_slideshow")
+      .update({
+        selected_images:
+          firebase.firestore.FieldValue.arrayUnion(imageObjectReference),
+      })
+      .catch((err) => {
+        console.error(err);
+      });*/
+    // Set the `isInMainpageSlideshow` to true
+    await db
+      .collection("uploadedPictures")
+      .doc(imageObjectReference.docID)
+      .update({
+        isInMainpageSlideshow: true,
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+  static async remove(imageObjectReference) {
+    // Remove either previously selected image from slideshow.
+    //! BUG, it doesnt remove the imageObject from the array in `mainpage_slideshow` doc
+    /* await db
+      .collection("settings")
+      .doc("mainpage_slideshow")
+      .update({
+        selected_images: 
+          firebase.firestore.FieldValue.arrayRemove(imageObjectReference.src),
+      })
+      .catch((err) => {
+        console.error(err);
+      });*/
+    // Set the `isInMainpageSlideshow` to false
+    await db
+      .collection("uploadedPictures")
+      .doc(imageObjectReference.docID)
+      .update({
+        isInMainpageSlideshow: false,
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+  static async getSlideshowInterval() {
+    return await (
+      await db.collection("settings").doc("mainpage_slideshow").get()
+    ).data().image_interval;
+  }
+  static async setSlideshowInterval(interval) {
+    await db
+      .collection("settings")
+      .doc("mainpage_slideshow")
+      .update({
+        image_interval: Number(interval)
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 }

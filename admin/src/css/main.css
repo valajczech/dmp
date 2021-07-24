@@ -66,6 +66,17 @@ h6 {
   border-color: var(--accent);
   color: white;
 }
+
+.red-btn {
+  background-color: red;
+  color: white;
+  border: solid red 2px;
+}
+.red-btn:hover {
+  background-color: transparent !important;
+  color: red !important;
+  border: solid red 2px;
+}
 /*! Fancy buttons end !*/
 /*! GLOBALS END!*/
 
@@ -81,4 +92,9 @@ h6 {
 /* Blurring background when any pop-up appears */
 .blurred {
   filter: blur(5px) !important;
+}
+
+/* hidden */
+.hidden {
+  display: none !important;
 }

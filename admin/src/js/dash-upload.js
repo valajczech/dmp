@@ -67,7 +67,7 @@ class Upload {
             db.collection("uploadedPictures")
               .add({
                 imgName: name,
-                imgPath: url,
+                imgURL: url,
                 imgAlbums: rawAlbums,
               })
               .then(async (docRef) => {
