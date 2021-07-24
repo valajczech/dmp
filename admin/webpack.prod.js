@@ -2,19 +2,19 @@ const path = require("path");
 const buildPath = path.resolve(__dirname, "dist");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-
 module.exports = {
   entry: {
     main: "./src/js/main.js",
     index: "./src/js/index.js",
     dashboard: "./src/js/dashboard.js",
     dash_upload: "./src/js/dash-upload.js",
-		dash_albums: "./src/js/albums.js",
-    dash_allImages: "./src/js/allImages.js"
+    dash_albums: "./src/js/albums.js",
+    dash_allImages: "./src/js/allImages.js",
+    dash_mainPageEdit: "./src/js/mainpage_edit.js",
   },
 
   devServer: {
-    port: 5500,
+    port: 5501,
     contentBase: buildPath,
   },
 
@@ -81,15 +81,22 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/content/albums.html",
       inject: true,
-      chunks: ['main', 'dashboard', 'dash_albums'],
-			filename: 'collections'
+      chunks: ["main", "dashboard", "dash_albums"],
+      filename: "collections",
     }),
     /* DASHBOARD - ALL IMAGES */
     new HtmlWebpackPlugin({
       template: "./src/content/allImages.html",
       inject: true,
-      chunks: ['main', 'dashboard', 'dash_allImages'],
-      filename: 'photos/all'
-    })
+      chunks: ["main", "dashboard", "dash_allImages"],
+      filename: "photos/all",
+    }),
+    /* DASHBOARD - EDIT MAIN PAGE */
+    new HtmlWebpackPlugin({
+      template: "./src/content/mainpage_edit.html",
+      inject: true,
+      chunks: ["main", "dashboard", "dash_mainPageEdit"],
+      filename: "mainpage_edit",
+    }),
   ],
 };

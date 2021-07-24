@@ -10,7 +10,12 @@ const submitBtn = document.querySelector("#submitBtn");
 const userInput = document.querySelector("#userInput");
 const passwdInput = document.querySelector("#passwdInput");
 
-//
 submitBtn.onclick = async () => {
   await Users.login(userInput.value, passwdInput.value);
 };
+
+document.onkeydown = (key) => {
+  if(key.code == "Enter") {
+    submitBtn.click();
+  }
+}
