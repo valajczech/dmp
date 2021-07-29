@@ -34,10 +34,6 @@ class Leftmenu extends HTMLElement {
       <span class="typcn typcn-image"></span>
       <p>Collections</p>
     </a>
-    <a href="/analytics" class="action">
-      <span class="typcn typcn-chart-bar"></span>
-      <p>Analytics</p>
-    </a>
     <a href="/users" class="action">
       <span class="typcn typcn-group"></span>
       <p>Users</p>

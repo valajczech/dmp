@@ -20,6 +20,15 @@ firebase.initializeApp(firebaseConfig);
 export var db = firebase.firestore();
 
 export class Images {
+  static async getTotalNumberOfImages() {
+    let query = await db
+      .collection("uploadedPictures")
+      .get()
+      .catch((err) => {
+        console.error(err);
+      });
+    return query.docs.length;
+  }
   static async getAllImageUrls() {
     // Returns URL of every uploaded image, so it can be appended to the DOM
     let imgList = [];
@@ -44,6 +53,15 @@ export class Images {
   }
 }
 export class Collections {
+  static async getTotalNumOfCollections() {
+    let query = await db
+      .collection("albums")
+      .get()
+      .catch((err) => {
+        console.error(err);
+      });
+    return query.docs.length;
+  }
   static async getCollectionsList() {
     // Get all already existing albums from Firestore
     let collectionList = [];
@@ -263,10 +281,25 @@ export class MainPageSlideshow {
       .collection("settings")
       .doc("mainpage_slideshow")
       .update({
-        image_interval: Number(interval)
+        image_interval: Number(interval),
       })
       .catch((err) => {
         console.error(err);
       });
   }
 }
+export const Analytics = {
+  Visitors: {
+    getTotal: async () => {
+      // Get total number of all time visitors
+      let query = await db
+        .collection("analytics")
+        .doc("visitors")
+        .get()
+        .catch((err) => {
+          console.error(err);
+        });
+      return query.data().total;
+    },
+  },
+};

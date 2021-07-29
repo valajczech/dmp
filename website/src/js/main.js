@@ -11,13 +11,15 @@ import "../components/footer";
 import "../components/preloader";
 
 // CORE FUNCTIONS
-import { Storage, Collections } from "../js/core";
+import { Storage, Collections, Analytics } from "../js/core";
 import { async } from "regenerator-runtime";
 
-function init() {
+async function init() {
   // Functions thanks to which we get collection list
   // On every init of the webpage
   Collections.saveCollectionsToLocalStorage();
+  // Add new visitor 
+  Analytics.Visitors.addNew();
 };
 
 // Load them up!

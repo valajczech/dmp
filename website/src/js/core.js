@@ -100,3 +100,21 @@ export class UrlLinks {
     return new String(string).toLowerCase().trim().replaceAll(" ", "-");
   }
 }
+
+// So this is a namespace, is it better than classes or not?
+// Probably yes, but I'll have to rewrite the whole project :D 
+export const Analytics = {
+  Visitors: {
+    addNew: async function () {
+      let query = await db
+        .collection("analytics")
+        .doc("visitors")
+        .update({
+          total: firebase.firestore.FieldValue.increment(1),
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+  },
+};
