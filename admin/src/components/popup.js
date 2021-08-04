@@ -10,6 +10,7 @@ export class Popup extends HTMLElement {
     super();
 
     this.type = type;
+    //! Should be hashed I guess
     this.title = JSON.parse(localStorage.getItem("currentUser"));
     this.content = `
       <button class="fancy-btn" id="userLogout" onclick="userLogout()">Logout</button>

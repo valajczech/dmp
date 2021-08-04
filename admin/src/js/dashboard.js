@@ -6,11 +6,14 @@ import { Analytics, Collections, Images } from "./core";
 
 // DOM Variables
 let totalVisitorsEl = document.querySelector("#total_visitors");
-let totalCollectionsEl = document.querySelector('#total_collections');
+let totalCollectionsEl = document.querySelector("#total_collections");
 let totalPhotosEl = document.querySelector("#total_photos");
 // Main event
 document.addEventListener("DOMContentLoaded", async () => {
-  totalVisitorsEl.innerText = await Analytics.Visitors.getTotal();
-  totalCollectionsEl.innerText = await Collections.getTotalNumOfCollections();
-  totalPhotosEl.innerText = await Images.getTotalNumberOfImages();
+  try {
+    totalVisitorsEl.innerText = await Analytics.Visitors.getTotal();
+    totalCollectionsEl.innerText = await Collections.getTotalNumOfCollections();
+    totalPhotosEl.innerText = await Images.getTotalNumberOfImages();
+  } catch (error) {
+  }
 });

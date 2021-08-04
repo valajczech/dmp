@@ -69,12 +69,12 @@ class Upload {
                 imgName: name,
                 imgURL: url,
                 imgAlbums: rawAlbums,
+                uploadDate: Date.now()
               })
               .then(async (docRef) => {
                 console.log("Document written with ID: ", docRef.id); // ID to be referenced in DB/albums/album/connectedImages
                 //! Reference image in albums collection and if some doesnt exist yet, create it.
                 existingAlbums = await Collections.getCollectionsList(); //existing albums is undefined
-                console.log("existingAlbums@73:", existingAlbums);
                 // List of albums from Firestore
                 img.albums.forEach(async (album) => {
                   if (existingAlbums.includes(album)) {

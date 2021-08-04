@@ -45,11 +45,25 @@ export class Images {
       imgList.push({
         docID: img.id,
         name: img.data().imgName,
+        description: img.data().description,
         src: img.data().imgURL,
+        albums: img.data().imgAlbums,
         isInMainpageSlideshow: img.data().isInMainpageSlideshow,
+        uploadDate: img.data().uploadDate,
       });
     });
     return imgList;
+  }
+  static async updateImageNameAndDesc(docID, newName, newDesc) {
+    db.collection("uploadedPictures")
+      .doc(docID)
+      .update({
+        imgName: newName,
+        imgDescription: newDesc,
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 }
 export class Collections {
