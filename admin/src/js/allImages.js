@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let imgList = await Images.getDetailedImageList();
   fetchingText.style.display = "none";
   imgList.forEach((img) => {
+    console.log(img);
     let imgDOM = new imageElement(
       img.docID,
       img.name,

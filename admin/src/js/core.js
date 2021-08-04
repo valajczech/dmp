@@ -45,7 +45,7 @@ export class Images {
       imgList.push({
         docID: img.id,
         name: img.data().imgName,
-        description: img.data().description,
+        description: img.data().imgDescription,
         src: img.data().imgURL,
         albums: img.data().imgAlbums,
         isInMainpageSlideshow: img.data().isInMainpageSlideshow,
