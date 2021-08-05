@@ -128,11 +128,40 @@ body {
   height: 200px;
   overflow: hidden;
   margin: 5px;
+  border-radius: 10px;
 
   display: flex;
   justify-content: center;
+  border: solid transparent 2px;
 }
 .collectionImage {
   height: 200px;
   width: auto;
+}
+.allImagesWrapper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80%;
+  width: 80%;
+  background-color: var(--mainLighter);
+  padding: 15px;
+  border-radius: 15px;
+
+  filter: drop-shadow(10px 10px 10px #0000);
+}
+.allImagesWrapper > .controls {
+  float: right;
+}
+.allFetchedImages {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.allFetchedImages > div {
+ cursor: pointer; 
+}
+.image-selected {
+  border: solid var(--accent) 2px;
 }

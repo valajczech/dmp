@@ -4,7 +4,7 @@ album-item {
   background-color: var(--mainColor);
   border-radius: 10px;
   cursor: pointer;
-  width: 200px;
+  width: 300px;
 }
 .top-actions {
   margin-bottom: 10px;
@@ -54,15 +54,18 @@ album-item {
   color: var(--grayText);
   font-size: 13px;
 }
-.show {
+.album-actions {
   width: 100%;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
-.show > button > span {
+.album-actions > button > span {
   font-size: 20px;
   color: var(--accent)
 }
-.show > button {
+.album-actions > button {
   width: 95%;
   margin: 10px 0px 5px 0px;
   cursor: pointer;

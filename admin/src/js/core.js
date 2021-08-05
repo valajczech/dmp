@@ -1,12 +1,16 @@
 // Main (core) functions
 
-//TODO: handle all error cases!
+// TODO: handle all error cases!
+//! Note: After the final release, please spend some time with refactoring and
+//! code optimization and readability, because this is quite the mess and
+//! could be done better. Thanks. -- valajczech
+
 // Imports
 
 import firebase from "firebase";
 import "regenerator-runtime/runtime.js";
-
 require("firebase/firestore");
+
 var firebaseConfig = {
   apiKey: "AIzaSyDaAIrhvH2h6IfWzeYtO0xkUxP5NOd9Bm8",
   authDomain: "dmp-bures.firebaseapp.com",
@@ -60,6 +64,17 @@ export class Images {
       .update({
         imgName: newName,
         imgDescription: newDesc,
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+  static async addImageAlbum(docID, albumName) {
+    await db
+      .collection("uploadedPictures")
+      .doc(docID)
+      .update({
+        imgAlbums: firebase.firestore.FieldValue.arrayUnion(albumName),
       })
       .catch((err) => {
         console.error(err);
@@ -133,7 +148,11 @@ export class Collections {
       .collection("albums")
       .doc(UrlLinks.transformToURL(album))
       .update({
-        connectedImages: firebase.firestore.FieldValue.arrayUnion(image),
+        connectedImages: firebase.firestore.FieldValue.arrayUnion({
+          imgDocID: image.docID,
+          imgName: image.name,
+          imgURL: image.src,
+        }),
       })
       .catch((error) => {
         console.error(error);
@@ -171,6 +190,31 @@ export class Collections {
       .delete()
       .catch((error) => {
         console.error(error);
+      });
+  }
+  static async removeImageFromAlbum(imageObject, albumObject) {
+    console.log("the id:", imageObject);
+    await db
+      .collection("albums")
+      .doc(albumObject.docID)
+      .update({
+        connectedImages: firebase.firestore.FieldValue.arrayRemove({
+          imgDocID: imageObject.docID,
+          imgName: imageObject.name,
+          imgURL: imageObject.src,
+        }),
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    await db
+      .collection("uploadedPictures")
+      .doc(imageObject.docID)
+      .update({
+        imgAlbums: firebase.firestore.FieldValue.arrayRemove(albumObject.docID),
+      })
+      .catch((err) => {
+        console.error(err);
       });
   }
 }
