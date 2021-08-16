@@ -6,9 +6,11 @@ module.exports = {
   entry: {
     main: "./src/js/main.js",
     index: "./src/js/index.js",
+    prologuie: "./src/js/prologue.js",
     bio: "./src/js/bio.js",
     contact: "./src/js/contact.js",
-    collection: "./src/js/collection.js"
+    collection: "./src/js/collection.js",
+    exhibitions: "./src/js/exhibitions.js"
   },
 
   devServer: {
@@ -75,12 +77,19 @@ module.exports = {
 	*/
 
   plugins: [
-    /* INDEX */
+    /* INDEX - MAIN ENTRYPOINT */
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       inject: true,
       chunks: ["main", "index"],
       filename: "index.html",
+    }),
+    /* PROLOGUE */
+    new HtmlWebpackPlugin({
+      template: "./src/prologue.html",
+      inject: true,
+      chunks: ["main", "prologue"],
+      filename: "prologue",
     }),
     /* BIOGRAPHY */
     new HtmlWebpackPlugin({
@@ -102,6 +111,13 @@ module.exports = {
       inject: true,
       chunks: ["main", "collection"],
       filename: "collection"
+    }),
+    /* EXHIBITIONS */ 
+    new HtmlWebpackPlugin({
+      template: "./src/exhibitions.html",
+      inject: true,
+      chunks: ["main", "exhibitions"],
+      filename: "exhibitions"
     })
   ],
 };

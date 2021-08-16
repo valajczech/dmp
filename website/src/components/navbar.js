@@ -1,5 +1,5 @@
 import "../css/components/navbar.css";
-let logo = require('../img/logo.jpg')
+let logo = require('../img/logo.png')
 class Navbar extends HTMLElement {
   constructor() {
     super();
@@ -8,7 +8,7 @@ class Navbar extends HTMLElement {
     this.innerHTML = `
     <div>
     <a href="/">
-    <img src="../src/img/logo.jpg">
+    <img src="../src/img/logo.png">
     </a>
   </div>
   <div id="burger">

@@ -9,7 +9,8 @@ module.exports = {
     prologuie: "./src/js/prologue.js",
     bio: "./src/js/bio.js",
     contact: "./src/js/contact.js",
-    collection: "./src/js/collection.js"
+    collection: "./src/js/collection.js",
+    exhibitions: "./src/js/exhibitions.js"
   },
 
   devServer: {
@@ -110,6 +111,13 @@ module.exports = {
       inject: true,
       chunks: ["main", "collection"],
       filename: "collection"
+    }),
+    /* EXHIBITIONS */ 
+    new HtmlWebpackPlugin({
+      template: "./src/exhibitions.html",
+      inject: true,
+      chunks: ["main", "exhibitions"],
+      filename: "exhibitions"
     })
   ],
 };

@@ -140,47 +140,6 @@ export class albumListItem extends HTMLElement {
     // Edit album content
     this.querySelector(".edit-album-content").onclick = () => {};
 
-    /*
-    // Show content of a album (images)
-    this.querySelector(".show-album-content").onclick = () => {
-      let listOfImages = this.connectedImages;
-      // Create suitable wrapper for all the images
-      let imagePreviewWrapper = document.createElement("div");
-      imagePreviewWrapper.classList.add("imagePreviewWrapper");
-      imagePreviewWrapper.setAttribute("id", this.docID);
-      imagePreviewWrapper.innerHTML = `
-      <div class="controls">
-        <h2>${this.albumName}</h2>
-        <button id="closePreviewDialog" class="fancy-btn"><span class="typcn typcn-delete"></span></button>
-      </div>
-      <div class="albumsConnectedImages">
-      <!-- Images auto injected-->
-      </div>
-      `;
-
-      document.body.appendChild(imagePreviewWrapper);
-
-      if (listOfImages.length > 0) {
-        listOfImages.forEach((element) => {
-          let imageDOM = document.createElement("div");
-          imageDOM.classList.add("collectionImageWrapper");
-          imageDOM.innerHTML = `
-          <img src="${element.imgURL}" class="collectionImage"></img>
-  
-          `;
-          imagePreviewWrapper
-            .querySelector(".albumsConnectedImages")
-            .appendChild(imageDOM);
-        });
-      } else {
-        imagePreviewWrapper.querySelector('.albumsConnectedImages').innerHTML =  "<p>There are no images at the moment!</p>";
-      }
-
-      // Close it
-      imagePreviewWrapper.querySelector("#closePreviewDialog").onclick = () => {
-        document.body.removeChild(document.getElementById(this.docID));
-      };
-    };*/
   }
 }
 

@@ -191,6 +191,7 @@ export class Collections {
       .catch((error) => {
         console.error(error);
       });
+    
   }
   static async removeImageFromAlbum(imageObject, albumObject) {
     console.log("the id:", imageObject);
