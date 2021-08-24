@@ -34,7 +34,7 @@ class Leftmenu extends HTMLElement {
       <span class="typcn typcn-image"></span>
       <p>Collections</p>
     </a>
-    <a href="/about.html" class="action">
+    <a href="/about" class="action">
       <span class="typcn typcn-info"></span>
       <p>About</p>
     </a>

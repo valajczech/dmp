@@ -54,7 +54,28 @@ export class Images {
       await db.collection("settings").doc("mainpage_slideshow").get()
     ).data().image_interval;
   }
-
+  static async addLike(imgObject) {
+    console.log(imgObject);
+    await db
+      .collection("uploadedPictures")
+      .doc(imgObject.imgDocID)
+      .update({
+        total_likes: firebase.firestore.FieldValue.increment(1),
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+  static async removeLike(imageObject) {
+    await db
+      .collection("uploadedPictures")
+      .doc(imageObject.imgDocID)
+      .update({
+        total_likes: firebase.firestore.FieldValue.increment(-1)
+      }).catch(err => {
+        console.error(err)
+      })
+  }
   static async imageLoop(arr, imgElementSrcAttr) {
     let interval = await this.getSlideshowInterval();
     // Forever iterate through image array and set it as src attribute of image
@@ -102,7 +123,7 @@ export class UrlLinks {
 }
 
 // So this is a namespace, is it better than classes or not?
-// Probably yes, but I'll have to rewrite the whole project :D 
+// Probably yes, but I'll have to rewrite the whole project :D
 export const Analytics = {
   Visitors: {
     addNew: async function () {

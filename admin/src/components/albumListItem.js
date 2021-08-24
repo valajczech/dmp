@@ -22,7 +22,7 @@ export class albumListItem extends HTMLElement {
       <div class="album-actions">
         <button class="show-album-content fancy-btn">Show</button>
         <button class="add-album-content fancy-btn">Add/Remove</span></button>
-        <button class="edit-album-content fancy-btn">Edit</span></button>
+        <!--<button class="edit-album-content fancy-btn">Edit</span></button>-->
       </div>
     </div>
     `;

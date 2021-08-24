@@ -191,7 +191,6 @@ export class Collections {
       .catch((error) => {
         console.error(error);
       });
-    
   }
   static async removeImageFromAlbum(imageObject, albumObject) {
     console.log("the id:", imageObject);
@@ -359,6 +358,23 @@ export const Analytics = {
           console.error(err);
         });
       return query.data().total;
+    },
+  },
+  Likes: {
+    getMostLikedImage: async () => {
+      let query = await db
+        .collection("uploadedPictures")
+        .where("total_likes", "!=", "undefined")
+        .orderBy("total_likes", "desc")
+        .get()
+        .catch((error) => {
+          console.error(error);
+        });
+      return {
+        imgName: query.docs[0].data().imgName,
+        imgURL: query.docs[0].data().imgURL,
+        total_likes: query.docs[0].data().total_likes,
+      };
     },
   },
 };

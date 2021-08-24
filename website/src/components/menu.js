@@ -23,7 +23,6 @@ class Menu extends HTMLElement {
       <ul class="menu-list">
         <li><a href="/prologue">Úvodem</a></li>
         <li><a href="#">Nejnovější</a></li>
-        <li><a href="#">Soubory</a></li>
         <li><a href="/exhibitions">Výstavy</a></li>
         <li><a href="/bio">Biografie</a></li>
         <li><a href="/contact">Kontakt</a></li>

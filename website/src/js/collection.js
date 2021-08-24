@@ -4,7 +4,6 @@
 // Imports
 import { async } from "regenerator-runtime";
 import "../css/collections.css";
-import "lightgallery/css/lightgallery-bundle.css";
 import { Collections, Images } from "./core";
 import { Gallery } from "../components/gallery";
 
@@ -15,7 +14,7 @@ let desiredCollection = new URL(document.location).searchParams.get(
 
 // DOM Variables
 const collectionNameDOM = document.querySelector(".collectionName");
-const galleryPreview = document.querySelector(".gallery-first-item");
+const galleryPreview = document.querySelector(".gallery");
 const galleryPreviewItem = document.querySelector(".gallery-preview-item");
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -24,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     //! BUG: when relocating to index.html, menu collection adding doesnt work
     window.location.replace("/");
   } else {
-    galleryPreview.style.display = "block";
+    galleryPreview.style.display = "flex";
     // Fetch desired collection info and connectedImages
     // and then add them to gallery
     let fetchedCollection = new Object(
@@ -42,7 +41,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       // There are no connected Images
       galleryPreview.innerHTML = "<h3>There are no images yet!</h3>"
     } else {
-      Images.imageLoop(fetchedCollection.connectedImages, galleryPreviewItem);
+      //Images.imageLoop(fetchedCollection.connectedImages, galleryPreviewItem);
+      // Create and append gallery to the DOM using Gallery component
+      
+      galleryPreview.appendChild(new Gallery(fetchedCollection.connectedImages))      
     }
+      
   }
 });
+

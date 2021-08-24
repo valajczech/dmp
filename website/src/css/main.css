@@ -73,6 +73,9 @@ p {
 .text > p {
   text-align: justify;
 }
+.hidden {
+  display: none;
+}
 /*! GLOBALS END !*/
 
 /*! GLOBAL MEDIA QUERIES !*/

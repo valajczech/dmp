@@ -43,3 +43,25 @@
 .box-wrapper > p {
   margin: 0;
 }
+.most-liked {
+  margin: 10px;
+}
+.most-liked > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.image-wrapper {
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.image-wrapper > img {
+  height: 100px;
+  width: auto;
+}

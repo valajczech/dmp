@@ -22,11 +22,14 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+#submitInterval {
+  margin-left: 10px;
+}
 .fetched-images-wrapper {
   padding: 15px;
   text-align: center;
-  border: solid red 1px;
   max-height: 75%;
+  border-radius: 15px;
 
   display: flex;
   flex-direction: row;

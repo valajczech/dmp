@@ -11,6 +11,7 @@ module.exports = {
     dash_albums: "./src/js/albums.js",
     dash_allImages: "./src/js/allImages.js",
     dash_mainPageEdit: "./src/js/mainpage_edit.js",
+    dash_about: "./src/js/about.js"
   },
 
   devServer: {
@@ -97,6 +98,13 @@ module.exports = {
       inject: true,
       chunks: ["main", "dashboard", "dash_mainPageEdit"],
       filename: "mainpage_edit",
+    }),
+    /* DASHBOARD - ABOUT */
+    new HtmlWebpackPlugin({
+      template: "./src/content/about.html",
+      inject: true,
+      chunks: ["main", "dashboard", "dash_about"],
+      filename: "about",
     }),
   ],
 };
