@@ -58,6 +58,7 @@ export class Images {
     });
     return imgList;
   }
+
   static async updateImageNameAndDesc(docID, newName, newDesc) {
     db.collection("uploadedPictures")
       .doc(docID)

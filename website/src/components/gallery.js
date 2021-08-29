@@ -54,7 +54,7 @@ export class Gallery extends HTMLElement {
     this.imgSrcArr.forEach((imgObj) => {
       let imageDOM = document.createElement("div");
       imageDOM.innerHTML = `
-           <img src=${imgObj.imgURL}/>
+           <img src=${imgObj.imgURL} loading="lazy"/>
            `;
       imageDOM.classList.add("gallery-image-small");
       imageReel.appendChild(imageDOM);
