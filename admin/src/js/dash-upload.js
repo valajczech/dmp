@@ -45,7 +45,10 @@ class Upload {
     // Take all items from locallyUploaded array and upload them to Firebase Storage
     //! Get blob file from blob URL and after uploading revoke it for memory management
     let existingAlbums = [];
+    let uploadStatus = document.querySelector(".uploadStatus");
+
     if (locallyUploaded.length >= 1) {
+      uploadStatus.style.display = "flex";
       locallyUploaded.forEach((img) => {
         const ref = firebase.storage().ref();
         const name = img.name;
@@ -69,7 +72,7 @@ class Upload {
                 imgName: name,
                 imgURL: url,
                 imgAlbums: rawAlbums,
-                uploadDate: Date.now()
+                uploadDate: Date.now(),
               })
               .then(async (docRef) => {
                 console.log("Document written with ID: ", docRef.id); // ID to be referenced in DB/albums/album/connectedImages
@@ -81,10 +84,20 @@ class Upload {
                     // Album set on img exists, so reference this image in said album
                     await Collections.referenceImageInAlbum(album, {
                       imgName: name,
-                      imgURL: url
+                      imgURL: url,
                     });
                   }
                 });
+                //! Fancy anims go brrr
+                // show success indicator!
+                uploadStatus.innerHTML = `
+                  <span class="typcn typcn-tick" id="icon"></span>
+                `;
+                setTimeout(() => {
+                  uploadStatus.style.display = "none";
+                  window.location.replace("/dashboard");
+                }, 500);
+                // Redirect to homepage
               })
               .catch((error) => {
                 console.error("Error adding document: ", error);

@@ -2,13 +2,15 @@
 
 // Imports
 import "../css/components/leftmenu.css";
-import { Collections } from "../js/core";
+import { Collections, Settings } from "../js/core";
 
 class Leftmenu extends HTMLElement {
   constructor() {
     super();
   }
-  connectedCallback() {
+  async connectedCallback() {
+    let isHidden = await Settings.Leftmenu.getState();
+
     this.innerHTML = `<div class="top-panel">
     <img src="https://raw.githubusercontent.com/Orexin/orexin-web/master/src/img/logos/logo-white-sm.png" alt="">
   </div>
@@ -44,17 +46,29 @@ class Leftmenu extends HTMLElement {
   </div>
     `;
 
-    const lmenu = document.querySelector("leftmenu-wrapper");
     const toggler = document.querySelector(".bottom-area");
+
+    // Onload set layout
+    Leftmenu.applyLayout(isHidden);
+
+    // Change the state  event
+    toggler.onclick = async () => {
+      isHidden = !isHidden;
+      Leftmenu.applyLayout(isHidden);
+      await Settings.Leftmenu.toggleState();
+    };
+  }
+  //TODO
+  static applyLayout(isHidden) {
+    const lmenu = document.querySelector("leftmenu-wrapper");
     const page = document.querySelector(".page");
-    toggler.addEventListener("click", () => {
-      lmenu.classList.toggle("smol");
-      if (lmenu.classList.contains("smol")) {
-        page.style.gridTemplateColumns = "80px 1fr 1fr 1fr";
-      } else {
-        page.style.gridTemplateColumns = "200px 1fr 1fr 1fr";
-      }
-    });
+    if (isHidden) {
+      lmenu.classList.add("smol");
+      page.style.gridTemplateColumns = "80px 1fr 1fr 1fr";
+    } else {
+      lmenu.classList.remove("smol");
+      page.style.gridTemplateColumns = "200px 1fr 1fr 1fr";
+    }
   }
 }
 

@@ -379,3 +379,29 @@ export const Analytics = {
     },
   },
 };
+export var Settings = {
+  Leftmenu: {
+    getState: async () => {
+      let query = await db
+        .collection("settings")
+        .doc("general")
+        .get()
+        .catch((err) => {
+          console.error(er);
+        });
+      return query.data().adm_leftmenu_isHidden;
+    },
+    toggleState: async () => {
+      await db
+        .collection("settings")
+        .doc("general")
+        .update({
+          adm_leftmenu_isHidden: !(await Settings.Leftmenu.getState()),
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      return await Settings.Leftmenu.getState();
+    },
+  },
+};

@@ -15,7 +15,7 @@
     <div class="content" id="dropzone-content">
       <div class="upload-dropzone" >
         <p>
-          <strong>Drop</strong> files or <strong>click</strong> to upload one
+          <!--<strong>Drop</strong> files or --><strong>Click</strong> to upload one
           or more files
         </p>
       </div>
@@ -32,6 +32,10 @@
     </div>
   </div>
   <input type="file" class="upload-input" multiple onchange="uploadChange()" accept="image/*" style="display: none" />
+  <div class="uploadStatus">
+    <span class="typcn typcn-cloud-storage" id="uploadStatus_icon"></span>
+    <h3>Uploading!</h3>
+  </div>
 </body>
 
 </html>
