@@ -45,7 +45,12 @@ export class Collections {
       .catch((err) => {
         console.error(err);
       });
-    return query.data();
+    return {
+      albumName: query.data().albumName,
+      albumURL: query.data().albumURL,
+      connectedImages: query.data().connectedImages,
+      itemCount: query.data().connectedImages.length
+    }
   }
 }
 export class Images {
@@ -71,10 +76,11 @@ export class Images {
       .collection("uploadedPictures")
       .doc(imageObject.imgDocID)
       .update({
-        total_likes: firebase.firestore.FieldValue.increment(-1)
-      }).catch(err => {
-        console.error(err)
+        total_likes: firebase.firestore.FieldValue.increment(-1),
       })
+      .catch((err) => {
+        console.error(err);
+      });
   }
   static async imageLoop(arr, imgElementSrcAttr) {
     let interval = await this.getSlideshowInterval();
@@ -104,6 +110,24 @@ export class Images {
       }
     });
     return imgList;
+  }
+  /**
+   * Returns specific image info
+   * @param {string} imageID DocID from the Firebase Firestore ollection
+   * @returns {object} Object with the following properties: imgName, imgDesc, imgSrc
+   */
+  static async getImage(imageID) {
+    let query = await db
+      .collection("uploadedPictures")
+      .doc(imageID)
+      .get()
+      .catch((err) => console.error(err));
+    return {
+      imgName: query.data().imgName,
+      imgDesc: query.data().imgDescription,
+      imgSrc: query.data().imgURL,
+      totalLikes: query.data().total_likes,
+    };
   }
 }
 export class Storage {

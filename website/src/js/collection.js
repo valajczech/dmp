@@ -11,6 +11,7 @@ import { Gallery } from "../components/gallery";
 let desiredCollection = new URL(document.location).searchParams.get(
   "collection"
 );
+let imageList = new Array();
 
 // DOM Variables
 const collectionNameDOM = document.querySelector(".collectionName");
@@ -26,27 +27,35 @@ document.addEventListener("DOMContentLoaded", async () => {
     galleryPreview.style.display = "flex";
     // Fetch desired collection info and connectedImages
     // and then add them to gallery
-    let fetchedCollection = new Object(
-      await Collections.getCollection(desiredCollection).catch((err) => {
-        console.log(err);
+    await Collections.getCollection(desiredCollection)
+      .catch((err) => {
+        console.error(err);
         galleryPreview.style.display = "none";
-        return;
+        return result;
       })
-    );
-    // Set the name in DOM
-    collectionNameDOM.innerText = fetchedCollection.albumName;
-    //console.log(fetchedCollection);
-    // Generate previewImage, onclick open LighGallery
-    if (fetchedCollection.connectedImages.length < 1) {
-      // There are no connected Images
-      galleryPreview.innerHTML = "<h3>There are no images yet!</h3>"
-    } else {
-      //Images.imageLoop(fetchedCollection.connectedImages, galleryPreviewItem);
-      // Create and append gallery to the DOM using Gallery component
       
-      galleryPreview.appendChild(new Gallery(fetchedCollection.connectedImages))      
-    }
-      
+      .then((result) => {
+        imageList = result;
+        // Set the name in DOM
+        collectionNameDOM.innerText = result.albumName;
+        result.connectedImages.forEach(async (doc) => {
+          imageList.push(await Images.getImage(doc.imgDocID));
+        });
+
+        // Generate previewImage, onclick open LighGallery
+        if (result.itemCount < 1) {
+          // There are no connected Images
+          galleryPreview.innerHTML = "<h3>There are no images yet!</h3>";
+        }
+      })
+      .then(() => {
+        console.log("wat: ", imageList);
+        // Create and append gallery to the DOM using Gallery component
+        galleryPreview.appendChild(new Gallery(imageList));
+      });
   }
 });
 
+/*
+
+*/

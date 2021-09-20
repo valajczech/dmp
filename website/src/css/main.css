@@ -52,7 +52,7 @@ p {
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 100px;
-  padding: 50px 10vw 70px 10vw;
+  padding: 50px 5vw 100px 5vw;
 }
 /*! MAIN CONTENT - all pics and text and data are injected here!*/
 .main-content {

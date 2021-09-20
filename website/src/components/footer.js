@@ -10,7 +10,7 @@ class Footer extends HTMLElement {
       2021 &copy; Mgr. Milan Bureš st. 
     </div>
     <div class="orexin-promo">
-      Made with ❤️ by <a href="https://orexin.fsik.dev/">Orexin.</a>
+      Made with 🖤 by <a href="https://orexin.fsik.dev/">Orexin.</a>
     </div>
   </div>
     `;
