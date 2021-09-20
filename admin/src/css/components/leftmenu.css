@@ -5,6 +5,8 @@ leftmenu-wrapper {
   align-items: flex-start;
   grid-area: leftmenu;
   background-color: var(--mainColor);
+  height: 100vh;
+  position: fixed;
 }
 .top-panel {
   width: 100%;
