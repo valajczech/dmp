@@ -45,6 +45,7 @@ class Menu extends HTMLElement {
         )}">${item}</a>
         `;
         list.appendChild(albumDOM);
+        console.log(albumDOM);
       });
     } catch (error) {
       console.error(err);
