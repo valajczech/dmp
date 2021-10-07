@@ -1,7 +1,7 @@
 import { getAuth, signInWithEmailAndPassword } from "@firebase/auth";
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
-import "../style/components/routes/Login.css";
+import "../style/routes/Login.css";
 import { AuthContext } from "../components/auth/AuthProvider";
 
 const Login = ({ history }) => {
@@ -20,7 +20,7 @@ const Login = ({ history }) => {
   );
   const { currentUser } = useContext(AuthContext);
   if (currentUser) {
-    return <Redirect to="/" />;
+    return <Redirect to="/dashboard" />;
   }
   return (
     <div id="login-page">

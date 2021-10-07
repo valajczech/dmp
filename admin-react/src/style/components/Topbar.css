@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
+.topbar {
+  height: 50px;
+  background-color: #20252e;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 0px 15px;
+  gap: 15px;
+  color: #eceff4;
+  font-family: "Open Sans", sans-serif;
+}/*# sourceMappingURL=Topbar.css.map */

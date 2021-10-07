@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
+.appContainer {
+  display: flex;
+  background-color: #20252e;
+  flex-wrap: nowrap;
+}
+.appContainer .content {
+  width: 100%;
+}/*# sourceMappingURL=PrivateRoute.css.map */

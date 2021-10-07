@@ -1,0 +1,132 @@
+@import "../variables";
+
+.sidebar {
+  grid-area: 1 / 1 / 6 / 2;
+  min-width: 200px;
+  height: 100vh;
+  background-color: $primary-background;
+  .sidebar-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+  }
+  .brand {
+    background-color: $primary-background;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: $primary-gray;
+    padding-top: 15px;
+    svg  {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+    p {
+      font-family: $openSans-light;
+      font-size: 14px;
+    }
+  }
+  .bar-content {
+    padding: 10px;
+    margin-top: 25px;
+    .wrapper {
+      h3 {
+        color: $primary-gray;
+        font-family: $openSans-light;
+        font-size: $primary-fontsize;
+        margin: 15px 0px 5px 0px;
+      }
+    }
+    #dashboard-route {
+      padding: 25px 0px;
+      * {
+        color: $primary-gray;
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+  }
+  .minimize {
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+    button {
+      width: 100%;
+      height: 50px;
+      cursor: pointer;
+      outline: none;
+      background-color: $primary-background;
+      color: white;
+      border: solid $primary-background 1px;
+      transition-duration: 0.3s;
+      &:hover {
+        background-color: #2f353b;
+      }
+    }
+  }
+}
+.route {
+  width: 100%;
+  padding: 12px 0px 12px 0px;
+
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  cursor: pointer;
+  color: $primary-gray;
+  text-decoration: none;
+  font-family: $openSans-light;
+  font-size: $primary-fontsize;
+
+  div {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon {
+    color: $primary-gray;
+    width: 20px;
+  }
+  .arrow {
+    color: $primary-gray;
+    font-size: 10px;
+  }
+  &:hover {
+    * {
+      transition-duration: 0.3s;
+      color: $white;
+    }
+  }
+}
+.minimized {
+  min-width: 75px;
+  .brand {
+    justify-content: center;
+  }
+  .wrapper {
+    h3 {
+      display: none;
+    }
+  }
+  .route {
+    justify-content:center;
+    .icon {
+      height: 20px;
+    }
+    p {
+      display: none;
+    }
+    .arrow {
+      display: none;
+    }
+  }
+}

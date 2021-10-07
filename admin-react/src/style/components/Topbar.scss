@@ -1,0 +1,13 @@
+@import "../_variables";
+
+.topbar {
+  height:50px;
+  background-color: $primary-background-darker;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 0px 15px;
+  gap: 15px;
+  color: $white;
+  font-family: $openSans-light;
+}

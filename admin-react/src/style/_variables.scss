@@ -1,11 +1,44 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
 $openSans-light: "Open Sans", sans-serif;
+$primary-fontsize: 14px;
 // Colors
-$primary-background: #2E3440;
+$primary-background: #2e3440;
 $primary-background-darker: #20252e;
-$primary-blue: #5E81AC;
-$white: #ECEFF4;
+$primary-gray: #747f8f;
+$primary-blue: #5e81ac;
+$white: #eceff4;
 $black: #000;
+$red: #c92626;
 
-
+// Mixins
+@mixin classic-btn {
+  border-radius: 5px;
+  border: $primary-blue solid 2px;
+  background-color: transparent;
+  color: $primary-blue;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 15px;
+  margin-top: 10px;
+  &:hover {
+    color: white;
+    background-color: $primary-blue;
+    filter: drop-shadow(0px 5px 5px $primary-background-darker);
+  }
+}
+@mixin close-btn {
+  border-radius: 5px;
+  border: solid $primary-gray 2px;
+  background-color: transparent;
+  color: $primary-gray;
+  font-size: 12px;
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  padding: 5px;
+  &:hover {
+    color: $red;
+    border-color: $red;
+  }
+}

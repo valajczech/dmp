@@ -1,11 +1,13 @@
 import React from "react";
-
+import Sidebar from "../components/Sidebar"
 class Dashboard extends React.Component {
     
     render() {
-        return (
-        <h1>Jsem main dashboard</h1>
-          );
+        return(
+            <>
+            <h1>Hello jsem dashboard</h1>
+            </>
+        )
     }
 }
 

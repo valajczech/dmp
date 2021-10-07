@@ -1,0 +1,10 @@
+@import "../variables";
+
+.appContainer {
+  display: flex;
+  background-color: $primary-background-darker;
+  flex-wrap: nowrap;
+  .content {
+    width: 100%;
+  }
+}

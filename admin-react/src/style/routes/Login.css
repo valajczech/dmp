@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
 #login-page {
-  background-color: #2E3440;
+  background-color: #2e3440;
   height: 100vh;
   text-align: center;
 }
@@ -22,28 +22,27 @@
   margin: 5px;
   margin-right: 10px;
   font-family: "Open Sans", sans-serif;
-  color: #ECEFF4;
+  color: #eceff4;
 }
 #login-page form label input {
   padding: 10px 20px;
   border-radius: 5px;
-  background-color: #ECEFF4;
-  border: solid #ECEFF4 1px;
+  background-color: #eceff4;
+  border: solid #eceff4 1px;
   outline: none;
 }
 #login-page form button {
   border-radius: 5px;
-  border: #5E81AC solid 2px;
+  border: #5e81ac solid 2px;
   background-color: transparent;
-  color: #5E81AC;
+  color: #5e81ac;
   font-size: 14px;
   cursor: pointer;
   padding: 5px 15px;
   margin-top: 10px;
-  transition-duration: 0.3s;
 }
 #login-page form button:hover {
   color: white;
-  background-color: #5E81AC;
+  background-color: #5e81ac;
   filter: drop-shadow(0px 5px 5px #20252e);
 }/*# sourceMappingURL=Login.css.map */
