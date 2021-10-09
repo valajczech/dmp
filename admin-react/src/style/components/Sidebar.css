@@ -63,7 +63,7 @@
   transition-duration: 0.3s;
 }
 .sidebar .minimize button:hover {
-  background-color: #2f353b;
+  color: #5e81ac;
 }
 
 .route {

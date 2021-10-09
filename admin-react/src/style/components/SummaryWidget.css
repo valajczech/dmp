@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
+.summary-widget {
+  height: 75px;
+  width: 200px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2e3440;
+  color: #eceff4;
+  font-family: "Open Sans", sans-serif;
+  filter: drop-shadow(0px 5px 5px #20252e);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.summary-widget #value {
+  font-size: 25px;
+  font-weight: 600;
+  padding-bottom: 5px;
+}/*# sourceMappingURL=SummaryWidget.css.map */

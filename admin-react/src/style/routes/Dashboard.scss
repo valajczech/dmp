@@ -1,0 +1,9 @@
+.dashboard {
+  padding: 10px;
+  .summaries {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+  }
+}

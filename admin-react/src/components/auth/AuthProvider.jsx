@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, setCurrentUser);
-  }, []);
+  });
 
   return (
     <AuthContext.Provider value={{ currentUser }}>

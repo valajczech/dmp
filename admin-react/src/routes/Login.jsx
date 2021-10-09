@@ -15,13 +15,12 @@ const Login = ({ history }) => {
           console.error(err);
         }
       );
-    },
-    [history]
+    },[history]
   );
   const { currentUser } = useContext(AuthContext);
   if (currentUser) {
-    return <Redirect to="/dashboard" />;
-  }
+    return <Redirect to="/" />;
+  } 
   return (
     <div id="login-page">
       <form onSubmit={handleLogin}>

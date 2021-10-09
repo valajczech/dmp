@@ -11,6 +11,7 @@ import {
   FaHome,
   FaCamera,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "../style/components/Sidebar.css";
 
 class Sidebar extends React.Component {
@@ -32,57 +33,56 @@ class Sidebar extends React.Component {
               <FaCamera />
             ) : (
               <>
-                {" "}
                 <FaCamera />
                 <p>Milan Bureš - Administace</p>
               </>
             )}
           </div>
           <div className="bar-content">
-            <div className="route">
+            <Link to="/" className="route">
               <div>
                 <FaThLarge className="icon" />
-                <p>Nástěnka</p>
+                <p>Hlavní stránka</p>
               </div>
-            </div>
+            </Link>
             <div className="wrapper" id="modules">
               <h3>Moduly</h3>
               <div className="routes">
-                <a href="#" className="route">
+                <Link to="/" className="route">
                   <div>
                     <FaHome className="icon" />
                     <p>Hlavní stránka</p>
                   </div>
                   <FaChevronLeft className="arrow" />
-                </a>
-                <a href="#" className="route">
+                </Link>
+                <Link to="/upload" className="route">
                   <div>
                     <FaUpload className="icon" />
                     <p>Nahrát</p>
                   </div>
                   <FaChevronLeft className="arrow" />
-                </a>
-                <a href="#" className="route">
+                </Link>
+                <Link to="/pictures" className="route">
                   <div>
                     <FaImages className="icon" />
                     <p>Fotografie</p>
                   </div>
                   <FaChevronLeft className="arrow" />
-                </a>
-                <a href="#" className="route">
+                </Link>
+                <Link to="/collections" className="route">
                   <div>
                     <FaFolder className="icon" />
                     <p>Alba</p>
                   </div>
                   <FaChevronLeft className="arrow" />
-                </a>
-                <a href="#" className="route">
+                </Link>
+                <Link to="/about" className="route">
                   <div>
                     <FaInfoCircle className="icon" />
                     <p>About</p>
                   </div>
                   <FaChevronLeft className="arrow" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
