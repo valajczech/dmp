@@ -22,7 +22,7 @@ class Dropzone extends React.Component {
       console.log(currentFiles);
       for(const file of currentFiles) {
         // check whether the file is image type
-        if(Images.Filetype.isImage(file)) {
+        if(Images.Meta.isImage(file)) {
           // create Image Preview component ready for upload
         } else {
           alert("Some of your files are not a image!")

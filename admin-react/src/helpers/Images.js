@@ -1,5 +1,5 @@
 export const Images = {
-  Filetype: {
+  Meta: {
     isImage: (file) => {
       // Determine whether uploaded file is image filetype
       if (file["type"].split("/")[0] === "image") {

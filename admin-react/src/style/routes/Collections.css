@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
+.collections {
+  color: #eceff4;
+  font-family: "Open Sans", sans-serif;
+}
+.collections .all {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: left;
+  align-items: center;
+}/*# sourceMappingURL=Collections.css.map */
