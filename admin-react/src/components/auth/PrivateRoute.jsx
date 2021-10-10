@@ -8,7 +8,6 @@ import Topbar from "../Topbar";
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
   return (
     <Route
       {...rest}
@@ -18,14 +17,13 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
             <Sidebar />
             <div className="content">
               <Topbar />
-              <RouteComponent {...routeProps} />
+              <div className="wrapper">
+                <RouteComponent {...routeProps} />
+              </div>
             </div>
           </div>
         ) : (
-          /*
-          THERE IS THE MISTAKE!!!
-          but it still always renders this 
-          */
+          
           <Redirect to="/login" />
         )
       }

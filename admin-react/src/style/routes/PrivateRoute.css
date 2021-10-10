@@ -6,4 +6,7 @@
 }
 .appContainer .content {
   width: 100%;
+}
+.appContainer .content .wrapper {
+  padding: 10px;
 }/*# sourceMappingURL=PrivateRoute.css.map */

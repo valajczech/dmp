@@ -1,9 +1,13 @@
+import Dropzone from "../components/Dropzone";
 import React from "react";
+import "../style/routes/Upload.css"
 
 class UploadPage extends React.Component {
     render() {
         return (
-          <h1>Hello jsem Upload</h1>
+          <div className="upload">
+              <Dropzone />
+          </div>
           );
     }
 }
