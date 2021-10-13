@@ -1,0 +1,50 @@
+@import "../_variables.scss";
+
+.picture-list-item {
+  cursor: pointer;
+  padding: 15px 20px;
+  color: $white;
+  font-family: $openSans-light;
+  td {
+    padding: 15px 20px;
+    span {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: left;
+      gap: 5px;
+    }
+    #date {
+      justify-content: center;
+    }
+  }
+  .edit-dialog{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0px;
+    overflow: hidden;
+
+    height: 100vh;
+    width: 100vw;
+    background-color: $primary-background;
+    .top-controls {
+      padding: 20px 5vw;
+      text-align: right;
+      button {
+        @include close-btn;
+      }
+    }
+    .content {
+      padding: 0px 5vw;
+    }
+  }
+  &:hover {
+    background-color: $primary-background;
+  }
+}
+
+.hidden {
+  display: none !important;
+}

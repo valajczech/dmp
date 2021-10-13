@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
+.pictures {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 10vw;
+  font-family: "Open Sans", sans-serif;
+}
+.pictures h3 {
+  align-self: flex-start;
+  color: #eceff4;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+.pictures table {
+  width: 100%;
+}
+.pictures table thead {
+  border-bottom: solid #2e3440 1px;
+  text-align: left;
+}
+.pictures table thead th {
+  color: #747f8f;
+  padding-bottom: 5px;
+  padding: 15px 20px;
+}
+.pictures table thead #date {
+  text-align: center;
+}/*# sourceMappingURL=Pictures.css.map */

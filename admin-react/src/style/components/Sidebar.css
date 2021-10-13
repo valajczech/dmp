@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
 .sidebar {
-  grid-area: 1/1/6/2;
   min-width: 200px;
   height: 100vh;
   background-color: #2e3440;

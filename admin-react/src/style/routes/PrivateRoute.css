@@ -4,9 +4,11 @@
   background-color: #20252e;
   flex-wrap: nowrap;
 }
-.appContainer .content {
+.appContainer .appcontent {
   width: 100%;
+  max-height: 100vh;
+  overflow-y: scroll;
 }
-.appContainer .content .wrapper {
+.appContainer .appcontent .wrapper {
   padding: 10px;
 }/*# sourceMappingURL=PrivateRoute.css.map */

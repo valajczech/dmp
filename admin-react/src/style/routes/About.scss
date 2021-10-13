@@ -1,0 +1,17 @@
+@import "../_variables.scss";
+
+.about {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  p {
+    color: $white;
+    font-family: $openSans-light;
+    text-align: center;
+    a {
+      color: $primary-blue;
+      text-decoration: none;
+    }
+  }
+}

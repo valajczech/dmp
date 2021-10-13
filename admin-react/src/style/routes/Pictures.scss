@@ -1,0 +1,30 @@
+@import "../_variables.scss";
+
+.pictures {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 10vw;
+  font-family: $openSans-light;
+  h3 {
+    align-self: flex-start;
+    color: $white;
+    margin-bottom: 25px;
+    font-weight: 600;
+  }
+  table {
+    width: 100%;
+    thead {
+      border-bottom: solid $primary-background 1px;
+      text-align: left;
+      th {
+        color: $primary-gray;
+        padding-bottom: 5px;
+        padding: 15px 20px;
+      }
+      #date {
+        text-align: center;
+      }
+    }
+  }
+}

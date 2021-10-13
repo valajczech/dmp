@@ -1,7 +1,6 @@
 @import "../variables";
 
 .sidebar {
-  grid-area: 1 / 1 / 6 / 2;
   min-width: 200px;
   height: 100vh;
   background-color: $primary-background;
@@ -9,7 +8,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-
   }
   .brand {
     background-color: $primary-background;

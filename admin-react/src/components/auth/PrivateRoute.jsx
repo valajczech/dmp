@@ -15,7 +15,7 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
         currentUser ? (
           <div className="appContainer">
             <Sidebar />
-            <div className="content">
+            <div className="appcontent">
               <Topbar />
               <div className="wrapper">
                 <RouteComponent {...routeProps} />
