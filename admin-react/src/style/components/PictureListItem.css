@@ -21,7 +21,7 @@
   justify-content: center;
 }
 .picture-list-item td #likes {
-  justify-content: center;
+  justify-content: right;
 }
 .picture-list-item td #size {
   justify-content: center;

@@ -29,7 +29,7 @@
   text-align: center;
 }
 .pictures table thead #likes {
-  text-align: center;
+  text-align: right;
 }
 .pictures table thead #size {
   text-align: center;

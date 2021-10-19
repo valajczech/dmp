@@ -1,9 +1,8 @@
 import React from "react";
 import "../style/components/PictureListItem.css";
 import { FaHeart, FaImage, FaTimes } from "react-icons/fa";
-import LazyLoad from "react-lazyload";
-// dummy image
-import dummy from "../assets/images/BuresTestImage4.jpg";
+import date from "date-and-time";
+
 class PictureListItem extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +22,8 @@ class PictureListItem extends React.Component {
     this.setState({ isBeingEdited: false });
   };
   render() {
+ 
+
     return (
       <tr className="picture-list-item" onClick={this.openEditDialog}>
         <td>
@@ -32,16 +33,18 @@ class PictureListItem extends React.Component {
           </span>
         </td>
         <td>
-          <span id="size">{this.props.size}</span>
+          <span id="size">{this.props.size || "?"}</span>
         </td>
         <td>
           <span id="likes">
-            {this.props.likes}
+            {this.props.likes || 0}
             <FaHeart />
           </span>
         </td>
         <td>
-          <span id="date">{this.props.lastModified}</span>
+          <span id="date">
+            {date.format(new Date(this.props.lastModified), "MMM DD YYYY")}
+          </span>
         </td>
         <td
           className={

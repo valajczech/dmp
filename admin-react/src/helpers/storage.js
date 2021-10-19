@@ -5,7 +5,9 @@ export const Storage = {
   },
   Images: {
     clear: () => localStorage.removeItem("Images"),
-    get: () => {},
+    get: () => {
+      return JSON.parse(localStorage.getItem("Images"))
+    },
     set: (imageList) => {
       localStorage.setItem("Images", JSON.stringify(imageList));
     },
@@ -20,7 +22,7 @@ export const Storage = {
   Analytics: {
     clear: () => localStorage.removeItem("Analytics"),
     get: () => {
-      return localStorage.getItem("Analytics");
+      return JSON.parse(localStorage.getItem("Analytics"));
     },
     set: (analyticsObject) => {
       localStorage.setItem("Analytics", JSON.stringify(analyticsObject));

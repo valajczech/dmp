@@ -14,7 +14,9 @@ class Dashboard extends React.Component {
     };
   }
   componentDidMount() {
-    this.setState({ data: Storage.Analytics.get() });
+    this.setState({
+      data: Storage.Analytics.get()
+    })
   }
   render() {
     return (
