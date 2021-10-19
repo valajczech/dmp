@@ -3,7 +3,7 @@
   width: 250px;
   height: 115px;
   border-radius: 5px;
-  background-color: #2e3440;
+  background-color: #2a2d3e;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -49,15 +49,15 @@
   width: 50%;
   /*Has to be changed*/
   border-radius: 5px;
-  border: #5e81ac solid 2px;
+  border: #2196f3 solid 2px;
   background-color: transparent;
-  color: #5e81ac;
+  color: #2196f3;
   font-size: 14px;
   cursor: pointer;
   padding: 5px 15px;
 }
 .collectionItem .controls button:hover {
   color: white;
-  background-color: #5e81ac;
-  filter: drop-shadow(0px 5px 5px #20252e);
+  background-color: #2196f3;
+  filter: drop-shadow(0px 5px 5px #212332);
 }/*# sourceMappingURL=CollectionItem.css.map */

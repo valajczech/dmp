@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import "../style/components/Dropzone.css";
 import { FaCloudUploadAlt } from "react-icons/fa";
-import { Images } from "../helpers/Images";
+import { Images, imagePreview } from "../helpers/images";
 class Dropzone extends React.Component {
   constructor(props) {
     super(props);

@@ -6,6 +6,8 @@
   font-family: "Open Sans", sans-serif;
 }
 .picture-list-item td {
+  border-top: solid #212332 1px;
+  border-radius: 5px;
   padding: 15px 20px;
 }
 .picture-list-item td span {
@@ -18,6 +20,12 @@
 .picture-list-item td #date {
   justify-content: center;
 }
+.picture-list-item td #likes {
+  justify-content: center;
+}
+.picture-list-item td #size {
+  justify-content: center;
+}
 .picture-list-item .edit-dialog {
   position: absolute;
   top: 50%;
@@ -27,7 +35,7 @@
   overflow: hidden;
   height: 100vh;
   width: 100vw;
-  background-color: #2e3440;
+  background-color: #2a2d3e;
 }
 .picture-list-item .edit-dialog .top-controls {
   padding: 20px 5vw;
@@ -52,7 +60,7 @@
   padding: 0px 5vw;
 }
 .picture-list-item:hover {
-  background-color: #2e3440;
+  background-color: #212332;
 }
 
 .hidden {

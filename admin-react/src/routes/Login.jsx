@@ -1,13 +1,22 @@
 import { getAuth, signInWithEmailAndPassword } from "@firebase/auth";
-import React, { useCallback, useContext } from "react";
-import { withRouter, Redirect } from "react-router";
+import React, { useCallback, useContext} from "react";
 import "../style/routes/Login.css";
 import { AuthContext } from "../components/auth/AuthProvider";
 
+// Helpers
+import { Storage } from "../helpers/storage";
+import LoginLoadingScreen from "../components/auth/LoginLoadingScreen";
+
+
 const Login = ({ history }) => {
+  // Clear the localStorage just in case
+  Storage.clear();
   const handleLogin = useCallback(
+    //TODO: after login verify the user credenrials, show loading animation, if
+    //TODO_: logged in properly start fetching the data if not redirect to `Login`
     async (event) => {
       event.preventDefault();
+
       const { email, password } = event.target.elements;
       const auth = getAuth();
       await signInWithEmailAndPassword(auth, email.value, password.value).catch(
@@ -15,12 +24,14 @@ const Login = ({ history }) => {
           console.error(err);
         }
       );
-    },[history]
+    },
+    [history]
   );
   const { currentUser } = useContext(AuthContext);
   if (currentUser) {
-    return <Redirect to="/" />;
-  } 
+    return <LoginLoadingScreen />;
+  }
+
   return (
     <div id="login-page">
       <form onSubmit={handleLogin}>

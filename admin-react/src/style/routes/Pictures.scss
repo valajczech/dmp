@@ -4,7 +4,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0px 10vw;
+ // margin: 0px 10vw;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: $primary-background;
   font-family: $openSans-light;
   h3 {
     align-self: flex-start;
@@ -15,7 +18,6 @@
   table {
     width: 100%;
     thead {
-      border-bottom: solid $primary-background 1px;
       text-align: left;
       th {
         color: $primary-gray;
@@ -23,6 +25,12 @@
         padding: 15px 20px;
       }
       #date {
+        text-align: center;
+      }
+      #likes {
+        text-align: center;
+      }
+      #size {
         text-align: center;
       }
     }

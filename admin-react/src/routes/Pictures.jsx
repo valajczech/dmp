@@ -12,8 +12,8 @@ class Pictures extends React.Component {
           <thead>
             <tr id="table-head">
               <th>Název</th>
-              <th>Velikost</th>
-              <th>Počet Lajků</th>
+              <th id="size">Velikost</th>
+              <th id="likes">Počet Lajků</th>
               <th id="date">Naposledy modifikováno</th>
             </tr>
           </thead>

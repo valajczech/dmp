@@ -6,6 +6,8 @@
   color: $white;
   font-family: $openSans-light;
   td {
+    border-top: solid $primary-background-darker 1px;
+    border-radius: 5px;
     padding: 15px 20px;
     span {
       display: flex;
@@ -15,6 +17,12 @@
       gap: 5px;
     }
     #date {
+      justify-content: center;
+    }
+    #likes {
+      justify-content: center;
+    }
+    #size {
       justify-content: center;
     }
   }
@@ -41,7 +49,7 @@
     }
   }
   &:hover {
-    background-color: $primary-background;
+    background-color: $primary-background-darker;
   }
 }
 

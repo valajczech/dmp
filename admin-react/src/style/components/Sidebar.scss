@@ -99,7 +99,10 @@
     font-size: 10px;
   }
   &:hover {
-    * {
+    .icon {
+      color: $primary-blue !important;
+    }
+    p, .arrow {
       transition-duration: 0.3s;
       color: $white;
     }

@@ -8,7 +8,7 @@
   align-items: center;
 }
 .dropzone .upload-dropzone {
-  border: dotted #5e81ac;
+  border: dotted #2196f3;
   border-radius: 5px;
   margin: auto;
   cursor: pointer;
@@ -31,9 +31,9 @@
 }
 .dropzone .uploader button {
   border-radius: 5px;
-  border: #5e81ac solid 2px;
+  border: #2196f3 solid 2px;
   background-color: transparent;
-  color: #5e81ac;
+  color: #2196f3;
   font-size: 14px;
   cursor: pointer;
   padding: 5px 15px;
@@ -41,8 +41,8 @@
 }
 .dropzone .uploader button:hover {
   color: white;
-  background-color: #5e81ac;
-  filter: drop-shadow(0px 5px 5px #20252e);
+  background-color: #2196f3;
+  filter: drop-shadow(0px 5px 5px #212332);
 }
 .dropzone .uploaded {
   height: 100%;

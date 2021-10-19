@@ -3,7 +3,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0px 10vw;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #2a2d3e;
   font-family: "Open Sans", sans-serif;
 }
 .pictures h3 {
@@ -16,7 +18,6 @@
   width: 100%;
 }
 .pictures table thead {
-  border-bottom: solid #2e3440 1px;
   text-align: left;
 }
 .pictures table thead th {
@@ -25,5 +26,11 @@
   padding: 15px 20px;
 }
 .pictures table thead #date {
+  text-align: center;
+}
+.pictures table thead #likes {
+  text-align: center;
+}
+.pictures table thead #size {
   text-align: center;
 }/*# sourceMappingURL=Pictures.css.map */

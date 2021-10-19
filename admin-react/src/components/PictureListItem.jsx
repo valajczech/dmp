@@ -32,10 +32,10 @@ class PictureListItem extends React.Component {
           </span>
         </td>
         <td>
-          <span>{this.props.size}</span>
+          <span id="size">{this.props.size}</span>
         </td>
         <td>
-          <span>
+          <span id="likes">
             {this.props.likes}
             <FaHeart />
           </span>

@@ -7,10 +7,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #2e3440;
+  background-color: #2a2d3e;
   color: #eceff4;
   font-family: "Open Sans", sans-serif;
-  filter: drop-shadow(0px 5px 5px #20252e);
+  filter: drop-shadow(0px 5px 5px #212332);
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;

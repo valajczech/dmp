@@ -4,10 +4,20 @@
   height:50px;
   background-color: $primary-background-darker;
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
   align-items: center;
   padding: 0px 15px;
   gap: 15px;
   color: $white;
   font-family: $openSans-light;
+  #location {
+    font-weight: 600;
+  }
+  .user-area {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: right;
+    gap: 10px;
+  }
 }

@@ -2,7 +2,7 @@
 .sidebar {
   min-width: 200px;
   height: 100vh;
-  background-color: #2e3440;
+  background-color: #2a2d3e;
 }
 .sidebar .sidebar-content {
   height: 100%;
@@ -10,7 +10,7 @@
   flex-direction: column;
 }
 .sidebar .brand {
-  background-color: #2e3440;
+  background-color: #2a2d3e;
   height: 50px;
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@
 .sidebar .bar-content .wrapper h3 {
   color: #747f8f;
   font-family: "Open Sans", sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   margin: 15px 0px 5px 0px;
 }
 .sidebar .bar-content #dashboard-route {
@@ -56,13 +56,13 @@
   height: 50px;
   cursor: pointer;
   outline: none;
-  background-color: #2e3440;
+  background-color: #2a2d3e;
   color: white;
-  border: solid #2e3440 1px;
+  border: solid #2a2d3e 1px;
   transition-duration: 0.3s;
 }
 .sidebar .minimize button:hover {
-  color: #5e81ac;
+  color: #2196f3;
 }
 
 .route {
@@ -76,7 +76,7 @@
   color: #747f8f;
   text-decoration: none;
   font-family: "Open Sans", sans-serif;
-  font-size: 14px;
+  font-size: 15px;
 }
 .route div {
   display: flex;
@@ -93,7 +93,10 @@
   color: #747f8f;
   font-size: 10px;
 }
-.route:hover * {
+.route:hover .icon {
+  color: #2196f3 !important;
+}
+.route:hover p, .route:hover .arrow {
   transition-duration: 0.3s;
   color: #eceff4;
 }
