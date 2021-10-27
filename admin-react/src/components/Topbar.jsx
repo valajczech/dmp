@@ -1,3 +1,5 @@
+//TODO: force realtime updates on the clock, currently gets stuck on the time of the render
+
 import React, { useContext } from "react";
 import { useLocation } from "react-router";
 import date from "date-and-time";

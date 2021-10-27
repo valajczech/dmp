@@ -3,6 +3,15 @@
 .collections {
   color: $white;
   font-family: $openSans-light;
+  .collections-control {
+    padding: 10px 0px;
+    #newCollection {
+      @include classic-btn;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+  }
   .all {
     display: flex;
     flex-direction: row;
@@ -11,4 +20,53 @@
     justify-content: left;
     align-items: center;
   }
+}
+
+.new-collection {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100vh;
+  width: 100vw;
+  color: $white;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-family: $openSans-light;
+  justify-content: center;
+  align-items: center;
+  .modal {
+    background-color: $primary-background;
+    padding: 25px;
+    border-radius:  5px;
+    .input {
+      input {
+        padding: 5px 15px;
+        border-radius: 5px;
+        border: solid $white 1px;
+        font-size: 14px;
+      }
+    }
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 5px;
+      gap: 5px;
+      button {
+        width: 100%;
+      }
+      #submit_new {
+        @include classic-btn;
+      }
+      #cancel_new {
+        @include cancel-btn;
+      }
+    }
+  }
+}
+.hidden {
+  display: none;
 }

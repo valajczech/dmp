@@ -6,7 +6,7 @@ export const Storage = {
   Images: {
     clear: () => localStorage.removeItem("Images"),
     get: () => {
-      return JSON.parse(localStorage.getItem("Images"))
+      return JSON.parse(localStorage.getItem("Images"));
     },
     set: (imageList) => {
       localStorage.setItem("Images", JSON.stringify(imageList));
@@ -14,7 +14,9 @@ export const Storage = {
   },
   Collections: {
     clear: () => localStorage.removeItem("Collections"),
-    get: () => {},
+    get: () => {
+      return JSON.parse(localStorage.getItem("Collections"));
+    },
     set: (collectionList) => {
       localStorage.setItem("Collections", JSON.stringify(collectionList));
     },
