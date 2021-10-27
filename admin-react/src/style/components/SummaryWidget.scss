@@ -2,13 +2,9 @@
 
 .summary-widget {
   height: 75px;
-  width: 200px;
+  width: 250px;
   border-radius: 5px;
-  
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 5px 25px;
 
   background-color: $primary-background;
   color: $white;
@@ -16,7 +12,29 @@
   filter: drop-shadow(0px 5px 5px $primary-background-darker);
 
   user-select: none;
+  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
 
+
+  .icon {
+    svg {
+      font-size: 30px;
+      color: $primary-blue;
+    }
+  }
+  
+  .data {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+  #name {
+    color: $primary-gray;
+  }
   #value {
     font-size: 25px;
     font-weight: 600;
