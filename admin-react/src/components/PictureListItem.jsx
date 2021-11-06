@@ -108,8 +108,7 @@ class PictureListItem extends React.Component {
                             );
 
                             // Update the local data
-                            //TODO!
-                            // Probably by some update() function
+                            emmiter.emit("updateEssentialData");
                           }}
                         >
                           {col.name}
@@ -173,10 +172,7 @@ class PictureListItem extends React.Component {
                                     this.props.id,
                                     this.props.src
                                   );
-
                                   // Update the local data
-                                  //TODO!
-                                  // Probably by some update() function
                                   emmiter.emit("updateEssentialData");
                                 }}
                               >

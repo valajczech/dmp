@@ -13,6 +13,7 @@ import {
   deleteDoc,
   updateDoc,
   arrayUnion,
+  arrayRemove
 } from "firebase/firestore";
 
 // Refs
@@ -49,9 +50,14 @@ export const Collections = {
         }),
       });
     },
-    removeImage: async (collectionId, imageId) => {
+    removeImage: async (collectionId, imgId, imgSrc) => {
       // Removes image ref from collections connectedImages array
-   
+      await updateDoc(doc(db, "albums", collectionId), {
+        connectedImages: arrayRemove({
+          imageId: imgId,
+          imageSrc: imgSrc,
+        })
+      })
     },
   },
 };

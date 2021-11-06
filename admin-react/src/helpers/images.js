@@ -10,6 +10,7 @@ import {
   getDocs,
   updateDoc,
   arrayUnion,
+  arrayRemove
 } from "firebase/firestore";
 
 // Refs
@@ -62,6 +63,12 @@ export const Images = {
     },
     removeCollection: async (colId, colName, imgId) => {
       // Removes collection from image collections array
+      await updateDoc(doc(db, "uploadedPictures", imgId), {
+        imgAlbums: arrayRemove({
+          id: colId,
+          name: colName,
+        })
+      })
     },
   },
 };
