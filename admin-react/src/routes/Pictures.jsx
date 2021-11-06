@@ -4,10 +4,12 @@ import PictureListItem from "../components/PictureListItem";
 
 // Helpers
 import { Storage } from "../helpers/storage";
+import emmiter from "../utils/EventEmitter";
+import { Images } from "../helpers/images";
 
 class Pictures extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       data: [], // The initial state is a empty array
     };
@@ -16,7 +18,17 @@ class Pictures extends React.Component {
     this.setState({
       data: Storage.Images.get(),
     });
+    emmiter.addListener("updateEssentialData", () => {
+      this.updateEssentialData();
+    });
   }
+
+  updateEssentialData = async () => {
+    this.setState({ data: await Images.Get.detailedImageList() }, () => {
+      Storage.Images.set(this.state.data);
+    });
+  };
+
   render() {
     return (
       <div className="pictures">
@@ -33,12 +45,15 @@ class Pictures extends React.Component {
           <tbody>
             {this.state.data.map((item) => (
               <PictureListItem
-                key={item.Id || item.imgName} //TODO: automatic imageID
+                key={item.id}
+                id={item.id}
                 name={item.imgName}
                 size={item.size}
                 likes={item.total_likes}
+                collections={item.imgAlbums} // This has to be array of objects because
                 src={item.imgURL}
                 lastModified={item.uploadDate}
+                description={item.imgDescription}
               />
             ))}
           </tbody>
@@ -49,15 +64,3 @@ class Pictures extends React.Component {
 }
 
 export default Pictures;
-
-/*
-dummy data
- <PictureListItem
-              name="Dummy"
-              size="5.65MB"
-              likes="23"
-              src="https://firebasestorage.googleapis.com/v0/b/dmp-bures.appspot.com/o/BuresTestImage5.jpg?alt=media&token=014fc93c-cdd0-4174-aeb4-248a283f8892"
-              lastModified="15.2.2021"
-            />
-
-*/

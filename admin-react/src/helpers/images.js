@@ -8,6 +8,8 @@ import {
   where,
   getDoc,
   getDocs,
+  updateDoc,
+  arrayUnion,
 } from "firebase/firestore";
 
 // Refs
@@ -48,12 +50,18 @@ export const Images = {
       return res;
     },
   },
+  Image: {
+    addCollection: async (colId, colName, imgId) => {
+      // Adds collection to image collections array
+      await updateDoc(doc(db, "uploadedPictures", imgId), {
+        imgAlbums: arrayUnion({
+          id: colId,
+          name: colName,
+        }),
+      });
+    },
+    removeCollection: async (colId, colName, imgId) => {
+      // Removes collection from image collections array
+    },
+  },
 };
-/*
-const querySnapshot = await getDocs(q);
-querySnapshot.forEach((doc) => {+
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
-});
-
-*/

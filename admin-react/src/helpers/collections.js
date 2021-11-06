@@ -11,6 +11,8 @@ import {
   getDocs,
   setDoc,
   deleteDoc,
+  updateDoc,
+  arrayUnion,
 } from "firebase/firestore";
 
 // Refs
@@ -35,7 +37,22 @@ export const Collections = {
     );
   },
   delete: async (collectionID) => {
-    await deleteDoc(doc(db, "albums", collectionID))
+    await deleteDoc(doc(db, "albums", collectionID));
+  },
+  Collection: {
+    addImage: async (collectionId, imageId, imageSrc) => {
+      // Adds image ref to collections connectedImages array
+      await updateDoc(doc(db, "albums", collectionId), {
+        connectedImages: arrayUnion({
+          imageId: imageId,
+          imageSrc: imageSrc,
+        }),
+      });
+    },
+    removeImage: async (collectionId, imageId) => {
+      // Removes image ref from collections connectedImages array
+   
+    },
   },
 };
 
