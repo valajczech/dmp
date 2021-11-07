@@ -101,9 +101,17 @@
   background-color: #212332;
   border-radius: 5px;
   font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+.picture-list-item .edit-dialog .picture-wrapper .content .content-wrapper .collection-tags .selected .tag svg {
+  color: #747f8f;
 }
 .picture-list-item .edit-dialog .picture-wrapper .content .content-wrapper .collection-tags .selected .tag:hover {
   background-color: #c92626;
+}
+.picture-list-item .edit-dialog .picture-wrapper .content .content-wrapper .collection-tags .selected .tag:hover svg {
+  color: #eceff4;
 }
 .picture-list-item .edit-dialog .picture-wrapper .content .content-wrapper .collection-tags .tags-control {
   display: flex;
@@ -119,7 +127,7 @@
   outline: none;
   border-radius: 5px;
   padding: 5px 10px;
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
 }
 .picture-list-item .edit-dialog .picture-wrapper .content .content-wrapper .collection-tags .tags-control #addToCollection:hover {

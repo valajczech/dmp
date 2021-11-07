@@ -30,19 +30,6 @@ class PictureListItem extends React.Component {
     this.setState({ isBeingEdited: false });
   };
 
-  /* InFileDialog functions */
-  removeThisCollection = (collectionId) => {
-    // Remove this collection from image albumArray and
-    // Remove this image from collection connectedImages
-    // Update the DOM tags
-  };
-
-  /*emitUpdateData = () => {
-    // Function for emmitting event to update the data
-    emitter.emit("updateData", "Images");
-  };
-*/
-
   render() {
     return (
       <tr className="picture-list-item" onClick={this.openEditDialog}>
@@ -111,7 +98,8 @@ class PictureListItem extends React.Component {
                             emmiter.emit("updateEssentialData");
                           }}
                         >
-                          {col.name}
+                          <FaTimes />
+                          <span>{col.name}</span>
                         </span>
                       );
                     })}

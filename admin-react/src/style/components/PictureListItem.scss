@@ -83,8 +83,16 @@
                 background-color: $primary-background-darker;
                 border-radius: 5px;
                 font-size: 15px;
+                display: flex;
+                align-items: center;
+                svg {
+                  color: $primary-gray;
+                }
                 &:hover {
                   background-color: $red;
+                  svg {
+                    color: $white;
+                  }
                 }
               }
             }
@@ -102,7 +110,7 @@
                 outline: none;
                 border-radius: 5px;
                 padding: 5px 10px;
-                font-size: 14px;
+                font-size: 15px;
                 cursor: pointer;
                 &:hover {
                   background-color: $primary-blue;
