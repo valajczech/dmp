@@ -6,6 +6,7 @@ import PictureListItem from "../components/PictureListItem";
 import { Storage } from "../helpers/storage";
 import emmiter from "../utils/EventEmitter";
 import { Images } from "../helpers/images";
+import { Collections } from "../helpers/collections";
 
 class Pictures extends React.Component {
   constructor() {
@@ -24,9 +25,12 @@ class Pictures extends React.Component {
   }
 
   updateEssentialData = async () => {
+    // Correctly update local Images
     this.setState({ data: await Images.Get.detailedImageList() }, () => {
       Storage.Images.set(this.state.data);
     });
+    // Correctly update local collections
+    Storage.Collections.set(await Collections.Get.detailedCollectionList())
   };
 
   render() {
