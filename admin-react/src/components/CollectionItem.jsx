@@ -10,8 +10,8 @@ class CollectionItem extends React.Component {
   }
   removeThisCollection = () => {
     // Removes this collection from the db and emits a delete event to CollectionsPage
-    emmiter.emit("CollectionDelete");
-    Collections.delete(this.props.id);
+    emmiter.emit("updateEssentialData");
+    Collections.delete(this.props.id, this.props.title);
   };
 
   render() {

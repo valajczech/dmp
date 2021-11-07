@@ -30,7 +30,7 @@ class Pictures extends React.Component {
       Storage.Images.set(this.state.data);
     });
     // Correctly update local collections
-    Storage.Collections.set(await Collections.Get.detailedCollectionList())
+    Storage.Collections.set(await Collections.Get.detailedCollectionList());
   };
 
   render() {

@@ -13,7 +13,7 @@ import {
   deleteDoc,
   updateDoc,
   arrayUnion,
-  arrayRemove
+  arrayRemove,
 } from "firebase/firestore";
 
 // Refs
@@ -37,8 +37,40 @@ export const Collections = {
       collectionConverter.toFirestore(data, timeId)
     );
   },
-  delete: async (collectionID) => {
+  delete: async (collectionID, collectionName) => {
+    // Delete collections itself
     await deleteDoc(doc(db, "albums", collectionID));
+    // Delete this collection from img albums array containing this collection
+    const q = query(
+      collection(db, "uploadedPictures"),
+      where("imgAlbums", "array-contains", {
+        id: collectionID,
+        name: collectionName,
+      })
+    );
+
+    let snap = await getDocs(q);
+    snap.forEach(async (item) => {
+      await updateDoc(doc(db, "uploadedPictures", item.id), {
+        imgAlbums: arrayRemove({
+          id: collectionID,
+          name: collectionName,
+        }),
+      });
+    });
+
+    /*
+    
+    const q = query(collection(db, "cities"), where("capital", "==", true));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+    });
+
+    
+    */
   },
   Collection: {
     addImage: async (collectionId, imageId, imageSrc) => {
@@ -56,8 +88,8 @@ export const Collections = {
         connectedImages: arrayRemove({
           imageId: imgId,
           imageSrc: imgSrc,
-        })
-      })
+        }),
+      });
     },
   },
 };

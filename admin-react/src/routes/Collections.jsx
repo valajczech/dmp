@@ -5,6 +5,7 @@ import { Storage } from "../helpers/storage";
 import { Collections } from "../helpers/collections";
 import emmiter from "../utils/EventEmitter";
 import "../style/routes/Collections.css";
+import { Images } from "../helpers/images";
 
 class CollectionsPage extends React.Component {
   constructor(props) {
@@ -18,20 +19,27 @@ class CollectionsPage extends React.Component {
     this.setState({
       data: Storage.Collections.get(),
     });
-    emmiter.addListener("CollectionDelete", () => {
-      this.updateCollections();
+    emmiter.addListener("updateEssentialData", () => {
+      this.updateEssentialData();
     });
   }
+  updateEssentialData = async () => {
+    // Correctly update local collections
+    this.setState(
+      { data: await Collections.Get.detailedCollectionList() },
+      () => {
+        Storage.Collections.set(this.state.data);
+      }
+    );
+    // Correctly update local Images
+    Storage.Images.set(await Images.Get.detailedImageList());
+  };
   toggleNewColPopup = () => {
     this.setState({
       isCollectionBeingAdded: !this.state.isCollectionBeingAdded,
     });
   };
-  updateCollections = async () => {
-    Storage.Collections.clear();
-    this.setState({ data: await Collections.Get.detailedCollectionList() });
-    Storage.Collections.set(this.state.data);
-  };
+
   addNewCollection = async (event) => {
     event.preventDefault();
     // Jesus christ
@@ -39,10 +47,8 @@ class CollectionsPage extends React.Component {
       collectionName: event.target.elements[0].value,
     };
     await Collections.createNew(data);
-    this.updateCollections();
+    this.updateEssentialData();
     this.toggleNewColPopup();
-    // TODO: immediately show the new album, maybe using redirect or
-    // TODO: some update function.
   };
 
   render() {
@@ -76,11 +82,21 @@ class CollectionsPage extends React.Component {
           <div className="modal">
             <form onSubmit={this.addNewCollection}>
               <div className="input">
-                <input type="text" id="collection-new-name" placeholder="Název nového alba"/>
+                <input
+                  type="text"
+                  id="collection-new-name"
+                  placeholder="Název nového alba"
+                />
               </div>
               <div className="controls">
-                <button type="submit" id="submit_new" >Přidat</button>
-                <button type="button" id="cancel_new" onClick={this.toggleNewColPopup}>
+                <button type="submit" id="submit_new">
+                  Přidat
+                </button>
+                <button
+                  type="button"
+                  id="cancel_new"
+                  onClick={this.toggleNewColPopup}
+                >
                   Zrušit
                 </button>
               </div>
