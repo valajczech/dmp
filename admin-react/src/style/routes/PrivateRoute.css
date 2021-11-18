@@ -1,26 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
 .appContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   background-color: #212332;
-  flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
+
 .appContainer .appcontent {
   width: 100%;
   max-height: 100vh;
   overflow-y: scroll;
 }
+
 .appContainer .appcontent::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: #212332;
 }
+
 .appContainer .appcontent::-webkit-scrollbar {
   width: 5px;
   background-color: #212332;
 }
+
 .appContainer .appcontent::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: #747f8f;
 }
+
 .appContainer .appcontent .wrapper {
   padding: 25px;
-}/*# sourceMappingURL=PrivateRoute.css.map */
+}
+/*# sourceMappingURL=PrivateRoute.css.map */

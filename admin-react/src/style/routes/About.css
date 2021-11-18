@@ -3,14 +3,18 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
+
 .about p {
   color: #eceff4;
   font-family: "Open Sans", sans-serif;
   text-align: center;
 }
+
 .about p a {
   color: #2196f3;
   text-decoration: none;
-}/*# sourceMappingURL=About.css.map */
+}
+/*# sourceMappingURL=About.css.map */

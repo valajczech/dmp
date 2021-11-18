@@ -6,12 +6,15 @@ import {
   orderBy,
   limit,
   where,
+  addDoc,
   getDoc,
+  setDoc,
   getDocs,
   updateDoc,
   arrayUnion,
-  arrayRemove
+  arrayRemove,
 } from "firebase/firestore";
+import date from "date-and-time";
 
 // Refs
 const imagesRef = collection(db, "uploadedPictures");
@@ -67,8 +70,22 @@ export const Images = {
         imgAlbums: arrayRemove({
           id: colId,
           name: colName,
-        })
-      })
+        }),
+      });
+    },
+    uploadToFirestore: async (data, storageSourceURL) => {
+      const newImageRef = doc(imagesRef);
+      await setDoc(newImageRef, {
+        id: newImageRef.id,
+        name: data.name,
+        description: "",
+        size: data.size,
+        type: data.type,
+        url: storageSourceURL,
+        uploadDate: Date.now().toString(),
+        total_like: 0,
+        collections: [],
+      });
     },
   },
 };

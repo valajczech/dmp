@@ -5,14 +5,21 @@
   border-radius: 5px;
   background-color: #2a2d3e;
   padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   gap: 10px;
   overflow: hidden;
 }
+
 .collectionItem .top-controls {
   text-align: right;
 }
+
 .collectionItem .top-controls button {
   border-radius: 5px;
   border: solid #747f8f 2px;
@@ -24,27 +31,42 @@
   width: 25px;
   padding: 5px;
 }
+
 .collectionItem .top-controls button:hover {
   color: #c92626;
   border-color: #c92626;
 }
+
 .collectionItem .data {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
+
 .collectionItem .data #title {
   font-weight: 700;
   font-size: 20px;
   margin-bottom: 5px;
 }
+
 .collectionItem .data #total {
   font-size: 15px;
 }
+
 .collectionItem .controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   gap: 10px;
 }
+
 .collectionItem .controls button {
   width: 50%;
   /*Has to be changed*/
@@ -56,8 +78,11 @@
   cursor: pointer;
   padding: 5px 15px;
 }
+
 .collectionItem .controls button:hover {
   color: white;
   background-color: #2196f3;
-  filter: drop-shadow(0px 5px 5px #212332);
-}/*# sourceMappingURL=CollectionItem.css.map */
+  -webkit-filter: drop-shadow(0px 5px 5px #212332);
+          filter: drop-shadow(0px 5px 5px #212332);
+}
+/*# sourceMappingURL=CollectionItem.css.map */

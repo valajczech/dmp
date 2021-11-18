@@ -1,36 +1,52 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
 .pictures {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 15px;
   border-radius: 10px;
   background-color: #2a2d3e;
   font-family: "Open Sans", sans-serif;
 }
+
 .pictures h3 {
-  align-self: flex-start;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
   color: #eceff4;
   margin-bottom: 25px;
   font-weight: 600;
 }
+
 .pictures table {
   width: 100%;
 }
+
 .pictures table thead {
   text-align: left;
 }
+
 .pictures table thead th {
   color: #747f8f;
   padding-bottom: 5px;
   padding: 15px 20px;
 }
+
 .pictures table thead #date {
   text-align: center;
 }
+
 .pictures table thead #likes {
   text-align: right;
 }
+
 .pictures table thead #size {
   text-align: center;
-}/*# sourceMappingURL=Pictures.css.map */
+}
+/*# sourceMappingURL=Pictures.css.map */

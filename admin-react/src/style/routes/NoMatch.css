@@ -6,19 +6,24 @@
   color: #eceff4;
   font-family: "Open Sans", sans-serif;
 }
+
 .nomatch div {
   position: absolute;
   text-align: center;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
+
 .nomatch div svg {
   font-size: 50px;
 }
+
 .nomatch div #sorry {
   font-size: 15px;
 }
+
 .nomatch div button {
   border-radius: 5px;
   border: #2196f3 solid 2px;
@@ -28,8 +33,11 @@
   cursor: pointer;
   padding: 5px 15px;
 }
+
 .nomatch div button:hover {
   color: white;
   background-color: #2196f3;
-  filter: drop-shadow(0px 5px 5px #212332);
-}/*# sourceMappingURL=NoMatch.css.map */
+  -webkit-filter: drop-shadow(0px 5px 5px #212332);
+          filter: drop-shadow(0px 5px 5px #212332);
+}
+/*# sourceMappingURL=NoMatch.css.map */
