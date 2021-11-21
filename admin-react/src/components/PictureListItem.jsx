@@ -7,8 +7,9 @@ import { Storage } from "../helpers/storage";
 import { Images } from "../helpers/images";
 
 import emmiter from "../utils/EventEmitter";
-import emitter from "../utils/EventEmitter";
 import { Collections } from "../helpers/collections";
+import emitter from "../utils/EventEmitter";
+import { Redirect } from "react-router";
 
 class PictureListItem extends React.Component {
   constructor(props) {
@@ -177,42 +178,54 @@ class PictureListItem extends React.Component {
                 </div>
               </div>
               <div className="data">
-                <div className="header">
-                  <span>
-                    <FaInfo />
-                    Info
-                  </span>
-                  <div className="published">
+                <div className="data-content">
+                  <div className="header">
                     <span>
-                      Nahráno
-                      {date.format(
-                        new Date(this.props.lastModified),
-                        "MMM DD YYYY"
-                      )}
+                      <FaInfo />
+                      Info
                     </span>
+                    <div className="published">
+                      <span>
+                        Nahráno{" "}
+                        {date.format(
+                          new Date(this.props.lastModified),
+                          "MMM DD YYYY"
+                        )}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="datasets">
+                    <div className="dataset">
+                      <span id="title">Název</span>
+                      <span id="value">{this.props.name}</span>
+                    </div>
+                    <div className="dataset">
+                      <span id="title">Popis</span>
+                      <span id="value">
+                        {this.props.description || "Neuvedeno"}
+                      </span>
+                    </div>
+                    <div className="dataset">
+                      <span id="title">Velikost</span>
+                      <span id="value">{this.props.size || "Neuvedeno"}</span>
+                    </div>
+                    <div className="dataset">
+                      <span id="title">Počet lajků</span>
+                      <span id="value">{this.props.likes || 0}</span>
+                    </div>
                   </div>
                 </div>
-                <div className="dataset">
-                  <span id="title">Název</span>
-                  <span id="value">{this.props.name}</span>
-                </div>
-                <div className="dataset">
-                  <span id="title">Popis</span>
-                  <span id="value">
-                    {this.props.description || "undefined"}
-                  </span>
-                </div>
-                <div className="dataset">
-                  <span id="title">Rozměry</span>
-                  <span id="value">{this.props.dimensions || "undefined"}</span>
-                </div>
-                <div className="dataset">
-                  <span id="title">Velikost</span>
-                  <span id="value">{this.props.size || "undefined"}</span>
-                </div>
-                <div className="dataset">
-                  <span id="title">Počet lajků</span>
-                  <span id="value">{this.props.likes || "undefined"}</span>
+                <div className="footer">
+                  <button
+                    onClick={async () => {
+                      Images.Image.delete(this.state.data.id).then(() => {
+                        emitter.emit("updateEssentialData");
+                      });
+                    }}
+                  >
+                    <FaTimes />
+                    <span>Delete</span>
+                  </button>
                 </div>
               </div>
             </div>

@@ -2,18 +2,14 @@ import { db } from "../firebase";
 import {
   doc,
   collection,
-  query,
-  orderBy,
-  limit,
-  where,
-  addDoc,
-  getDoc,
+  deleteDoc,
   setDoc,
   getDocs,
   updateDoc,
   arrayUnion,
   arrayRemove,
 } from "firebase/firestore";
+import { getStorage, ref, deleteObject } from "firebase/storage";
 import date from "date-and-time";
 
 // Refs
@@ -58,22 +54,44 @@ export const Images = {
     addCollection: async (colId, colName, imgId) => {
       // Adds collection to image collections array
       await updateDoc(doc(db, "uploadedPictures", imgId), {
-        imgAlbums: arrayUnion({
+        collections: arrayUnion({
           id: colId,
           name: colName,
         }),
       });
+    },
+    delete: async (imgId) => {
+      // Delete img from Firestore
+      // Delete img from Storage
+      const storage = getStorage();
+      const storageRef = ref(storage, "gs://dmp-bures.appspot.com/" + imgId);
+      try {
+        await deleteObject(storageRef);
+        await deleteDoc(doc(db, "uploadedPictures", imgId));
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    Update: {
+      downloadURL: async (imgId, downloadURL) => {
+        // This function is used when uploading the image to the storage bcs I wansnt able to get
+        // imgId and download URL at the same time so thats why this function exists.
+        // Take a look at implementation and you'll understand.
+        await updateDoc(doc(db, "uploadedPictures", imgId), {
+          url: downloadURL,
+        });
+      },
     },
     removeCollection: async (colId, colName, imgId) => {
       // Removes collection from image collections array
       await updateDoc(doc(db, "uploadedPictures", imgId), {
-        imgAlbums: arrayRemove({
+        collections: arrayRemove({
           id: colId,
           name: colName,
         }),
       });
     },
-    uploadToFirestore: async (data, storageSourceURL) => {
+    uploadToFirestore: async (data) => {
       const newImageRef = doc(imagesRef);
       await setDoc(newImageRef, {
         id: newImageRef.id,
@@ -81,11 +99,13 @@ export const Images = {
         description: "",
         size: data.size,
         type: data.type,
-        url: storageSourceURL,
-        uploadDate: Date.now().toString(),
-        total_like: 0,
+        url: "",
+        uploadDate: date.format(new Date(), "ddd, MMM DD YYYY"),
+        total_likes: 0,
         collections: [],
       });
+
+      return newImageRef.id;
     },
   },
 };

@@ -55,23 +55,51 @@ class Dropzone extends React.Component {
     const storage = getStorage();
     if (this.state.data.length > 0) {
       this.state.data.forEach((img) => {
+        console.log(img);
+        // Todo: rework the script it saves its ref with ID instead  of name!
+
         // Upload to Firebase Storage
-        const storageRef = ref(
-          storage,
-          "gs://dmp-bures.appspot.com/" + img.name
-        );
-        const uploadTask = uploadBytesResumable(storageRef, img._file).then(
-          (snap) => {
-            getDownloadURL(snap.ref).then((url) => {
-              Images.Image.uploadToFirestore(img, url).then(() => {
-                this.setState({
-                  isUploading: false,
+
+        // Create ref in Firestore
+        Images.Image.uploadToFirestore(img).then((docID) => {
+          // Upload to storage via the docID
+          const storageRef = ref(
+            storage,
+            "gs://dmp-bures.appspot.com/" + docID
+          );
+          // Create upload task
+          const uploadTask = uploadBytesResumable(storageRef, img._file).then(
+            (snap) => {
+              getDownloadURL(snap.ref).then((url) => {
+                // Set the url in corresponding img doc
+                Images.Image.Update.downloadURL(docID, url).then(() => {
+                  this.setState({
+                    isUploading: false,
+                  });
+                  window.location.reload();
                 });
-                window.location.reload();
               });
-            });
-          }
-        );
+            }
+          );
+        });
+
+        // Upload to Firebase Storage
+        // const storageRef = ref(
+        //   storage,
+        //   "gs://dmp-bures.appspot.com/" + img.name
+        // );
+        // const uploadTask = uploadBytesResumable(storageRef, img._file).then(
+        //   (snap) => {
+        //     getDownloadURL(snap.ref).then((url) => {
+        //       Images.Image.uploadToFirestore(img, url).then(() => {
+        //         this.setState({
+        //           isUploading: false,
+        //         });
+        //        window.location.reload();
+        //       });
+        //     });
+        //   }
+        // );
       });
     }
   };

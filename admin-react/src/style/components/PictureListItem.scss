@@ -5,10 +5,12 @@
   padding: 15px 20px;
   color: $white;
   font-family: $openSans-light;
+
   td {
     border-top: solid $primary-background-darker 1px;
     border-radius: 5px;
     padding: 15px 20px;
+
     span {
       display: flex;
       flex-wrap: nowrap;
@@ -16,16 +18,20 @@
       justify-content: left;
       gap: 5px;
     }
+
     #date {
       justify-content: center;
     }
+
     #likes {
       justify-content: right;
     }
+
     #size {
       justify-content: center;
     }
   }
+
   .edit-dialog {
     position: fixed;
     top: 50%;
@@ -34,27 +40,33 @@
     height: 100vh;
     width: 100vw;
     background-color: $primary-background;
+
     .picture-wrapper {
       padding: 10px 5vw;
+
       .top-controls {
         text-align: right;
         padding-bottom: 10px;
+
         button {
           @include close-btn;
         }
       }
+
       .content {
         display: flex;
         flex-wrap: nowrap;
         justify-content: space-between;
         gap: 15px;
         height: 100vh;
+
         .content-wrapper {
           width: 100%;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           margin-bottom: 5vw !important;
+
           .image {
             margin-bottom: 10px;
             background-color: $primary-background-darker;
@@ -63,21 +75,25 @@
             overflow: hidden;
             text-align: center;
             border-radius: 5px;
+
             img {
               height: 100%;
               width: auto;
             }
           }
+
           .collection-tags {
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             .selected {
               display: flex;
               flex-wrap: wrap;
               align-items: center;
               justify-content: flex-start;
               gap: 5px;
+
               .tag {
                 padding: 5px 10px;
                 background-color: $primary-background-darker;
@@ -85,19 +101,24 @@
                 font-size: 15px;
                 display: flex;
                 align-items: center;
+
                 svg {
                   color: $primary-gray;
                 }
+
                 &:hover {
                   background-color: $red;
+
                   svg {
                     color: $white;
                   }
                 }
               }
             }
+
             .tags-control {
               display: flex;
+
               #addToCollection {
                 display: flex;
                 flex-direction: row;
@@ -112,14 +133,17 @@
                 padding: 5px 10px;
                 font-size: 15px;
                 cursor: pointer;
+
                 &:hover {
                   background-color: $primary-blue;
                   color: $white;
                 }
               }
             }
+
             .collection-add-popup {
               @include popupStyle;
+
               .col-wrapper {
                 max-width: 40vw;
                 height: auto;
@@ -127,21 +151,26 @@
                 background-color: $primary-background-darker;
                 padding: 15px;
                 border-radius: 5px;
+
                 .col-controls {
                   text-align: right;
+
                   button {
                     @include close-btn;
                   }
                 }
+
                 #col-header {
                   margin-bottom: 15px;
                   font-weight: 700;
                   font-size: 18px;
                 }
+
                 .col-data {
                   display: flex;
                   flex-wrap: wrap;
                   gap: 5px;
+
                   .col-record {
                     background-color: $primary-background-darker;
                     border: solid $primary-background 2px;
@@ -151,6 +180,7 @@
                     width: 150px;
                     display: flex;
                     justify-content: left;
+
                     &:hover {
                       background-color: $primary-background;
                       color: $white;
@@ -161,38 +191,75 @@
             }
           }
         }
+
         .data {
           width: 450px;
           background-color: $primary-background-darker;
           padding: 10px;
           border-radius: 5px;
           margin-bottom: 5vw;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
           .dataset {
             padding: 5px 0px;
+
             #title {
               color: $primary-gray;
               padding-bottom: 5px;
             }
+
             #value {
               font-weight: 700;
             }
           }
+
           .header {
             margin-bottom: 15px;
+
             div {
               display: flex;
               flex-wrap: nowrap;
               gap: 5px;
             }
+
             .published {
               padding: 5px 0px;
               color: $primary-gray;
+            }
+          }
+
+          .footer {
+            width: 100%;
+            text-align: center;
+
+            button {
+              outline: none;
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              padding: 10px;
+              cursor: pointer;
+              background-color: $primary-background-darker;
+              border: solid $red 1px;
+              color: $red;
+              border-radius: 5px;
+            
+              &:hover {
+                background-color: $red;
+                color: $white;
+              }
             }
           }
         }
       }
     }
   }
+
   &:hover {
     background-color: $primary-background-darker;
   }

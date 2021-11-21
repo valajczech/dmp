@@ -294,6 +294,16 @@
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 5vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .picture-list-item .edit-dialog .picture-wrapper .content .data .dataset {
@@ -325,6 +335,40 @@
 .picture-list-item .edit-dialog .picture-wrapper .content .data .header .published {
   padding: 5px 0px;
   color: #747f8f;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .footer {
+  width: 100%;
+  text-align: center;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .footer button {
+  outline: none;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #212332;
+  border: solid #c92626 1px;
+  color: #c92626;
+  border-radius: 5px;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .footer button:hover {
+  background-color: #c92626;
+  color: #eceff4;
 }
 
 .picture-list-item:hover {

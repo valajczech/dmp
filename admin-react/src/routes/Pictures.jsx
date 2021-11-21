@@ -31,6 +31,8 @@ class Pictures extends React.Component {
     });
     // Correctly update local collections
     Storage.Collections.set(await Collections.Get.detailedCollectionList());
+
+    this.forceUpdate();
   };
 
   render() {
@@ -51,13 +53,13 @@ class Pictures extends React.Component {
               <PictureListItem
                 key={item.id}
                 id={item.id}
-                name={item.imgName}
+                name={item.name}
                 size={item.size}
                 likes={item.total_likes}
-                collections={item.imgAlbums} // This has to be array of objects because
-                src={item.imgURL}
+                collections={item.collections} // This has to be array of objects because
+                src={item.url}
                 lastModified={item.uploadDate}
-                description={item.imgDescription}
+                description={item.description}
               />
             ))}
           </tbody>
