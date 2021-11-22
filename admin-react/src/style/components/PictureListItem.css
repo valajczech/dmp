@@ -27,6 +27,10 @@
   gap: 5px;
 }
 
+.picture-list-item td span svg {
+  color: #2196f3;
+}
+
 .picture-list-item td #date {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -306,12 +310,94 @@
           justify-content: space-between;
 }
 
+.picture-list-item .edit-dialog .picture-wrapper .content .data #divider {
+  border-top: solid #747f8f 1px;
+  padding-top: 15px;
+  margin-top: 25px;
+}
+
 .picture-list-item .edit-dialog .picture-wrapper .content .data .dataset {
   padding: 5px 0px;
 }
 
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  gap: 15px;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable svg {
+  color: #747f8f;
+  opacity: 0;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable:hover svg {
+  opacity: 1;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable .saveBtn svg {
+  color: #2196f3;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > input,
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > textarea {
+  resize: none;
+  width: 100%;
+  background-color: #212332;
+  color: #eceff4;
+  border: solid #212332 1px;
+  border-radius: 5px;
+  outline: none;
+  padding: 5px 10px 5px 5px;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > input::-webkit-input-placeholder,
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > textarea::-webkit-input-placeholder {
+  color: #eceff4;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > input:-ms-input-placeholder,
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > textarea:-ms-input-placeholder {
+  color: #eceff4;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > input::-ms-input-placeholder,
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > textarea::-ms-input-placeholder {
+  color: #eceff4;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > input::placeholder,
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > textarea::placeholder {
+  color: #eceff4;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > input:focus-within,
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > textarea:focus-within {
+  background-color: #2a2d3e;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > input:focus-within ~ svg,
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > input:focus-within ~ .saveBtn svg,
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > textarea:focus-within ~ svg,
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > textarea:focus-within ~ .saveBtn svg {
+  opacity: 1;
+}
+
 .picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #title {
   color: #747f8f;
+  font-size: 15px;
+  font-family: "Open Sans", sans-serif;
   padding-bottom: 5px;
 }
 

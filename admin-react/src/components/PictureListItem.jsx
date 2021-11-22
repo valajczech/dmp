@@ -1,6 +1,15 @@
 import React from "react";
 import "../style/components/PictureListItem.css";
-import { FaHeart, FaImage, FaTimes, FaInfo, FaFolder } from "react-icons/fa";
+import {
+  FaHeart,
+  FaImage,
+  FaTimes,
+  FaInfo,
+  FaFolder,
+  FaEdit,
+  FaSlideshare,
+  FaSave,
+} from "react-icons/fa";
 import { HiFolderAdd } from "react-icons/hi";
 import date from "date-and-time";
 import { Storage } from "../helpers/storage";
@@ -16,6 +25,9 @@ class PictureListItem extends React.Component {
     super(props);
     this.state = {
       isBeingEdited: false,
+      isBeingDeleted: false,
+      isNameInputActive: false,
+      isDescInputActive: false,
       collectionPopupOn: false,
       data: props,
     };
@@ -197,18 +209,56 @@ class PictureListItem extends React.Component {
                   <div className="datasets">
                     <div className="dataset">
                       <span id="title">Název</span>
-                      <span id="value">{this.props.name}</span>
+                      <div id="editable">
+                        <input
+                          onFocus={() => {
+                            this.setState({ isNameInputActive: true });
+                          }}
+                          onBlur={() => {
+                            this.setState({ isNameInputActive: false });
+                          }}
+                          type="text"
+                          className="value"
+                          placeholder={this.props.name}
+                        />
+                        {this.state.isNameInputActive ? (
+                          <SaveButton />
+                        ) : (
+                          <FaEdit />
+                        )}
+                      </div>
                     </div>
+
                     <div className="dataset">
                       <span id="title">Popis</span>
-                      <span id="value">
-                        {this.props.description || "Neuvedeno"}
-                      </span>
+                      <div id="editable">
+                        <textarea
+                          onFocus={() => {
+                            this.setState({ isDescInputActive: true });
+                          }}
+                          onBlur={() => {
+                            this.setState({
+                              isDescInputActive: false,
+                            });
+                          }}
+                          rows="5"
+                          type="text"
+                          className="value"
+                          placeholder={this.props.description || "Neuvedeno"}
+                        />
+                        {this.state.isDescInputActive ? (
+                          <SaveButton />
+                        ) : (
+                          <FaEdit />
+                        )}
+                      </div>
                     </div>
-                    <div className="dataset">
+
+                    <div className="dataset" id="divider">
                       <span id="title">Velikost</span>
                       <span id="value">{this.props.size || "Neuvedeno"}</span>
                     </div>
+
                     <div className="dataset">
                       <span id="title">Počet lajků</span>
                       <span id="value">{this.props.likes || 0}</span>
@@ -218,13 +268,16 @@ class PictureListItem extends React.Component {
                 <div className="footer">
                   <button
                     onClick={async () => {
+                      this.setState({ isBeingDeleted: true });
                       Images.Image.delete(this.state.data.id).then(() => {
                         emitter.emit("updateEssentialData");
                       });
                     }}
                   >
                     <FaTimes />
-                    <span>Delete</span>
+                    <span>
+                      {this.state.isBeingDeleted ? "Deleting..." : "Delete"}
+                    </span>
                   </button>
                 </div>
               </div>
@@ -237,3 +290,11 @@ class PictureListItem extends React.Component {
 }
 
 export default PictureListItem;
+
+const SaveButton = () => {
+  return (
+    <div className="saveBtn">
+      <FaSave />
+    </div>
+  );
+};

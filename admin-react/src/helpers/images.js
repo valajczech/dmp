@@ -61,6 +61,9 @@ export const Images = {
       });
     },
     delete: async (imgId) => {
+      //TODO: Delete IMG from every collection it was in
+
+      
       // Delete img from Firestore
       // Delete img from Storage
       const storage = getStorage();
@@ -71,6 +74,7 @@ export const Images = {
       } catch (error) {
         console.error(error);
       }
+
     },
     Update: {
       downloadURL: async (imgId, downloadURL) => {
