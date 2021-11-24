@@ -16,6 +16,7 @@ class ImagePreview extends React.Component {
   render() {
     return (
       <div className="image-preview">
+        <span>DELETE</span>
         <img src={this.state._local_src} alt="" />
       </div>
     );

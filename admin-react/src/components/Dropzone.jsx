@@ -9,7 +9,6 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-import { Redirect } from "react-router-dom";
 
 let tempData = [];
 class Dropzone extends React.Component {
@@ -83,23 +82,6 @@ class Dropzone extends React.Component {
           );
         });
 
-        // Upload to Firebase Storage
-        // const storageRef = ref(
-        //   storage,
-        //   "gs://dmp-bures.appspot.com/" + img.name
-        // );
-        // const uploadTask = uploadBytesResumable(storageRef, img._file).then(
-        //   (snap) => {
-        //     getDownloadURL(snap.ref).then((url) => {
-        //       Images.Image.uploadToFirestore(img, url).then(() => {
-        //         this.setState({
-        //           isUploading: false,
-        //         });
-        //        window.location.reload();
-        //       });
-        //     });
-        //   }
-        // );
       });
     }
   };

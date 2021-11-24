@@ -19,7 +19,6 @@
       gap: 5px;
 
       svg {
-
         color: $primary-blue;
       }
     }
@@ -211,7 +210,6 @@
           #divider {
             border-top: solid $primary-gray 1px;
             padding-top: 15px;
-            margin-top: 25px;
           }
 
           .dataset {
@@ -235,15 +233,13 @@
                 }
               }
 
-              .saveBtn {
-                svg {
-                  color: $primary-blue;
-                }
+              .changed {
+                color: $primary-blue;
               }
             }
 
-            #editable>input,
-            #editable>textarea {
+            #editable > input,
+            #editable > textarea {
               resize: none;
               width: 100%;
               background-color: $primary-background-darker;
@@ -265,12 +261,10 @@
               &:focus-within {
                 background-color: $primary-background;
 
-                ~svg,
-                ~.saveBtn svg {
+                ~ svg {
                   opacity: 1;
                 }
               }
-
             }
 
             #title {
@@ -299,7 +293,25 @@
               color: $primary-gray;
             }
           }
+          .save {
+            text-align: center;
+            margin: 5px;
+            .saveBtn {
+              color: $primary-background-darker;
+              cursor: default;
+              padding: 10px;
 
+            }
+            .ableToSave {
+              color: $primary-blue;
+            }
+            .ableToSaveWrapper {
+              cursor: pointer;
+              &:hover {
+                background-color: $primary-background;
+              }
+            }
+          }
           .footer {
             width: 100%;
             text-align: center;

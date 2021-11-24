@@ -12,6 +12,11 @@
           align-items: center;
   cursor: pointer;
   overflow: hidden;
+  position: relative;
+}
+
+.image-preview span {
+  position: absolute;
 }
 
 .image-preview img {
@@ -19,8 +24,7 @@
   width: 400px;
 }
 
-.image-preview img:hover {
-  -webkit-filter: blur(5px);
-          filter: blur(5px);
+.image-preview img:hover ~ span {
+  color: red;
 }
 /*# sourceMappingURL=ImagePreview.css.map */

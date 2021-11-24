@@ -7,11 +7,18 @@
   align-items: center;
   cursor: pointer;
   overflow: hidden;
+ 
+  position: relative;
+  span {
+    position: absolute;
+  }
   img {
     height: auto;
     width: 400px;
     &:hover {
-      filter: blur(5px);
+      ~span {
+        color: red;
+      }
     }
   }
 }

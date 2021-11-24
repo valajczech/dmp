@@ -313,7 +313,6 @@
 .picture-list-item .edit-dialog .picture-wrapper .content .data #divider {
   border-top: solid #747f8f 1px;
   padding-top: 15px;
-  margin-top: 25px;
 }
 
 .picture-list-item .edit-dialog .picture-wrapper .content .data .dataset {
@@ -343,7 +342,7 @@
   opacity: 1;
 }
 
-.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable .saveBtn svg {
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable .changed {
   color: #2196f3;
 }
 
@@ -388,9 +387,7 @@
 }
 
 .picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > input:focus-within ~ svg,
-.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > input:focus-within ~ .saveBtn svg,
-.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > textarea:focus-within ~ svg,
-.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > textarea:focus-within ~ .saveBtn svg {
+.picture-list-item .edit-dialog .picture-wrapper .content .data .dataset #editable > textarea:focus-within ~ svg {
   opacity: 1;
 }
 
@@ -421,6 +418,29 @@
 .picture-list-item .edit-dialog .picture-wrapper .content .data .header .published {
   padding: 5px 0px;
   color: #747f8f;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .save {
+  text-align: center;
+  margin: 5px;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .save .saveBtn {
+  color: #212332;
+  cursor: default;
+  padding: 10px;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .save .ableToSave {
+  color: #2196f3;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .save .ableToSaveWrapper {
+  cursor: pointer;
+}
+
+.picture-list-item .edit-dialog .picture-wrapper .content .data .save .ableToSaveWrapper:hover {
+  background-color: #2a2d3e;
 }
 
 .picture-list-item .edit-dialog .picture-wrapper .content .data .footer {

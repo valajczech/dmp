@@ -63,7 +63,6 @@ export const Images = {
     delete: async (imgId) => {
       //TODO: Delete IMG from every collection it was in
 
-      
       // Delete img from Firestore
       // Delete img from Storage
       const storage = getStorage();
@@ -74,7 +73,6 @@ export const Images = {
       } catch (error) {
         console.error(error);
       }
-
     },
     Update: {
       downloadURL: async (imgId, downloadURL) => {
@@ -83,6 +81,16 @@ export const Images = {
         // Take a look at implementation and you'll understand.
         await updateDoc(doc(db, "uploadedPictures", imgId), {
           url: downloadURL,
+        });
+      },
+      name: async (imgId, newName, oldName) => {
+        await updateDoc(doc(db, "uploadedPictures", imgId), {
+          name: newName || oldName,
+        });
+      },
+      description: async (imgId, newDesc, oldDesc) => {
+        await updateDoc(doc(db, "uploadedPictures", imgId), {
+          description: newDesc || oldDesc,
         });
       },
     },

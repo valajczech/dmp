@@ -18,7 +18,6 @@ import { Images } from "../helpers/images";
 import emmiter from "../utils/EventEmitter";
 import { Collections } from "../helpers/collections";
 import emitter from "../utils/EventEmitter";
-import { Redirect } from "react-router";
 
 class PictureListItem extends React.Component {
   constructor(props) {
@@ -26,11 +25,12 @@ class PictureListItem extends React.Component {
     this.state = {
       isBeingEdited: false,
       isBeingDeleted: false,
-      isNameInputActive: false,
-      isDescInputActive: false,
-      collectionPopupOn: false,
+      nameInputChanged: false,
+      descInputChanged: false,
       data: props,
     };
+    this.newNameInput = React.createRef();
+    this.newDescInput = React.createRef();
   }
   openEditDialog = () => {
     if (!this.state.isBeingEdited) {
@@ -42,7 +42,18 @@ class PictureListItem extends React.Component {
   closeEditDialog = () => {
     this.setState({ isBeingEdited: false });
   };
+  updateEditables = () => {
+    let newName = String(this.newNameInput.current.value);
+    let newDesc = String(this.newDescInput.current.value);
 
+    Images.Image.Update.name(this.props.id, newName, this.props.name);
+    Images.Image.Update.description(
+      this.props.id,
+      newDesc,
+      this.props.description
+    );
+    emitter.emit("updateEssentialData");
+  };
   render() {
     return (
       <tr className="picture-list-item" onClick={this.openEditDialog}>
@@ -211,21 +222,21 @@ class PictureListItem extends React.Component {
                       <span id="title">Název</span>
                       <div id="editable">
                         <input
-                          onFocus={() => {
-                            this.setState({ isNameInputActive: true });
+                          ref={this.newNameInput}
+                          onChange={() => {
+                            this.setState({ nameInputChanged: true });
                           }}
-                          onBlur={() => {
-                            this.setState({ isNameInputActive: false });
-                          }}
+                          autoComplete="off"
                           type="text"
                           className="value"
                           placeholder={this.props.name}
+                          id="newNameInput"
                         />
-                        {this.state.isNameInputActive ? (
-                          <SaveButton />
-                        ) : (
-                          <FaEdit />
-                        )}
+                        <FaEdit
+                          className={
+                            this.state.nameInputChanged ? "changed" : ""
+                          }
+                        />
                       </div>
                     </div>
 
@@ -233,27 +244,52 @@ class PictureListItem extends React.Component {
                       <span id="title">Popis</span>
                       <div id="editable">
                         <textarea
-                          onFocus={() => {
-                            this.setState({ isDescInputActive: true });
+                          ref={this.newDescInput}
+                          id="newDescInput"
+                          onChange={() => {
+                            this.setState({ descInputChanged: true });
                           }}
-                          onBlur={() => {
-                            this.setState({
-                              isDescInputActive: false,
-                            });
-                          }}
-                          rows="5"
+                          rows="7"
                           type="text"
                           className="value"
                           placeholder={this.props.description || "Neuvedeno"}
                         />
-                        {this.state.isDescInputActive ? (
-                          <SaveButton />
-                        ) : (
-                          <FaEdit />
-                        )}
+                        <FaEdit
+                          className={
+                            this.state.descInputChanged ? "changed" : ""
+                          }
+                        />
                       </div>
                     </div>
-
+                    <div className="save">
+                      <div
+                        className={
+                          this.state.nameInputChanged ||
+                          this.state.descInputChanged
+                            ? "saveBtn ableToSaveWrapper"
+                            : "saveBtn"
+                        }
+                        onClick={() => {
+                          // Update the description in the db
+                          this.updateEditables();
+                        }}
+                      >
+                        <FaSave
+                          className={
+                            this.state.nameInputChanged ||
+                            this.state.descInputChanged
+                              ? "ableToSave"
+                              : ""
+                          }
+                          disabled={
+                            this.state.nameInputChanged ||
+                            this.state.descInputChanged
+                              ? false
+                              : true
+                          }
+                        />
+                      </div>
+                    </div>
                     <div className="dataset" id="divider">
                       <span id="title">Velikost</span>
                       <span id="value">{this.props.size || "Neuvedeno"}</span>
@@ -290,11 +326,3 @@ class PictureListItem extends React.Component {
 }
 
 export default PictureListItem;
-
-const SaveButton = () => {
-  return (
-    <div className="saveBtn">
-      <FaSave />
-    </div>
-  );
-};
