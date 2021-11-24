@@ -305,7 +305,10 @@ class PictureListItem extends React.Component {
                   <button
                     onClick={async () => {
                       this.setState({ isBeingDeleted: true });
-                      Images.Image.delete(this.state.data.id).then(() => {
+                      Images.Image.delete(
+                        this.state.data.id,
+                        this.props.src
+                      ).then(() => {
                         emitter.emit("updateEssentialData");
                       });
                     }}

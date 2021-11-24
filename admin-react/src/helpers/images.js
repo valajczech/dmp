@@ -8,9 +8,12 @@ import {
   updateDoc,
   arrayUnion,
   arrayRemove,
+  query,
+  where,
 } from "firebase/firestore";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import date from "date-and-time";
+import { Collections } from "./collections";
 
 // Refs
 const imagesRef = collection(db, "uploadedPictures");
@@ -60,9 +63,7 @@ export const Images = {
         }),
       });
     },
-    delete: async (imgId) => {
-      //TODO: Delete IMG from every collection it was in
-
+    delete: async (imgId, imgSrc) => {
       // Delete img from Firestore
       // Delete img from Storage
       const storage = getStorage();
@@ -73,6 +74,23 @@ export const Images = {
       } catch (error) {
         console.error(error);
       }
+      //TODO: Delete IMG from every collection it was in
+      const q = query(
+        collection(db, "albums"),
+        where("connectedImages", "array-contains", {
+          imageId: imgId,
+          imageSrc: imgSrc,
+        })
+      );
+      let snap = await getDocs(q);
+      snap.forEach(async (item) => {
+        await updateDoc(doc(db, "albums", item.id), {
+          connectedImages: arrayRemove({
+            imageId: imgId,
+            imageSrc: imgSrc,
+          }),
+        });
+      });
     },
     Update: {
       downloadURL: async (imgId, downloadURL) => {
