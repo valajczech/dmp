@@ -18,9 +18,10 @@ export const Analytics = {
   getSummaryData: async () => {
     return {
       total_visitors: await Analytics.Visitors.getTotal(),
-      total_collections: await Analytics.Collections.getTotalNumberOfCollections(),
-      total_images: await Analytics.Images.getTotalNumberOfImages()
-    }
+      total_collections:
+        await Analytics.Collections.getTotalNumberOfCollections(),
+      total_images: await Analytics.Images.getTotalNumberOfImages(),
+    };
   },
   Visitors: {
     getTotal: async () => {
@@ -51,13 +52,31 @@ export const Analytics = {
   },
   Images: {
     getTotalNumberOfImages: async () => {
-      return await (await getDocs(imagesRef)).size;
-    }
-  }, 
+      return await (
+        await getDocs(imagesRef)
+      ).size;
+    },
+    getTotalSize: async () => {
+      let total = new Number();
+      const q = query(collection(db, "uploadedPictures"));
+      const snap = await getDocs(q);
+      snap.forEach((doc) => {
+        //? Handle that the size is represented by a string
+        //? Can look like so: "15MB" but also "14.5KB"  - need to handle this!
+        //! Or just rewrite the upload script so it represents raw value
+        //! And then just  convert it using Images.Meta.returnFileSze()
+        //! I'll do that.
+        let newSizeRecord = doc.data().size; //debug
+        total = total + doc.data().size;
+      });
+      return total;
+    },
+  },
   Collections: {
     getTotalNumberOfCollections: async () => {
-      return await (await getDocs(collectionsRef)).size;
-    }
-  }
+      return await (
+        await getDocs(collectionsRef)
+      ).size;
+    },
+  },
 };
-

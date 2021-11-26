@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
 .dashboard {
   padding: 10px;
 }
@@ -14,5 +15,70 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.dashboard .widgets {
+  padding: 15px 0px 15px 0px;
+  color: white;
+}
+
+.dashboard .widgets .widget {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #2a2d3e;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.dashboard .widgets .widget-header {
+  color: #747f8f;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.dashboard .widgets svg {
+  margin: 15px;
+  width: 150px;
+}
+
+.dashboard .widgets .widget-data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+.dashboard .widgets .widget-data #percentage {
+  color: #eceff4;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.dashboard .widgets .widget-data #ratio {
+  font-size: 0.8rem;
+  color: #747f8f;
 }
 /*# sourceMappingURL=Dashboard.css.map */

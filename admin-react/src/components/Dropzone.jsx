@@ -35,7 +35,7 @@ class Dropzone extends React.Component {
             _file: file,
             _tempId: file.lastModified,
             _local_src: URL.createObjectURL(file),
-            size: Images.Meta.returnFileSize(file.size),
+            size: file.size,
             type: file.type,
           });
           tempData.push(tempImage);
@@ -53,13 +53,13 @@ class Dropzone extends React.Component {
 
     const storage = getStorage();
     if (this.state.data.length > 0) {
+      console.log(this.state.data.length);
       this.state.data.forEach((img) => {
-        console.log(img);
         // Todo: rework the script it saves its ref with ID instead  of name!
-
+        //! BUG: Only uploads src of the first image, it skips it
         // Upload to Firebase Storage
-
         // Create ref in Firestore
+
         Images.Image.uploadToFirestore(img).then((docID) => {
           // Upload to storage via the docID
           const storageRef = ref(
@@ -67,11 +67,12 @@ class Dropzone extends React.Component {
             "gs://dmp-bures.appspot.com/" + docID
           );
           // Create upload task
+          //! uploads only some of selected files
           const uploadTask = uploadBytesResumable(storageRef, img._file).then(
             (snap) => {
-              getDownloadURL(snap.ref).then((url) => {
+              getDownloadURL(snap.ref).then(async (url) => {
                 // Set the url in corresponding img doc
-                Images.Image.Update.downloadURL(docID, url).then(() => {
+                await Images.Image.Update.downloadURL(docID, url).then(() => {
                   this.setState({
                     isUploading: false,
                   });
@@ -81,7 +82,6 @@ class Dropzone extends React.Component {
             }
           );
         });
-
       });
     }
   };

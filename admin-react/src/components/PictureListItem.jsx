@@ -7,7 +7,6 @@ import {
   FaInfo,
   FaFolder,
   FaEdit,
-  FaSlideshare,
   FaSave,
 } from "react-icons/fa";
 import { HiFolderAdd } from "react-icons/hi";
@@ -52,6 +51,10 @@ class PictureListItem extends React.Component {
       newDesc,
       this.props.description
     );
+    this.setState({
+      nameInputChanged: false,
+      descInputChanged: false,
+    });
     emitter.emit("updateEssentialData");
   };
   render() {
@@ -64,7 +67,9 @@ class PictureListItem extends React.Component {
           </span>
         </td>
         <td>
-          <span id="size">{this.props.size || "?"}</span>
+          <span id="size">
+            {Images.Meta.returnFileSize(this.props.size) || "?"}
+          </span>
         </td>
         <td>
           <span id="likes">
@@ -292,7 +297,10 @@ class PictureListItem extends React.Component {
                     </div>
                     <div className="dataset" id="divider">
                       <span id="title">Velikost</span>
-                      <span id="value">{this.props.size || "Neuvedeno"}</span>
+                      <span id="value">
+                        {Images.Meta.returnFileSize(this.props.size) ||
+                          "Neuvedeno"}
+                      </span>
                     </div>
 
                     <div className="dataset">

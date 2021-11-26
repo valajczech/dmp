@@ -38,8 +38,10 @@ export const Images = {
         return number + "bytes";
       } else if (number >= 1024 && number < 1048576) {
         return (number / 1024).toFixed(1) + "KB";
-      } else if (number >= 1048576) {
+      } else if (number >= 1048576 && number < 1073741824) {
         return (number / 1048576).toFixed(1) + "MB";
+      } else if (number >= 1073741824) {
+        return (number / 1073741824).toFixed(1) + "GB";
       }
     },
   },

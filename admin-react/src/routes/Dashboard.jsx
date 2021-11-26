@@ -1,12 +1,15 @@
+// Ideas and Inspirations for the design:
+// 1. https://www.uplabs.com/posts/drive-storage-management-dashboard-concept
+
 import React, { Component, useEffect, useState } from "react";
 import "../style/routes/Dashboard.css";
 import SummaryWidget from "../components/SummaryWidget";
 import { FaFolder, FaImages, FaRegClock } from "react-icons/fa";
-import { BsPeopleFill }from "react-icons/bs"
-
+import { BsPeopleFill } from "react-icons/bs";
 
 // Helpers
 import { Storage } from "../helpers/storage";
+import TotalSizeGraph from "../components/TotalSizeGraph";
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -17,8 +20,8 @@ class Dashboard extends React.Component {
   }
   componentDidMount() {
     this.setState({
-      data: Storage.Analytics.get()
-    })
+      data: Storage.Analytics.get(),
+    });
   }
   render() {
     return (
@@ -39,6 +42,9 @@ class Dashboard extends React.Component {
             data_value={this.state.data.total_images || <FaRegClock />}
             icon={<FaImages />}
           />
+        </div>
+        <div className="widgets">
+          <TotalSizeGraph />
         </div>
       </div>
     );
