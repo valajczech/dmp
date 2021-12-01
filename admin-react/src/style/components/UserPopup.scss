@@ -8,6 +8,7 @@
   }
   .modal {
     width: 400px;
+    z-index: 1;
     height: auto;
     background-color: $black;
     border-radius: 5px;

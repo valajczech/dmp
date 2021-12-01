@@ -42,7 +42,7 @@ class Sidebar extends React.Component {
             <Link to="/" className="route">
               <div>
                 <FaThLarge className="icon" />
-                <p>Hlavní stránka</p>
+                <p>Dashboard</p>
               </div>
             </Link>
             <div className="wrapper" id="modules">

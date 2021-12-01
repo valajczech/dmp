@@ -18,7 +18,7 @@
     justify-content: center;
     color: $primary-gray;
     padding-top: 15px;
-    svg  {
+    svg {
       font-size: 20px;
       margin-bottom: 5px;
     }
@@ -70,6 +70,7 @@
 .route {
   width: 100%;
   padding: 12px 0px 12px 0px;
+  margin: 15px 0px;
 
   display: flex;
   flex-wrap: nowrap;
@@ -102,7 +103,8 @@
     .icon {
       color: $primary-blue !important;
     }
-    p, .arrow {
+    p,
+    .arrow {
       transition-duration: 0.3s;
       color: $white;
     }
@@ -119,7 +121,7 @@
     }
   }
   .route {
-    justify-content:center;
+    justify-content: center;
     .icon {
       height: 20px;
     }

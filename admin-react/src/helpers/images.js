@@ -9,6 +9,7 @@ import {
   arrayUnion,
   arrayRemove,
   query,
+  orderBy,
   where,
 } from "firebase/firestore";
 import { getStorage, ref, deleteObject } from "firebase/storage";
@@ -53,7 +54,7 @@ export const Images = {
         res.push(doc.data());
       });
       return res;
-    },
+      },
   },
   Image: {
     addCollection: async (colId, colName, imgId) => {

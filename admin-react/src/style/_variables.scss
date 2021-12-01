@@ -66,3 +66,9 @@ $red: #c92626;
   color: $white;
   backdrop-filter: blur(10px);
 }
+@mixin widget {
+  background-color: $primary-background;
+  border-radius: 5px;
+  padding: 15px;
+  font-family: $openSans-light;
+}
