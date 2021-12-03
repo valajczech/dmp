@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
+.dashboard {
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 15px;
+}
+
+.dashboard .half {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 15px;
+  max-width: 60%;
+}
+
+.dashboard .half .see-all {
+  text-decoration: none;
+  color: #747f8f;
+  padding: 3px 15px;
+  border-radius: 5px;
+  background-color: #2a2d3e;
+}
+
+.dashboard .half .see-all:hover {
+  color: #eceff4;
+}
+
+.dashboard .widget {
+  background-color: #2a2d3e;
+  border-radius: 5px;
+  padding: 15px;
+  font-family: "Open Sans", sans-serif;
+  color: white;
+}
+
+.dashboard .left .hello-banner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0px;
+}
+
+.dashboard .left .hello-banner .text {
+  padding: 15px;
+}
+
+.dashboard .left .hello-banner .text h3 {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.dashboard .left .hello-banner .drawing {
+  width: 350px;
+  height: 150px;
+}
+
+.dashboard .left .hello-banner .drawing {
+  overflow: hidden;
+  padding-top: 15px;
+}
+
+.dashboard .left .hello-banner .drawing img {
+
+  height: 270px;
+  border-bottom-right-radius: 5px;
+}
+
+.dashboard .left .summaries {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  gap: 10px;
+}
+/*# sourceMappingURL=Dashboard.css.map */

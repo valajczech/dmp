@@ -1,0 +1,60 @@
+@import "../_variables.scss";
+
+.dashboard {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  .half {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 60%;
+    .see-all {
+      text-decoration: none;
+      color: $primary-gray;
+      padding: 3px 15px;
+      border-radius: 5px;
+      background-color: $primary-background;
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+  .widget {
+    @include widget;
+    color: white;
+  }
+  .left {
+    .hello-banner {
+      display: flex;
+      padding: 0px;
+      .text {
+        padding: 15px;
+        h3 {
+          font-weight: 600;
+          font-size: 1.3rem;
+          margin-bottom: 15px;
+        }
+      }
+      .drawing {
+        width: 350px;
+        height: 150px;
+      }
+      .drawing {
+        overflow: hidden;
+        padding-top: 15px;
+        img{
+          height: 270px;
+          border-bottom-right-radius: 5px;
+        }
+      }
+    }
+    .summaries {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+    }
+  }
+}
