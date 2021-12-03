@@ -1,0 +1,36 @@
+@import "../_variables.scss";
+
+.most-liked-image {
+  width: 280px;
+  height: auto;
+  background-color: $primary-background;
+  border-radius: 5px;
+  .img {
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: auto;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+  }
+  .image-data {
+    padding: 15px;
+    color: $white;
+    font-family: $openSans-light;
+    display: flex;
+    flex-direction: column;
+    #text {
+      color: $primary-gray;
+      padding-bottom: 10px;
+    }
+    #header {
+      font-weight: 700;
+    }
+    #likes {
+      padding-top: 5px;
+      display: flex;
+      gap: 5px;
+    }
+  }
+}

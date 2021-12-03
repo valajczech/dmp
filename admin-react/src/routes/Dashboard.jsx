@@ -5,7 +5,7 @@ import React from "react";
 import "../style/routes/Dashboard.css";
 import { FaFolder, FaImages, FaRegClock } from "react-icons/fa";
 import { BsPeopleFill } from "react-icons/bs";
-import Photographer from "../assets/images/photographer.svg"
+import Photographer from "../assets/images/test.png"
 
 
 // Components
@@ -13,9 +13,13 @@ import TotalSizeGraph from "../widgets/TotalSizeGraph";
 import LatestCollections from "../widgets/LatestCollections";
 import SummaryWidget from "../components/SummaryWidget";
 
+import LatestImages from "../widgets/LatestImages";
+import MostLikedImage from "../widgets/MostLikedImage";
+
 // Helpers
 import { Storage } from "../helpers/storage";
-import LatestImages from "../widgets/LatestImages";
+
+
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -67,6 +71,8 @@ class Dashboard extends React.Component {
         </div>
         <div className="right half">
           <TotalSizeGraph />
+          <MostLikedImage />
+
         </div>
       </div>
     );

@@ -34,7 +34,7 @@ class Sidebar extends React.Component {
             ) : (
               <>
                 <FaCamera />
-                <p>Milan Bureš - Administace</p>
+                <p>Milan Bureš - Administrace</p>
               </>
             )}
           </div>

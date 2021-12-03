@@ -72,7 +72,9 @@
 }
 
 .dashboard .left .hello-banner .drawing img {
-  height: 105%;
+
+  height: 270px;
+  border-bottom-right-radius: 5px;
 }
 
 .dashboard .left .summaries {
