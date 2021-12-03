@@ -1,0 +1,32 @@
+@import "../_variables.scss";
+
+.appContainer {
+  display: flex;
+  background-color: $primary-background-darker;
+  flex-wrap: nowrap;
+  .appcontent {
+    width: 100%;
+    max-height: 100vh;
+    overflow-y: scroll;
+    &::-webkit-scrollbar-track
+    {
+      border-radius: 10px;
+      background-color:$primary-background-darker;
+    }
+    
+    &::-webkit-scrollbar
+    {
+      width: 5px;
+      background-color: $primary-background-darker;
+    }
+    
+    &::-webkit-scrollbar-thumb
+    {
+      border-radius: 10px;
+      background-color: $primary-gray;
+    }
+    .wrapper {
+      padding: 15px;
+    }
+  }
+}

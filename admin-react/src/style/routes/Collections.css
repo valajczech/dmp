@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
+.collections {
+  color: #eceff4;
+  font-family: "Open Sans", sans-serif;
+}
+
+.collections .collections-control {
+  padding: 10px 0px;
+}
+
+.collections .collections-control #newCollection {
+  border-radius: 5px;
+  border: #2196f3 solid 2px;
+  background-color: transparent;
+  color: #2196f3;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 5px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.collections .collections-control #newCollection:hover {
+  color: white;
+  background-color: #2196f3;
+  -webkit-filter: drop-shadow(0px 5px 5px #212332);
+          filter: drop-shadow(0px 5px 5px #212332);
+}
+
+.collections .all {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 10px;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.new-collection {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 100vh;
+  width: 100vw;
+  color: #eceff4;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 15px;
+  font-family: "Open Sans", sans-serif;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.new-collection .modal {
+  background-color: #2a2d3e;
+  padding: 25px;
+  border-radius: 5px;
+}
+
+.new-collection .modal .input input {
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: solid #eceff4 1px;
+  font-size: 14px;
+}
+
+.new-collection .modal .controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 5px;
+  gap: 5px;
+}
+
+.new-collection .modal .controls button {
+  width: 100%;
+}
+
+.new-collection .modal .controls #submit_new {
+  border-radius: 5px;
+  border: #2196f3 solid 2px;
+  background-color: transparent;
+  color: #2196f3;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 15px;
+}
+
+.new-collection .modal .controls #submit_new:hover {
+  color: white;
+  background-color: #2196f3;
+  -webkit-filter: drop-shadow(0px 5px 5px #212332);
+          filter: drop-shadow(0px 5px 5px #212332);
+}
+
+.new-collection .modal .controls #cancel_new {
+  border-radius: 5px;
+  border: #c92626 solid 2px;
+  background-color: transparent;
+  color: #c92626;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 15px;
+}
+
+.new-collection .modal .controls #cancel_new:hover {
+  color: white;
+  background-color: #c92626;
+  -webkit-filter: drop-shadow(0px 5px 5px #212332);
+          filter: drop-shadow(0px 5px 5px #212332);
+}
+
+.hidden {
+  display: none;
+}
+/*# sourceMappingURL=Collections.css.map */

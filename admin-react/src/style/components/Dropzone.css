@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
+.dropzone {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  gap: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.dropzone .upload-dropzone {
+  border: dotted #2196f3;
+  border-radius: 5px;
+  margin: auto;
+  cursor: pointer;
+  height: 40vh;
+  width: 90%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.dropzone .upload-dropzone span {
+  color: #747f8f;
+  font-family: "Open Sans", sans-serif;
+}
+
+.dropzone .upload-dropzone:hover {
+  border-style: solid;
+}
+
+.dropzone .upload-dropzone:hover span {
+  color: #eceff4;
+}
+
+.dropzone .uploader button {
+  border-radius: 5px;
+  border: #2196f3 solid 2px;
+  background-color: transparent;
+  color: #2196f3;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 15px;
+  width: auto !important;
+}
+
+.dropzone .uploader button:hover {
+  color: white;
+  background-color: #2196f3;
+  -webkit-filter: drop-shadow(0px 5px 5px #212332);
+          filter: drop-shadow(0px 5px 5px #212332);
+}
+
+.dropzone .uploaded {
+  height: 100%;
+  width: 100%;
+}
+
+.dropzone .uploaded .imgreel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 5px;
+}
+
+.dropzone .status {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 100vh;
+  width: 100vw;
+  color: #eceff4;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 15px;
+  font-family: "Open Sans", sans-serif;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.dropzone .status svg {
+  font-size: 50px;
+  -webkit-animation-name: levitate;
+          animation-name: levitate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+}
+
+.dropzone #upload-input {
+  display: none;
+}
+
+@-webkit-keyframes levitate {
+  50% {
+    -webkit-transform: translateY(15px);
+            transform: translateY(15px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@keyframes levitate {
+  50% {
+    -webkit-transform: translateY(15px);
+            transform: translateY(15px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+/*# sourceMappingURL=Dropzone.css.map */

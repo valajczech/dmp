@@ -1,0 +1,41 @@
+@import "../_variables.scss";
+
+.collectionItem {
+  width: 250px;
+  height: 115px;
+  border-radius: 5px;
+  background-color: $primary-background;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  .top-controls {
+    text-align: right;
+    button {
+      @include close-btn;
+    }
+  }
+  .data {
+    display: flex;
+    flex-direction: column;
+    #title {
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+    #total {
+      font-size: 15px;
+    }
+  }
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    button {
+      width: 50%;
+      /*Has to be changed*/
+      @include classic-btn;
+    }
+  }
+}

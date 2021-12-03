@@ -1,0 +1,24 @@
+@import "../_variables.scss";
+
+.image-preview {
+  background-color: $primary-background;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+ 
+  position: relative;
+  span {
+    position: absolute;
+  }
+  img {
+    height: auto;
+    width: 400px;
+    &:hover {
+      ~span {
+        color: red;
+      }
+    }
+  }
+}

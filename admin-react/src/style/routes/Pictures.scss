@@ -1,0 +1,38 @@
+@import "../_variables.scss";
+
+.pictures {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ // margin: 0px 10vw;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: $primary-background;
+  font-family: $openSans-light;
+  h3 {
+    align-self: flex-start;
+    color: $white;
+    margin-bottom: 25px;
+    font-weight: 600;
+  }
+  table {
+    width: 100%;
+    thead {
+      text-align: left;
+      th {
+        color: $primary-gray;
+        padding-bottom: 5px;
+        padding: 15px 20px;
+      }
+      #date {
+        text-align: center;
+      }
+      #likes {
+        text-align: right;
+      }
+      #size {
+        text-align: center;
+      }
+    }
+  }
+}

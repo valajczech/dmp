@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
+.image-preview {
+  background-color: #2a2d3e;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-preview span {
+  position: absolute;
+}
+
+.image-preview img {
+  height: auto;
+  width: 400px;
+}
+
+.image-preview img:hover ~ span {
+  color: red;
+}
+/*# sourceMappingURL=ImagePreview.css.map */

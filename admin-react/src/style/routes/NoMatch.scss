@@ -1,0 +1,25 @@
+@import "../_variables.scss";
+
+.nomatch {
+  background-color: $primary-background;
+  width: 100vw;
+  height: 100vh;
+  color: $white;
+  font-family: $openSans-light;
+  div {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    svg {
+      font-size: 50px;
+    }
+    #sorry {
+      font-size: 15px;
+    }
+    button {
+      @include classic-btn;
+    }
+  }
+}
