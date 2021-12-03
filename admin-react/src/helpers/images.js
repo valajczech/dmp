@@ -9,7 +9,7 @@ import {
   arrayUnion,
   arrayRemove,
   query,
-  limit,
+  limit
   orderBy,
   where,
 } from "firebase/firestore";
@@ -54,8 +54,7 @@ export const Images = {
       query.forEach((doc) => {
         res.push(doc.data());
       });
-      return res;
-    },
+      return res;},
     mostLikedImage: async () => {
       let res = new Array();
       let q = await getDocs(query(imagesRef, orderBy("total_likes"), limit(1)));
@@ -64,6 +63,7 @@ export const Images = {
       });
       return res[0];
     },
+      },
   },
   Image: {
     addCollection: async (colId, colName, imgId) => {

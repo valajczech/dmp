@@ -12,11 +12,14 @@ import Photographer from "../assets/images/test.png"
 import TotalSizeGraph from "../widgets/TotalSizeGraph";
 import LatestCollections from "../widgets/LatestCollections";
 import SummaryWidget from "../components/SummaryWidget";
+
 import LatestImages from "../widgets/LatestImages";
 import MostLikedImage from "../widgets/MostLikedImage";
 
 // Helpers
 import { Storage } from "../helpers/storage";
+
+
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -69,6 +72,7 @@ class Dashboard extends React.Component {
         <div className="right half">
           <TotalSizeGraph />
           <MostLikedImage />
+
         </div>
       </div>
     );
