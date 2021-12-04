@@ -24,6 +24,12 @@
     flex-direction: column;
     gap: 10px;
     overflow-y: scroll;
+    #list-empty {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+     
+    }
     &::-webkit-scrollbar-track {
       display: none;
       border-radius: 10px;
@@ -47,7 +53,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 15px;
-      
+
       .name {
         display: flex;
         align-items: center;

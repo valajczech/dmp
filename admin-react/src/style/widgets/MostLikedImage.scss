@@ -7,6 +7,14 @@
   border-radius: 5px;
   .img {
     overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    #empty {
+      width: 150px;
+      padding: 5px;
+      text-align: center;
+    }
     img {
       width: 100%;
       height: auto;

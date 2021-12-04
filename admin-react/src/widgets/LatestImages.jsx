@@ -27,7 +27,40 @@ class LatestImages extends React.Component {
           </Link>
         </div>
         <div className="list">
-          {this.state.data.slice(0, 5).map((img) => {
+          {this.state.data.length == 0 ? (
+            <span id="list-empty">
+              Prozatím nejsou nahrány žádné fotografie
+            </span>
+          ) : (
+            this.state.data.slice(0, 5).map((img) => {
+              return (
+                <div className="image-wrapper widget" key={img.id}>
+                  <div className="name">
+                    <FaImage />
+                    <span>{img.name}</span>
+                  </div>
+                  <div className="metadata">
+                    <span>
+                      {" "}
+                      {img.total_likes} <FaHeart />{" "}
+                    </span>
+                    <span>{Images.Meta.returnFileSize(img.size)}</span>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+      </div>
+    );
+  }
+}
+
+export default LatestImages;
+
+/**
+ * 
+ * {this.state.data.slice(0, 5).map((img) => {
             return (
               <div className="image-wrapper widget" key={img.id}>
                 <div className="name">
@@ -44,10 +77,4 @@ class LatestImages extends React.Component {
               </div>
             );
           })}
-        </div>
-      </div>
-    );
-  }
-}
-
-export default LatestImages;
+ */

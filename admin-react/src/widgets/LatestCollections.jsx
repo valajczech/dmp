@@ -17,7 +17,6 @@ class LatestCollections extends React.Component {
     });
   }
   render() {
-    //! Max 4
     return (
       <div className="latest-collections">
         <div className="header-controls">
@@ -27,7 +26,38 @@ class LatestCollections extends React.Component {
           </Link>
         </div>
         <div className="list">
-          {this.state.data.slice(0, 4).map((col) => {
+          {this.state.data.length == 0 ? (
+            <span id="list-empty">
+              {" "}
+              Prozatím nejsou vytvořeny žádná alba
+            </span>
+          ) : (
+            this.state.data.slice(0, 4).map((col) => {
+              return (
+                <div className="collection-square widget" key={col.id}>
+                  <div className="name">
+                    <FaFolder />
+                    <span>{col.name}</span>
+                  </div>
+                  <span>
+                    {col.connectedImages.length > 0
+                      ? "Celkem " + col.connectedImages.length + " fotek"
+                      : "Prozatím žádné fotky."}
+                  </span>
+                </div>
+              );
+            })
+          )}
+        </div>
+      </div>
+    );
+  }
+}
+
+export default LatestCollections;
+
+/**
+ * {this.state.data.slice(0, 4).map((col) => {
             return (
               <div className="collection-square widget" key={col.id}>
                 <div className="name">
@@ -42,10 +72,4 @@ class LatestCollections extends React.Component {
               </div>
             );
           })}
-        </div>
-      </div>
-    );
-  }
-}
-
-export default LatestCollections;
+ */
