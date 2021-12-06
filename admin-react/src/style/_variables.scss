@@ -10,6 +10,7 @@ $primary-blue: #2196f3;
 $white: #eceff4;
 $black: #000;
 $red: #c92626;
+$red-lighter: #801818;
 
 // Mixins
 @mixin classic-btn {
@@ -71,4 +72,19 @@ $red: #c92626;
   border-radius: 5px;
   padding: 15px;
   font-family: $openSans-light;
+}
+
+@mixin delete-btn {
+  background-color: $red;
+  color: $white;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  &:hover {
+    background-color: $red-lighter;
+  }
 }

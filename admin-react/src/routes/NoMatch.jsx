@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import "../style/routes/NoMatch.css";
 import { HiEmojiSad } from "react-icons/hi";
-import { Redirect } from "react-router";
 
 function NoMatch() {
   return (
     <div className="nomatch">
       <div>
         <HiEmojiSad />
-        <p id="sorry">Sorry, this page doesn't exist.</p>
-        <Link to="/">
-          <button>Let's go home</button>
-        </Link>
+        <p id="sorry">Promiňte, ale tato stránka neexistuje.</p>
+        <a href="/">Domů</a>
       </div>
     </div>
   );
 }
-
 
 export default NoMatch;
