@@ -8,6 +8,19 @@
 
 .most-liked-image .img {
   overflow: hidden;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.most-liked-image .img #empty {
+  width: 150px;
+  padding: 5px;
+  text-align: center;
 }
 
 .most-liked-image .img img {

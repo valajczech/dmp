@@ -12,3 +12,5 @@ import { Users } from "../js/core";
 
 //! Auth observer
 Users.attachAuthObserver();
+
+alert("Tato verze systému je zastaralá. Vydržte prosím, brzy přijde update s novou verzí.");

@@ -47,6 +47,16 @@
   overflow-y: scroll;
 }
 
+.latest-images .list #list-empty {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+}
+
 .latest-images .list::-webkit-scrollbar-track {
   display: none;
   border-radius: 10px;

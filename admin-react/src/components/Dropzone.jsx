@@ -9,6 +9,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import emitter from "../utils/EventEmitter";
 
 let tempData = [];
 class Dropzone extends React.Component {
@@ -18,6 +19,16 @@ class Dropzone extends React.Component {
       isUploading: false,
       data: [],
     };
+  }
+  componentDidMount() {
+    emitter.addListener("deleteLocalImage", (payloadId) => {
+      //console.log("id:", payload);
+      tempData = tempData.filter((img) => img._tempId !== payloadId);
+      this.setState({ data: tempData });
+      // tempData.forEach((img) => {
+      //   console.log(img);
+      // })
+    });
   }
   openFileDialog = () => {
     document.querySelector("#upload-input").click();

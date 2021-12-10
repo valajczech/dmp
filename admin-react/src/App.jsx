@@ -20,11 +20,12 @@ import CollectionsPage from "./routes/Collections";
 import About from "./routes/About";
 import NoMatch from "./routes/NoMatch";
 import LoginLoadingScreen from "./components/auth/LoginLoadingScreen";
-
+require('dotenv').config()
 class App extends React.Component {
   componentDidMount() {}
 
   render() {
+    console.log(process.env.REACT_APP_FIREBASE_KEY);
     return (
       <AuthProvider>
         <Router>

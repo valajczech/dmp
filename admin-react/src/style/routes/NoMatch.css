@@ -14,6 +14,17 @@
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .nomatch div svg {
@@ -24,7 +35,8 @@
   font-size: 15px;
 }
 
-.nomatch div button {
+.nomatch div a {
+  text-decoration: none;
   border-radius: 5px;
   border: #2196f3 solid 2px;
   background-color: transparent;
@@ -34,7 +46,7 @@
   padding: 5px 15px;
 }
 
-.nomatch div button:hover {
+.nomatch div a:hover {
   color: white;
   background-color: #2196f3;
   -webkit-filter: drop-shadow(0px 5px 5px #212332);
