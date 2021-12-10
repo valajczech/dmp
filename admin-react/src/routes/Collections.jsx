@@ -68,6 +68,7 @@ class CollectionsPage extends React.Component {
                 id={item.id}
                 title={item.name}
                 total={item.connectedImages.length}
+                images={item.connectedImages}
               />
             );
           })}

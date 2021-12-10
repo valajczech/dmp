@@ -1,41 +1,57 @@
 @import "../_variables.scss";
 
-.collectionItem {
-  width: 250px;
-  height: 115px;
-  border-radius: 5px;
-  background-color: $primary-background;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  overflow: hidden;
-  .top-controls {
-    text-align: right;
-    button {
-      @include close-btn;
+.collection-item {
+  .collection-preview-image {
+    width: 225px;
+    height: 225px;
+    overflow: hidden;
+    border-radius: 5px;
+    #img {
+      height: 225px;
+      background-color: $white;
+      cursor: pointer;
+      transition-duration: 0.3s;
+    }
+    &:hover {
+      #img {
+        height: 240px;
+      }
     }
   }
-  .data {
+  .collection-meta {
     display: flex;
-    flex-direction: column;
-    #title {
-      font-weight: 700;
-      font-size: 20px;
-      margin-bottom: 5px;
-    }
-    #total {
-      font-size: 15px;
-    }
-  }
-  .controls {
-    display: flex;
+    align-items: center;
     justify-content: space-between;
-    gap: 10px;
-    button {
-      width: 50%;
-      /*Has to be changed*/
-      @include classic-btn;
+    .data {
+      display: flex;
+      flex-direction: column;
+      font-family: $openSans-light;
+      padding: 10px 0px 0px 5px;
+      #name {
+        font-weight: 700;
+      }
+      #total {
+        font-size: 0.95rem;
+      }
+    }
+    .controls {
+      #delete {
+        background-color: $primary-background-darker;
+        outline: none;
+        cursor: pointer;
+        border: solid $primary-background-darker 1px;
+        margin-top: 5px;
+        padding: 10px;
+        border-radius: 50px;
+        color: $white;
+        &:hover {
+          color: $red;
+        }
+        &:active {
+          background-color: $primary-background;
+          border: solid $primary-background 1px;
+        }
+      }
     }
   }
 }
