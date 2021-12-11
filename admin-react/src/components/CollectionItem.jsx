@@ -4,6 +4,7 @@ import emmiter from "../utils/EventEmitter";
 import "../style/components/CollectionItem.css";
 import { Storage } from "../helpers/storage";
 import { Collections } from "../helpers/collections";
+import { Link } from "react-router-dom";
 class CollectionItem extends React.Component {
   constructor(props) {
     super(props);
@@ -15,12 +16,13 @@ class CollectionItem extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div className="collection-item">
         <div className="collection-preview-image">
           {this.props.images[0] != undefined ? (
-            <img id="img" src={this.props.images[0].imageSrc} />
+            <Link to={`/collections/${this.props.id}`}>
+              <img id="img" src={this.props.images[0].imageSrc} />
+            </Link>
           ) : (
             <div id="img"></div>
           )}

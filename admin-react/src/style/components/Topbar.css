@@ -4,9 +4,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -14,10 +14,6 @@
   gap: 15px;
   color: #eceff4;
   font-family: "Open Sans", sans-serif;
-}
-
-.topbar #location {
-  font-weight: 600;
 }
 
 .topbar .user-area {
@@ -29,9 +25,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: right;
-      -ms-flex-pack: right;
-          justify-content: right;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   gap: 10px;
 }
 /*# sourceMappingURL=Topbar.css.map */

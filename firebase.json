@@ -11,6 +11,10 @@
     {
       "target": "admin-dashboard",
       "public": "admin/dist"
+    },
+    {
+      "target": "dashboard",
+      "public": "admin-react/build"
     }
   ],
   "storage": {

@@ -17,7 +17,6 @@ class MostLikedImage extends React.Component {
   }
   getImage = async () => {
     await Images.Get.mostLikedImage().then((imgData) => {
-      console.log(imgData);
       this.setState({ data: imgData });
     });
   };

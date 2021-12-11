@@ -10,6 +10,9 @@
         ],
         "webpage": [
           "dmp-bures"
+        ],
+        "dashboard": [
+          "dashboard-dmp-bures"
         ]
       }
     }

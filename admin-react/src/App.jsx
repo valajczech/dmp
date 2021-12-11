@@ -19,13 +19,13 @@ import Pictures from "./routes/Pictures";
 import CollectionsPage from "./routes/Collections";
 import About from "./routes/About";
 import NoMatch from "./routes/NoMatch";
+import CollectionDetail from "./routes/CollectionDetail";
 import LoginLoadingScreen from "./components/auth/LoginLoadingScreen";
-require('dotenv').config()
+require("dotenv").config();
 class App extends React.Component {
   componentDidMount() {}
 
   render() {
-    console.log(process.env.REACT_APP_FIREBASE_KEY);
     return (
       <AuthProvider>
         <Router>
@@ -39,7 +39,12 @@ class App extends React.Component {
               path="/collections"
               component={CollectionsPage}
             />
+            <PrivateRoute
+              path="/collections/:id"
+              component={CollectionDetail}
+            />
             <PrivateRoute exact path="/about" component={About} />
+
             <Route path="*" component={NoMatch} />
           </Switch>
         </Router>
@@ -49,23 +54,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-/*
-function App() {
-  return (
-    <AuthProvider>
-      <Router>
-        <Switch>
-          <Route path="/login" component={Login} />
-          <PrivateRoute exact path="/" component={Dashboard} />
-          <PrivateRoute exact path="/upload" component={UploadPage} />
-          <PrivateRoute exact path="/pictures" component={Pictures} />
-          <PrivateRoute exact path="/collections" component={CollectionsPage} />
-          <PrivateRoute exact path="/about" component={About} />
-          <Route path="*" component={NoMatch} />
-        </Switch>
-      </Router>
-    </AuthProvider>
-  );
-}
-*/

@@ -17,6 +17,10 @@ export const Storage = {
     get: () => {
       return JSON.parse(localStorage.getItem("Collections"));
     },
+    getSpecific: (id) => {
+      return Storage.Collections.get().find((obj) => obj.id == id);
+      
+    },
     set: (collectionList) => {
       localStorage.setItem("Collections", JSON.stringify(collectionList));
     },
