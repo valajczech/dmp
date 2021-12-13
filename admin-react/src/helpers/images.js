@@ -58,10 +58,11 @@ export const Images = {
     },
     mostLikedImage: async () => {
       let res = new Array();
-      let q = await getDocs(query(imagesRef, orderBy("total_likes"), limit(1)));
+      let q = await getDocs(query(imagesRef, orderBy("total_likes", "desc"), limit(1)));
       q.forEach((img) => {
         res.push(img.data());
       });
+      console.log(res);
       return res[0];
     },
   },

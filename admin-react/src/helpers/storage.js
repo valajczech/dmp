@@ -8,6 +8,9 @@ export const Storage = {
     get: () => {
       return JSON.parse(localStorage.getItem("Images"));
     },
+    getSpecific: (id) => {
+      return Storage.Images.get().find((obj) => obj.id == id);
+    },
     set: (imageList) => {
       localStorage.setItem("Images", JSON.stringify(imageList));
     },
@@ -16,6 +19,10 @@ export const Storage = {
     clear: () => localStorage.removeItem("Collections"),
     get: () => {
       return JSON.parse(localStorage.getItem("Collections"));
+    },
+    getSpecific: (id) => {
+      return Storage.Collections.get().find((obj) => obj.id == id);
+      
     },
     set: (collectionList) => {
       localStorage.setItem("Collections", JSON.stringify(collectionList));

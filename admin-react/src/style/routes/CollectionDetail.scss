@@ -1,0 +1,41 @@
+@import "../_variables.scss";
+
+.collection-detail {
+  font-family: $openSans-light;
+  .controls {
+    width: fit-content;
+    margin-bottom: 10px;
+    a {
+      text-decoration: none;
+      button {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        @include classic-btn;
+      }
+    }
+  }
+  .con {
+    #name {
+      color: $white;
+    }
+    .list {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      #collection-image {
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 5px;
+        img {
+          height: 200px;
+          width: auto;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

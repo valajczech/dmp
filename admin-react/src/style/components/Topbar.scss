@@ -3,20 +3,18 @@
 .topbar {
   background-color: $primary-background-darker;
   display: flex;
-  justify-content: space-between;
+  justify-content: right  ;
   align-items: center;
   padding:10px 15px;
   gap: 15px;
   color: $white;
   font-family: $openSans-light;
-  #location {
-    font-weight: 600;
-  }
+  
   .user-area {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: right;
+    justify-content: center;
     gap: 10px;
   }
 }

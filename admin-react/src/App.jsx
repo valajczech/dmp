@@ -1,15 +1,10 @@
 import "./style/App.css";
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+// Components
 import { AuthProvider } from "./components/auth/AuthProvider";
 import PrivateRoute from "./components/auth/PrivateRoute";
-
-// Helpers
-import emmiter from "./utils/EventEmitter";
-import { Storage } from "./helpers/storage";
-
-import { Collections } from "./helpers/collections";
-import { Analytics } from "./helpers/analytics";
 
 // Import routes
 import Login from "./routes/Login";
@@ -19,13 +14,14 @@ import Pictures from "./routes/Pictures";
 import CollectionsPage from "./routes/Collections";
 import About from "./routes/About";
 import NoMatch from "./routes/NoMatch";
-import LoginLoadingScreen from "./components/auth/LoginLoadingScreen";
-require('dotenv').config()
+import CollectionDetail from "./routes/CollectionDetail";
+import PictureDetail from "./routes/PictureDetail";
+
+require("dotenv").config();
 class App extends React.Component {
   componentDidMount() {}
 
   render() {
-    console.log(process.env.REACT_APP_FIREBASE_KEY);
     return (
       <AuthProvider>
         <Router>
@@ -34,12 +30,18 @@ class App extends React.Component {
             <PrivateRoute exact path="/" component={Dashboard} />
             <PrivateRoute exact path="/upload" component={UploadPage} />
             <PrivateRoute exact path="/pictures" component={Pictures} />
+            <PrivateRoute exact path="/pictures/:id" component={PictureDetail} />
             <PrivateRoute
               exact
               path="/collections"
               component={CollectionsPage}
             />
+            <PrivateRoute
+              path="/collections/:id"
+              component={CollectionDetail}
+            />
             <PrivateRoute exact path="/about" component={About} />
+
             <Route path="*" component={NoMatch} />
           </Switch>
         </Router>
@@ -49,23 +51,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-/*
-function App() {
-  return (
-    <AuthProvider>
-      <Router>
-        <Switch>
-          <Route path="/login" component={Login} />
-          <PrivateRoute exact path="/" component={Dashboard} />
-          <PrivateRoute exact path="/upload" component={UploadPage} />
-          <PrivateRoute exact path="/pictures" component={Pictures} />
-          <PrivateRoute exact path="/collections" component={CollectionsPage} />
-          <PrivateRoute exact path="/about" component={About} />
-          <Route path="*" component={NoMatch} />
-        </Switch>
-      </Router>
-    </AuthProvider>
-  );
-}
-*/
