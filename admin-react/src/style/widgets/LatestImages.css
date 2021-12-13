@@ -10,7 +10,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 10px;
-  height: 200px;
+  max-height: 38vh;
 }
 
 .latest-images .header-controls {
@@ -90,6 +90,7 @@
       -ms-flex-align: center;
           align-items: center;
   gap: 15px;
+  padding: 10px;
 }
 
 .latest-images .list .image-wrapper .name {

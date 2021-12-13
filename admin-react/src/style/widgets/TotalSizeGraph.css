@@ -1,11 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
 .size-widget {
+  width: 305px;
   padding: 10px;
   border-radius: 5px;
   background-color: #2a2d3e;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -28,8 +26,6 @@
 
 .size-widget svg {
   margin: 5px;
-  width: 250px;
-  height: 250px;
 }
 
 .size-widget .widget-data {
