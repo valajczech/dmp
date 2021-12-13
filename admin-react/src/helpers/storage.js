@@ -8,6 +8,9 @@ export const Storage = {
     get: () => {
       return JSON.parse(localStorage.getItem("Images"));
     },
+    getSpecific: (id) => {
+      return Storage.Images.get().find((obj) => obj.id == id);
+    },
     set: (imageList) => {
       localStorage.setItem("Images", JSON.stringify(imageList));
     },

@@ -1,15 +1,10 @@
 import "./style/App.css";
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+// Components
 import { AuthProvider } from "./components/auth/AuthProvider";
 import PrivateRoute from "./components/auth/PrivateRoute";
-
-// Helpers
-import emmiter from "./utils/EventEmitter";
-import { Storage } from "./helpers/storage";
-
-import { Collections } from "./helpers/collections";
-import { Analytics } from "./helpers/analytics";
 
 // Import routes
 import Login from "./routes/Login";
@@ -20,7 +15,8 @@ import CollectionsPage from "./routes/Collections";
 import About from "./routes/About";
 import NoMatch from "./routes/NoMatch";
 import CollectionDetail from "./routes/CollectionDetail";
-import LoginLoadingScreen from "./components/auth/LoginLoadingScreen";
+import PictureDetail from "./routes/PictureDetail";
+
 require("dotenv").config();
 class App extends React.Component {
   componentDidMount() {}
@@ -34,6 +30,7 @@ class App extends React.Component {
             <PrivateRoute exact path="/" component={Dashboard} />
             <PrivateRoute exact path="/upload" component={UploadPage} />
             <PrivateRoute exact path="/pictures" component={Pictures} />
+            <PrivateRoute exact path="/pictures/:id" component={PictureDetail} />
             <PrivateRoute
               exact
               path="/collections"
