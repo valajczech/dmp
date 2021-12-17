@@ -39,15 +39,30 @@ class PictureDetail extends React.Component {
     this.newNameInput = React.createRef();
     this.newDescInput = React.createRef();
   }
+  updateEssentialData = async () => {
+    // Correctly update local Images
+    this.setState({ data: await Images.Get.detailedImageList() }, () => {
+      Storage.Images.set(this.state.data);
+    });
+    // Correctly update local collections
+    Storage.Collections.set(await Collections.Get.detailedCollectionList());
+
+    this.forceUpdate();
+  };
+
   updateEditables = () => {
     let newName = String(this.newNameInput.current.value);
     let newDesc = String(this.newDescInput.current.value);
 
-    Images.Image.Update.name(this.props.id, newName, this.props.name);
+    Images.Image.Update.name(
+      this.state.pictureObject.id,
+      newName,
+      this.state.pictureObject.name
+    );
     Images.Image.Update.description(
-      this.props.id,
+      this.state.pictureObject.id,
       newDesc,
-      this.props.description
+      this.state.pictureObject.description
     );
     this.setState({
       nameInputChanged: false,
@@ -56,7 +71,6 @@ class PictureDetail extends React.Component {
     emitter.emit("updateEssentialData");
   };
   render() {
-    console.log(this.state.pictureObject);
     return (
       <div className="picture-detail">
         <div className="top-controls">
@@ -155,7 +169,9 @@ class PictureDetail extends React.Component {
                       rows="7"
                       type="text"
                       className="value"
-                      placeholder={this.props.description || "Neuvedeno"}
+                      placeholder={
+                        this.state.pictureObject.description || "Neuvedeno"
+                      }
                     />
                     <FaEdit
                       className={this.state.descInputChanged ? "changed" : ""}
@@ -211,11 +227,12 @@ class PictureDetail extends React.Component {
               <button
                 onClick={async () => {
                   this.setState({ isBeingDeleted: true });
-                  Images.Image.delete(this.state.data.id, this.props.src).then(
-                    () => {
-                      emitter.emit("updateEssentialData");
-                    }
-                  );
+                  Images.Image.delete(
+                    this.state.data.id,
+                    this.state.pictureObject.src
+                  ).then(() => {
+                    emitter.emit("updateEssentialData");
+                  });
                 }}
               >
                 <FaTimes />
