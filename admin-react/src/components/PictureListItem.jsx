@@ -87,18 +87,8 @@ class PictureListItem extends React.Component {
           className={
             this.state.isBeingEdited ? "edit-dialog" : "edit-dialog hidden"
           }
-        ></td>
-      </tr>
-    );
-  }
-}
-
-export default PictureListItem;
-
-
-
-/*
-<div className="picture-wrapper">
+        >
+          <div className="picture-wrapper">
             <div className="top-controls">
               <button onClick={this.closeEditDialog}>
                 <FaTimes />
@@ -341,6 +331,10 @@ export default PictureListItem;
               </div>
             </div>
           </div>
+        </td>
+      </tr>
+    );
+  }
+}
 
-
-*/
+export default PictureListItem;

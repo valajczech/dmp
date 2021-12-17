@@ -224,22 +224,24 @@ class PictureDetail extends React.Component {
               </div>
             </div>
             <div className="footer">
-              <button
-                onClick={async () => {
-                  this.setState({ isBeingDeleted: true });
-                  Images.Image.delete(
-                    this.state.data.id,
-                    this.state.pictureObject.src
-                  ).then(() => {
-                    emitter.emit("updateEssentialData");
-                  });
-                }}
-              >
-                <FaTimes />
-                <span>
-                  {this.state.isBeingDeleted ? "Deleting..." : "Delete"}
-                </span>
-              </button>
+              <Link to="/pictures">
+                <button
+                  onClick={async () => {
+                    this.setState({ isBeingDeleted: true });
+                    Images.Image.delete(
+                      this.state.pictureObject.id,
+                      this.state.pictureObject.url
+                    ).then(() => {
+                      emitter.emit("updateEssentialData");
+                    });
+                  }}
+                >
+                  <FaTimes />
+                  <span>
+                    {this.state.isBeingDeleted ? "Deleting..." : "Delete"}
+                  </span>
+                </button>
+              </Link>
             </div>
           </div>
         </div>
