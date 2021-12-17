@@ -17,6 +17,7 @@ import { Images } from "../helpers/images";
 import emmiter from "../utils/EventEmitter";
 import { Collections } from "../helpers/collections";
 import emitter from "../utils/EventEmitter";
+import { Link } from "react-router-dom";
 
 class PictureListItem extends React.Component {
   constructor(props) {
@@ -86,8 +87,18 @@ class PictureListItem extends React.Component {
           className={
             this.state.isBeingEdited ? "edit-dialog" : "edit-dialog hidden"
           }
-        >
-          <div className="picture-wrapper">
+        ></td>
+      </tr>
+    );
+  }
+}
+
+export default PictureListItem;
+
+
+
+/*
+<div className="picture-wrapper">
             <div className="top-controls">
               <button onClick={this.closeEditDialog}>
                 <FaTimes />
@@ -330,10 +341,6 @@ class PictureListItem extends React.Component {
               </div>
             </div>
           </div>
-        </td>
-      </tr>
-    );
-  }
-}
 
-export default PictureListItem;
+
+*/

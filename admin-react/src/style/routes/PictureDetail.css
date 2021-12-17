@@ -1,0 +1,362 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
+.picture-detail {
+  color: #eceff4;
+  font-family: "Open Sans", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+}
+
+.picture-detail .top-controls {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-bottom: 5px;
+}
+
+.picture-detail .top-controls #back {
+  border-radius: 5px;
+  border: #2196f3 solid 2px;
+  background-color: transparent;
+  color: #2196f3;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 15px;
+}
+
+.picture-detail .top-controls #back:hover {
+  color: white;
+  background-color: #2196f3;
+  -webkit-filter: drop-shadow(0px 5px 5px #212332);
+          filter: drop-shadow(0px 5px 5px #212332);
+}
+
+.picture-detail .picture-content {
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+  -ms-grid-columns: 1fr 0.3fr;
+      grid-template-columns: 1fr 0.3fr;
+  gap: 15px;
+}
+
+.picture-detail .picture-content .image-wrapper {
+  overflow: hidden;
+  background-color: #212332;
+  width: 100%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.picture-detail .picture-content .image-wrapper .image {
+  height: 100%;
+  max-height: 75vh;
+  overflow: hidden;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.picture-detail .picture-content .image-wrapper .image img {
+  width: 100%;
+}
+
+.picture-detail .picture-content .collection-tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 50px;
+}
+
+.picture-detail .picture-content .collection-tags .selected {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 5px;
+}
+
+.picture-detail .picture-content .collection-tags .selected .tag {
+  padding: 5px 10px;
+  background-color: #2a2d3e;
+  border-radius: 5px;
+  font-size: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.picture-detail .picture-content .collection-tags .selected .tag svg {
+  color: #747f8f;
+}
+
+.picture-detail .picture-content .collection-tags .selected .tag:hover {
+  background-color: #c92626;
+}
+
+.picture-detail .picture-content .collection-tags .selected .tag:hover svg {
+  color: #eceff4;
+}
+
+.picture-detail .picture-content .collection-tags .add-new button {
+  border-radius: 5px;
+  border: #2196f3 solid 2px;
+  background-color: transparent;
+  color: #2196f3;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 15px;
+}
+
+.picture-detail .picture-content .collection-tags .add-new button:hover {
+  color: white;
+  background-color: #2196f3;
+  -webkit-filter: drop-shadow(0px 5px 5px #212332);
+          filter: drop-shadow(0px 5px 5px #212332);
+}
+
+.picture-detail .picture-content .collection-tags .add-new button span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 5px;
+}
+
+.picture-detail .picture-content .metadata-wrapper {
+  width: 250px;
+  border: solid #2a2d3e 3px;
+  background-color: #212332;
+  padding: 10px;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.picture-detail .picture-content .metadata-wrapper #divider {
+  border-top: solid #2a2d3e 3px;
+  padding-top: 15px;
+}
+
+.picture-detail .picture-content .metadata-wrapper .dataset {
+  padding: 5px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.picture-detail .picture-content .metadata-wrapper .dataset #editable {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  gap: 15px;
+}
+
+.picture-detail .picture-content .metadata-wrapper .dataset #editable svg {
+  color: #747f8f;
+  opacity: 0;
+}
+
+.picture-detail .picture-content .metadata-wrapper .dataset #editable:hover svg {
+  opacity: 1;
+}
+
+.picture-detail .picture-content .metadata-wrapper .dataset #editable .changed {
+  color: #2196f3;
+}
+
+.picture-detail .picture-content .metadata-wrapper .dataset #editable > input,
+.picture-detail .picture-content .metadata-wrapper .dataset #editable > textarea {
+  resize: none;
+  width: 100%;
+  background-color: #212332;
+  color: #eceff4;
+  border: solid #212332 1px;
+  border-radius: 5px;
+  outline: none;
+  padding: 5px 10px 5px 5px;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+}
+
+.picture-detail .picture-content .metadata-wrapper .dataset #editable > input::-webkit-input-placeholder,
+.picture-detail .picture-content .metadata-wrapper .dataset #editable > textarea::-webkit-input-placeholder {
+  color: #eceff4;
+}
+
+.picture-detail .picture-content .metadata-wrapper .dataset #editable > input:-ms-input-placeholder,
+.picture-detail .picture-content .metadata-wrapper .dataset #editable > textarea:-ms-input-placeholder {
+  color: #eceff4;
+}
+
+.picture-detail .picture-content .metadata-wrapper .dataset #editable > input::-ms-input-placeholder,
+.picture-detail .picture-content .metadata-wrapper .dataset #editable > textarea::-ms-input-placeholder {
+  color: #eceff4;
+}
+
+.picture-detail .picture-content .metadata-wrapper .dataset #editable > input::placeholder,
+.picture-detail .picture-content .metadata-wrapper .dataset #editable > textarea::placeholder {
+  color: #eceff4;
+}
+
+.picture-detail .picture-content .metadata-wrapper .dataset #editable > input:focus-within,
+.picture-detail .picture-content .metadata-wrapper .dataset #editable > textarea:focus-within {
+  background-color: #2a2d3e;
+}
+
+.picture-detail .picture-content .metadata-wrapper .dataset #editable > input:focus-within ~ svg,
+.picture-detail .picture-content .metadata-wrapper .dataset #editable > textarea:focus-within ~ svg {
+  opacity: 1;
+}
+
+.picture-detail .picture-content .metadata-wrapper .dataset #title {
+  color: #747f8f;
+  font-size: 15px;
+  font-family: "Open Sans", sans-serif;
+  padding-bottom: 5px;
+}
+
+.picture-detail .picture-content .metadata-wrapper .dataset #value {
+  font-weight: 700;
+}
+
+.picture-detail .picture-content .metadata-wrapper .header {
+  margin-bottom: 15px;
+}
+
+.picture-detail .picture-content .metadata-wrapper .header div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  gap: 5px;
+}
+
+.picture-detail .picture-content .metadata-wrapper .header .published {
+  padding: 5px 0px;
+  color: #747f8f;
+}
+
+.picture-detail .picture-content .metadata-wrapper .save {
+  text-align: center;
+  margin: 5px;
+}
+
+.picture-detail .picture-content .metadata-wrapper .save .saveBtn {
+  color: #212332;
+  cursor: default;
+  padding: 10px;
+}
+
+.picture-detail .picture-content .metadata-wrapper .save .ableToSave {
+  color: #2196f3;
+}
+
+.picture-detail .picture-content .metadata-wrapper .save .ableToSaveWrapper {
+  cursor: pointer;
+}
+
+.picture-detail .picture-content .metadata-wrapper .save .ableToSaveWrapper:hover {
+  background-color: #2a2d3e;
+}
+
+.picture-detail .picture-content .metadata-wrapper .footer {
+  width: 100%;
+  text-align: center;
+}
+
+.picture-detail .picture-content .metadata-wrapper .footer button {
+  outline: none;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #212332;
+  border: solid #c92626 1px;
+  color: #c92626;
+  border-radius: 5px;
+}
+
+.picture-detail .picture-content .metadata-wrapper .footer button:hover {
+  background-color: #c92626;
+  color: #eceff4;
+}
+/*# sourceMappingURL=PictureDetail.css.map */
