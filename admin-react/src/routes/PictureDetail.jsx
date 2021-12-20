@@ -18,6 +18,7 @@ import { Storage } from "../helpers/storage";
 import { Collections } from "../helpers/collections";
 
 import emitter from "../utils/EventEmitter";
+import emmiter from "../utils/EventEmitter";
 
 // TODO:
 // 1. Build the DOM structure [x]
@@ -122,6 +123,55 @@ class PictureDetail extends React.Component {
                     Přidat
                   </span>
                 </button>
+                <div className="col-wrapper">
+                  <div className="col-controls">
+                    <button
+                      onClick={() => {
+                        this.setState({ collectionPopupOn: false });
+                      }}
+                    >
+                      <FaTimes />
+                    </button>
+                  </div>
+                  <span id="col-header">Dostupné alba: </span>
+                  <div className="col-data">
+                    {Storage.Collections.get().map((col) => {
+                      if (
+                        !this.state.pictureObject.collections.includes({
+                          id: col.id,
+                          name: col.name,
+                        })
+                      ) {
+                        return (
+                          <div
+                            key={col.id}
+                            className="col-record"
+                            onClick={async () => {
+                              // Update the doc in db
+                              Images.Image.addCollection(
+                                col.id,
+                                col.name,
+                                this.props.id
+                              );
+                              // Add this image to according collection
+                              Collections.Collection.addImage(
+                                col.id,
+                                this.props.id,
+                                this.props.src
+                              );
+                              // Update the local data
+                              emitter.emit("updateEssentialData");
+                            }}
+                          >
+                            <span className="colToBeSelected">
+                              <FaFolder /> {col.name}
+                            </span>
+                          </div>
+                        );
+                      }
+                    })}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -133,7 +183,7 @@ class PictureDetail extends React.Component {
                   Info
                 </span>
                 <div className="published">
-                  <span></span>
+                  <span>{this.state.pictureObject.uploadDate}</span>
                 </div>
               </div>
               <div className="datasets">

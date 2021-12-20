@@ -208,7 +208,9 @@
       .footer {
         width: 100%;
         text-align: center;
-
+        a {
+          text-decoration: none;
+        }
         button {
           outline: none;
           width: 100%;

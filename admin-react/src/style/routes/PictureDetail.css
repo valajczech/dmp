@@ -331,6 +331,10 @@
   text-align: center;
 }
 
+.picture-detail .picture-content .metadata-wrapper .footer a {
+  text-decoration: none;
+}
+
 .picture-detail .picture-content .metadata-wrapper .footer button {
   outline: none;
   width: 100%;
