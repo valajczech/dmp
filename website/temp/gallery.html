@@ -1,25 +1,22 @@
-<div class="gallery-thumbnail">
-  <img src=${this.imgSrcArr[0].imgURL} id="gallery-item-thumbnail"/>
-</div>
-<div class="gallery-wrapper hidden">
-  <div class="gallery-top-controls">
-    <button id="gallery_close"><span class="typcn typcn-times"></span></button>
+<div class="gallery">
+  <div class="gallery-data">
+    <p id="current-image-name">name</p>
+    <button id="more">Více</button>
   </div>
-  <div class="gallery-visible-item">
-    <div class="gallery-image-wrapper"
-      <img src=${this.imgSrcArr[0].imgURL} />
+  <div class="image-wrapper">
+    <div class="control" id="prev">
+      <span class="typcn typcn-chevron-left" id="arrow"></span>
     </div>
-    <div class="gallery-image-controls">
-      <button>Prev</button
-      <button>Like</button
-      <button>Next</button
+    <div class="images">
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/dmp-bures.appspot.com/o/VEn7yjMtSyGNJKt11TJc?alt=media&token=5e865746-ede7-4d2b-92d0-73f26546c90e"
+        height="400"
+        alt=""
+        class="gallery-image"
+      />
     </div>
-  </div>
-  <div class="gallery-image-reel">
-    <p>*</p>
-    <p>*</p>
-    <p>*</p>
-    <p>*</p>
-    <p>*</p>
+    <div class="control" id="next">
+      <span class="typcn typcn-chevron-right" id="arrow"></span>
+    </div>
   </div>
 </div>
