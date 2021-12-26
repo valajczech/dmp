@@ -15,67 +15,140 @@ export class Gallery extends HTMLElement {
   constructor(imageArray) {
     super();
     this._rawImageArray = imageArray;
-    this.currentIndex = 0;
-    this.total = imageArray.length - 1;
+    this.currentIndex = 1;
+    this.total = imageArray.length;
   }
 
   connectedCallback() {
     this.innerHTML = `
     <div class="gallery">
-  <div class="image-wrapper">
-    <div class="control" id="prev">
-      <span class="typcn typcn-chevron-left" id="arrow"></span>
+      <div class="thumbnail">
+        <img id="thumbnail-image" src="${
+          this._rawImageArray[this.currentIndex].imageSrc
+        }"
+        />  
+      </div>
+      <div id="myModal" class="modal">
+  <span class="close cursor" id="close-modal"}">&times;</span>
+  <div class="modal-content">
+    ${this._rawImageArray.map((img) => {
+      return `<div class="mySlides">
+        <div class="image">
+          <p id="name" style="color: white"></p>
+          <img src="${img.imageSrc}" style="width: auto; max-height: 80vh">
+          <div class="popup">
+            <span class="typcn typcn-chevron-right up" id="popup-toggle"></span>
+            <div class="popup-content hidden">
+              <p id="desc"></p>
+              <p id="total_likes"> <span class="typcn typcn typcn-heart"></span></p>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    })}
+    <!-- Next/previous controls -->
+    <a class="prev" id="prev" ">&#10094;</a>
+    <a class="next" id="next" ">&#10095;</a>
     </div>
-    <div class="images">
-      ${
-        this._rawImageArray.length == 0
-          ? `<p>Prozatím žádné fotky</p>`
-          : `<img
-      class="gallery-image"  src=${
-        this._rawImageArray[this.currentIndex].imageSrc
-      } height="400px" />`
-      }
-    </div>
-    <div class="control" id="next">
-      <span class="typcn typcn-chevron-right" id="arrow"></span>
-    </div>
-  </div>
-  </div>
 
+    <!-- Thumbnail image controls -->
+  </div>
+</div>
+
+    </div>
     `;
 
-    let image = this.querySelector(".gallery-image");
-    let imageWrapper = this.querySelector(".images");
+    // get slides and append corresponding data to them
+    this._rawImageArray.forEach((obj, index) => {
+      Images.getImage(obj.imageId).then((image) => {
+          this.querySelectorAll("#name")[index].innerText = image.name;
+        this.querySelectorAll("#desc")[index].innerText =
+          image.desc || "Bez popisku";
+        this.querySelectorAll("#total_likes")[index].innerHTML =
+        `
+        <div clas="total-likes">
+          ${image.totalLikes}
+          <span class="typcn typcn-heart"></span>
+        </div>
+        `
+      });
+    });
 
-    console.log(this.total);
+    this.querySelector("#thumbnail-image").onclick = () => {
+      this.openModal();
+    };
+    this.querySelector("#close-modal").onclick = () => {
+      this.closeModal();
+    };
     this.querySelector("#prev").onclick = () => {
-      this.currentIndex - 1 < 0 ? "" : (this.currentIndex -= 1);
-      console.log(this.currentIndex, "of", this.total);
-
-      imageWrapper.classList.add("fade");
-      image.setAttribute(
-        "src",
-        this._rawImageArray[this.currentIndex].imageSrc
-      );
-      setTimeout(() => {
-        imageWrapper.classList.remove("fade");
-      }, 1000);
+      this.plusSlides(-1);
     };
     this.querySelector("#next").onclick = () => {
-      this.currentIndex + 1 > this.total ? "" : (this.currentIndex += 1);
-      console.log(this.currentIndex, "of", this.total);
-
-      imageWrapper.classList.add("fade");
-
-      image.setAttribute(
-        "src",
-        this._rawImageArray[this.currentIndex].imageSrc
-      );
-      setTimeout(() => {
-        imageWrapper.classList.remove("fade");
-        console.log("1");
-      }, 1000);
+      this.plusSlides(1);
     };
+    this.querySelectorAll("#popup-toggle").forEach((el) => {
+      el.addEventListener("click", () => {
+        this.querySelectorAll("#popup-toggle")[
+          this.currentIndex
+        ].classList.toggle("up");
+        this.querySelectorAll(".popup-content")[
+          this.currentIndex
+        ].classList.toggle("hidden");
+      });
+    });
+    window.addEventListener("keydown", (e) => {
+      switch (e.code) {
+        case "Escape":
+          if (
+            !this.querySelectorAll(".popup-content")[
+              this.currentIndex
+            ].classList.contains("hidden")
+          ) {
+            this.querySelectorAll("#popup-toggle")[
+              this.currentIndex
+            ].classList.remove("up");
+            this.querySelectorAll(".popup-content")[
+              this.currentIndex
+            ].classList.add("hidden");
+          }
+          break;
+      }
+    });
+  }
+
+  plusSlides(n) {
+    this.showSlides((this.currentIndex += n));
+    this.querySelectorAll(".popup-content").forEach((el) => {
+      el.classList.add("hidden");
+    });
+  }
+  openModal() {
+    document.getElementById("myModal").style.display = "block";
+    this.showSlides(this.currentIndex);
+  }
+
+  closeModal() {
+    document.getElementById("myModal").style.display = "none";
+    this.currentIndex = 1;
+  }
+
+  showSlides(n) {
+    var i;
+    var slides = this.getElementsByClassName("mySlides");
+    var dots = this.getElementsByClassName("demo");
+    if (n > slides.length - 1) {
+      this.currentIndex = 0;
+    }
+    if (n < 0) {
+      this.currentIndex = slides.length - 1;
+    }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace("active", "");
+    }
+    slides[this.currentIndex].style.display = "flex";
   }
 }
 customElements.define("image-gallery", Gallery);

@@ -127,9 +127,9 @@ export class Images {
       .get()
       .catch((err) => console.error(err));
     return {
-      imgName: query.data().imgName,
-      imgDesc: query.data().imgDescription,
-      imgSrc: query.data().imgURL,
+      name: query.data().name,
+      desc: query.data().description,
+      src: query.data().url,
       totalLikes: query.data().total_likes,
     };
   }
