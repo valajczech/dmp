@@ -3,9 +3,9 @@
 // Imports
 import { async } from "regenerator-runtime";
 import "../css/components/gallery.css";
+
 import tippy from "tippy.js"
 import 'tippy.js/dist/tippy.css';
-
 // Helpers
 import { Images } from "../js/core";
 
@@ -25,8 +25,9 @@ export class Gallery extends HTMLElement {
     this.innerHTML = `
     <div class="gallery">
       <div class="thumbnail">
+
         
-        <img id="thumbnail-image" src="${
+       <img id="thumbnail-image" src="${
           this._rawImageArray[this.currentIndex].imageSrc
         }"
         />  
@@ -48,6 +49,9 @@ export class Gallery extends HTMLElement {
                 <p id="total_likes"> <span id="like-heart" class="typcn typcn typcn-heart"></span></p>
                 <span id="sharer" class="typcn typcn-export"></span>
               </div>
+              <p id="desc"></p>
+              <p id="total_likes"> <span class="typcn typcn typcn-heart"></span></p>
+
             </div>
           </div>
         </div>
@@ -135,6 +139,24 @@ export class Gallery extends HTMLElement {
           break;
       }
     });
+}
+
+  plusSlides(n) {
+    this.showSlides((this.currentIndex += n));
+    this.querySelectorAll(".popup-content").forEach((el) => {
+      el.classList.add("hidden");
+    });
+  }
+  openModal() {
+    document.getElementById("myModal").style.display = "block";
+    this.showSlides(this.currentIndex);
+  }
+
+  closeModal() {
+    document.getElementById("myModal").style.display = "none";
+    this.currentIndex = 1;
+  }
+
   }
 
   plusSlides(n) {
