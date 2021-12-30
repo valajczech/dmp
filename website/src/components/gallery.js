@@ -49,9 +49,6 @@ export class Gallery extends HTMLElement {
                 <p id="total_likes"> <span id="like-heart" class="typcn typcn typcn-heart"></span></p>
                 <span id="sharer" class="typcn typcn-export"></span>
               </div>
-              <p id="desc"></p>
-              <p id="total_likes"> <span class="typcn typcn typcn-heart"></span></p>
-
             </div>
           </div>
         </div>
@@ -157,7 +154,6 @@ export class Gallery extends HTMLElement {
     this.currentIndex = 1;
   }
 
-  }
 
   plusSlides(n) {
     this.showSlides((this.currentIndex += n));
