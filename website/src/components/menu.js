@@ -10,7 +10,7 @@ class Menu extends HTMLElement {
   constructor() {
     super();
   }
-  async connectedCallback() {
+     connectedCallback() {
     // Get correct albums to work with
     //collections = await Storage.getCollectionsFromStorage();
     //this.collections = collections;
@@ -35,17 +35,14 @@ class Menu extends HTMLElement {
     `;
 
     try {
-      this.collections = await Storage.getCollectionsFromStorage();
+      this.collections = Storage.getCollectionsFromStorage();
       const list = this.querySelector(".collections");
       this.collections.forEach((item) => {
         let albumDOM = document.createElement("li");
         albumDOM.innerHTML = `
-        <a class="menulink" href="collection?collection=${UrlLinks.transformToURL(
-          item
-        )}">${item}</a>
+        <a class="menulink" href="collection?collectionId=${item.id}">${item.name}</a>
         `;
         list.appendChild(albumDOM);
-        console.log(albumDOM);
       });
     } catch (error) {
       console.error(err);

@@ -20,37 +20,41 @@ export class Collections {
     let collectionList = [];
     let query = await db
       .collection("albums")
-      .where("albumName", "!=", " ")
+      .where("name", "!=", " ")
       .get()
       .catch((err) => {
         console.log(err);
       });
     query.docs.forEach((doc) => {
-      collectionList.push(doc.data().albumName);
+      collectionList.push({
+        name: doc.data().name,
+        id: doc.data().id,
+        images: doc.data().connectedImages,
+      });
     });
 
     return collectionList;
   }
   static async saveCollectionsToLocalStorage() {
-    localStorage.removeItem("Collections");
+    //localStorage.removeItem("Collections");
     let list = await this.getCollectionsList();
     Storage.saveToStorage(list);
   }
-  static async getCollection(collectionURL) {
+  static async getCollection(collectionId) {
     //? Maybe should be refactored
     let query = await db
       .collection("albums")
-      .doc(collectionURL)
+      .doc(collectionId)
       .get()
       .catch((err) => {
         console.error(err);
       });
     return {
-      albumName: query.data().albumName,
-      albumURL: query.data().albumURL,
+      name: query.data().name,
+      url: query.data().url,
       connectedImages: query.data().connectedImages,
-      itemCount: query.data().connectedImages.length
-    }
+      itemCount: query.data().connectedImages.length,
+    };
   }
 }
 export class Images {
@@ -123,9 +127,9 @@ export class Images {
       .get()
       .catch((err) => console.error(err));
     return {
-      imgName: query.data().imgName,
-      imgDesc: query.data().imgDescription,
-      imgSrc: query.data().imgURL,
+      name: query.data().name,
+      desc: query.data().description,
+      src: query.data().url,
       totalLikes: query.data().total_likes,
     };
   }
@@ -134,9 +138,13 @@ export class Storage {
   static saveToStorage(item) {
     localStorage.setItem("Collections", JSON.stringify(item));
   }
-  static async getCollectionsFromStorage() {
-    // console.log("here:", await JSON.parse(localStorage.getItem("Collections")));
-    return await JSON.parse(localStorage.getItem("Collections"));
+  static getCollectionsFromStorage() {
+    return JSON.parse(localStorage.getItem("Collections"));
+  }
+  static getSpecific(collectionId) {
+    return JSON.parse(localStorage.getItem("Collections")).filter(
+      (c) => c.id === collectionId
+    )[0];
   }
 }
 

@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap");
 .dashboard {
   padding: 10px;
+  padding-bottom: 0px;
+  padding-top: 0px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -42,6 +44,12 @@
   padding: 15px;
   font-family: "Open Sans", sans-serif;
   color: white;
+}
+
+.dashboard .right {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .dashboard .left .hello-banner {

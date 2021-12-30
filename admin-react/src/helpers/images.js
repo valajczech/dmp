@@ -62,7 +62,6 @@ export const Images = {
       q.forEach((img) => {
         res.push(img.data());
       });
-      console.log(res);
       return res[0];
     },
   },
