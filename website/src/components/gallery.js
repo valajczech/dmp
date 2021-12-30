@@ -4,6 +4,8 @@
 import { async } from "regenerator-runtime";
 import "../css/components/gallery.css";
 
+import tippy from "tippy.js"
+import 'tippy.js/dist/tippy.css';
 // Helpers
 import { Images } from "../js/core";
 
@@ -23,7 +25,9 @@ export class Gallery extends HTMLElement {
     this.innerHTML = `
     <div class="gallery">
       <div class="thumbnail">
-        <img id="thumbnail-image" src="${
+
+        
+       <img id="thumbnail-image" src="${
           this._rawImageArray[this.currentIndex].imageSrc
         }"
         />  
@@ -39,8 +43,15 @@ export class Gallery extends HTMLElement {
           <div class="popup">
             <span class="typcn typcn-chevron-right up" id="popup-toggle"></span>
             <div class="popup-content hidden">
+              <p class="label">Popisek</p>
+              <p id="desc"></p>
+              <div class="controls">
+                <p id="total_likes"> <span id="like-heart" class="typcn typcn typcn-heart"></span></p>
+                <span id="sharer" class="typcn typcn-export"></span>
+              </div>
               <p id="desc"></p>
               <p id="total_likes"> <span class="typcn typcn typcn-heart"></span></p>
+
             </div>
           </div>
         </div>
@@ -73,6 +84,20 @@ export class Gallery extends HTMLElement {
         `
       });
     });
+
+    // Tooltips
+    tippy('#thumbnail-image', {
+      content: 'Klikněte pro otevření galerie!',
+      placement: 'auto'
+    });
+    tippy('#total_likes', {
+      content: "Lajkněte tuto fotku!",
+      placement: 'left'
+    })
+    tippy('#sharer', {
+      content: "Sdílet",
+      placement: 'right'
+    })
 
     this.querySelector("#thumbnail-image").onclick = () => {
       this.openModal();
@@ -114,6 +139,24 @@ export class Gallery extends HTMLElement {
           break;
       }
     });
+}
+
+  plusSlides(n) {
+    this.showSlides((this.currentIndex += n));
+    this.querySelectorAll(".popup-content").forEach((el) => {
+      el.classList.add("hidden");
+    });
+  }
+  openModal() {
+    document.getElementById("myModal").style.display = "block";
+    this.showSlides(this.currentIndex);
+  }
+
+  closeModal() {
+    document.getElementById("myModal").style.display = "none";
+    this.currentIndex = 1;
+  }
+
   }
 
   plusSlides(n) {
@@ -152,3 +195,4 @@ export class Gallery extends HTMLElement {
   }
 }
 customElements.define("image-gallery", Gallery);
+
