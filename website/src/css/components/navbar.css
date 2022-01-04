@@ -1,7 +1,7 @@
 navbar-wrapper {
   height: 70px;
   background-color: black;
-  padding: 5px 50px 5px 50px;
+  padding: 0px 5vw;
   display: flex;
   flex-direction: row;
   align-items: center;

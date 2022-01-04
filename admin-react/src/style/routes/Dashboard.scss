@@ -2,6 +2,8 @@
 
 .dashboard {
   padding: 10px;
+  padding-bottom: 0px;
+  padding-top: 0px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -26,6 +28,9 @@
     @include widget;
     color: white;
   }
+  .right {
+    justify-content: space-between;
+  };
   .left {
     .hello-banner {
       display: flex;

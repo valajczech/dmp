@@ -27,8 +27,9 @@
     "@babel/preset-env": "^7.13.15",
     "@lottiefiles/lottie-player": "^1.0.3",
     "firebase": "^8.6.8",
-    "lightgallery": "^2.1.5",
+    "lightgallery": "^2.3.0",
     "regenerator-runtime": "^0.13.7",
+    "tippy.js": "^6.3.7",
     "typicons.font": "^2.1.1"
   }
 }

@@ -4,8 +4,8 @@ footer-wrapper {
   position: absolute;
   bottom: 0;
   width: 100%;
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  text-align: left;
+  font-family: "Open Sans", sans-serif;
   font-size: 15px;
   background-color: white !important;
   color: #6e6e6e;
@@ -13,6 +13,7 @@ footer-wrapper {
 
 .footer {
   margin-top: 25px;
+  padding: 0px 5vw;
 }
 .orexin-promo > a {
   color: #6e6e6e;
@@ -20,4 +21,10 @@ footer-wrapper {
 }
 .orexin-promo > a:hover {
   color: #4508bd;
+}
+
+@media screen and (max-width: 768px) {
+  footer-wrapper {
+    text-align: center;
+  }
 }

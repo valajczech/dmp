@@ -17,6 +17,7 @@ import { Images } from "../helpers/images";
 import emmiter from "../utils/EventEmitter";
 import { Collections } from "../helpers/collections";
 import emitter from "../utils/EventEmitter";
+import { Link } from "react-router-dom";
 
 class PictureListItem extends React.Component {
   constructor(props) {
