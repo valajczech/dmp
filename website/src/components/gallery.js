@@ -4,8 +4,15 @@
 import { async } from "regenerator-runtime";
 import "../css/components/gallery.css";
 
-import tippy from "tippy.js"
-import 'tippy.js/dist/tippy.css';
+import tippy from "tippy.js";
+import "tippy.js/dist/tippy.css";
+
+import Swiper, { Navigation, Pagination, Thumbs } from "swiper";
+// import Swiper and modules styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 // Helpers
 import { Images } from "../js/core";
 
@@ -17,180 +24,113 @@ export class Gallery extends HTMLElement {
   constructor(imageArray) {
     super();
     this._rawImageArray = imageArray;
-    this.currentIndex = 1;
+    this.currentIndex = 0;
     this.total = imageArray.length;
   }
 
   connectedCallback() {
-    this.innerHTML = `
+    console.log(this._rawImageArray);
+    this.innerHTML = `  
     <div class="gallery">
-      <div class="thumbnail">
-
-        
-       <img id="thumbnail-image" src="${
-          this._rawImageArray[this.currentIndex].imageSrc
-        }"
-        />  
-      </div>
-      <div id="myModal" class="modal">
-  <span class="close cursor" id="close-modal"}">&times;</span>
-  <div class="modal-content">
-    ${this._rawImageArray.map((img) => {
-      return `<div class="mySlides">
-        <div class="image">
-          <p id="name" style="color: white"></p>
-          <img src="${img.imageSrc}" style="width: 100%; max-height: 80vh">
-          <div class="popup">
-            <span class="typcn typcn-chevron-right up" id="popup-toggle"></span>
-            <div class="popup-content hidden">
-              <div class="desc">
-                <p class="label">Popisek</p>
-                <p id="desc"></p>
-              </div>
-              <div class="controls">
-                <p id="total_likes"> <span id="like-heart" class="typcn typcn typcn-heart"></span></p>
-                <span id="sharer" class="typcn typcn-export"></span>
+    <div class="thumbnail">
+      <img
+        src="${this._rawImageArray[this.currentIndex].imageSrc}"
+        id="thumbnail-img"
+      />
+    </div>
+  </div>
+  <div class="gallery-modal" id="modal">
+    <div class="gallery-controls">
+      <span class="close" id="close-modal">&times;</span>
+    </div>
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        ${this._rawImageArray.map((item) => {
+          return `
+            <div class="swiper-slide">
+            <div class="swiper-img">
+              <img
+                src="${item.imageSrc}"
+              />
+            </div>
+            <div class="metadata">
+              <span class="typcn typcn-arrow-sorted-up up" id="popup-toggle" data-imageID=${item.imageId}></span>
+              <div class="text-content">
+              <p id="${item.imageId}_name" class="name">Načítání</p>
+              <p id="${item.imageId}_desc" class="desc">
+                Načítání
+              </p>
               </div>
             </div>
-          </div>
-        </div>
-      </div>`;
-    })}
-    <!-- Next/previous controls -->
-    <a class="prev" id="prev" ">&#10094;</a>
-    <a class="next" id="next" ">&#10095;</a>
+            </div>
+          `;
+        })}
+      </div>
+  
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev navigation"></div>
+      <div class="swiper-button-next navigation"></div>
     </div>
-
-    <!-- Thumbnail image controls -->
   </div>
-</div>
-
-    </div>
     `;
 
-    // get slides and append corresponding data to them
-    this._rawImageArray.forEach((obj, index) => {
-      Images.getImage(obj.imageId).then((image) => {
-          this.querySelectorAll("#name")[index].innerText = image.name;
-        this.querySelectorAll("#desc")[index].innerText =
-          image.desc || "Bez popisku";
-        this.querySelectorAll("#total_likes")[index].innerHTML =
-        `
-        <div clas="total-likes">
-          ${image.totalLikes}
-          <span class="typcn typcn-heart"></span>
-        </div>
-        `
-      });
+        this._rawImageArray.forEach(obj => {
+          Images.getImage(obj.imageId).then(img => {
+            document.querySelector(`#${obj.imageId}_name`).innerText = String(img.name);
+            document.querySelector(`#${obj.imageId}_desc`).innerText = String(img.desc) || "Žádný popis";
+            console.log(img.name);
+          })
+        })
+    
+
+    //! SWIPER
+    Swiper.use([Navigation, Pagination]);
+    const swiper = new Swiper(".swiper", {
+      // Optional parameters
+      direction: "horizontal",
+      loop: false,
+
+      // If we need pagination
+      pagination: {
+        el: ".swiper-pagination",
+      },
+
+      // Navigation arrows
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+
+    this.querySelector(".thumbnail").onclick = function () {
+      document.querySelector("#modal").classList.add("open");
+    };
+    this.querySelector("#close-modal").onclick = function () {
+      document.querySelector("#modal").classList.remove("open");
+    };
+
+    this.querySelectorAll("#popup-toggle").forEach((el) => {
+      el.onclick = (e) => {
+        e.target.parentNode.classList.toggle("modal-open");
+        e.target.classList.toggle("toggle-rotated");
+      };
     });
 
     // Tooltips
-    tippy('#thumbnail-image', {
-      content: 'Klikněte pro otevření galerie!',
-      placement: 'auto'
+    tippy("#thumbnail-img", {
+      content: "Klikněte pro otevření galerie!",
+      placement: "auto",
     });
-    tippy('#total_likes', {
-      content: "Lajkněte tuto fotku!",
-      placement: 'left'
-    })
-    tippy('#sharer', {
-      content: "Sdílet",
-      placement: 'right'
-    })
-
-    this.querySelector("#thumbnail-image").onclick = () => {
-      this.openModal();
-    };
-    this.querySelector("#close-modal").onclick = () => {
-      this.closeModal();
-    };
-    this.querySelector("#prev").onclick = () => {
-      this.plusSlides(-1);
-    };
-    this.querySelector("#next").onclick = () => {
-      this.plusSlides(1);
-    };
-    this.querySelectorAll("#popup-toggle").forEach((el) => {
-      el.addEventListener("click", () => {
-        this.querySelectorAll("#popup-toggle")[
-          this.currentIndex
-        ].classList.toggle("up");
-        this.querySelectorAll(".popup-content")[
-          this.currentIndex
-        ].classList.toggle("hidden");
-      });
-    });
-    window.addEventListener("keydown", (e) => {
-      switch (e.code) {
-        case "Escape":
-          if (
-            !this.querySelectorAll(".popup-content")[
-              this.currentIndex
-            ].classList.contains("hidden")
-          ) {
-            this.querySelectorAll("#popup-toggle")[
-              this.currentIndex
-            ].classList.remove("up");
-            this.querySelectorAll(".popup-content")[
-              this.currentIndex
-            ].classList.add("hidden");
-          }
-          break;
-      }
-    });
-}
-
-  plusSlides(n) {
-    this.showSlides((this.currentIndex += n));
-    this.querySelectorAll(".popup-content").forEach((el) => {
-      el.classList.add("hidden");
-    });
-  }
-  openModal() {
-    document.getElementById("myModal").style.display = "block";
-    this.showSlides(this.currentIndex);
-  }
-
-  closeModal() {
-    document.getElementById("myModal").style.display = "none";
-    this.currentIndex = 1;
-  }
-
-
-  plusSlides(n) {
-    this.showSlides((this.currentIndex += n));
-    this.querySelectorAll(".popup-content").forEach((el) => {
-      el.classList.add("hidden");
-    });
-  }
-  openModal() {
-    document.getElementById("myModal").style.display = "block";
-    this.showSlides(this.currentIndex);
-  }
-
-  closeModal() {
-    document.getElementById("myModal").style.display = "none";
-    this.currentIndex = 1;
-  }
-
-  showSlides(n) {
-    var i;
-    var slides = this.getElementsByClassName("mySlides");
-    var dots = this.getElementsByClassName("demo");
-    if (n > slides.length - 1) {
-      this.currentIndex = 0;
-    }
-    if (n < 0) {
-      this.currentIndex = slides.length - 1;
-    }
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace("active", "");
-    }
-    slides[this.currentIndex].style.display = "flex";
+    // tippy('#total_likes', {
+    //   content: "Lajkněte tuto fotku!",
+    //   placement: 'left'
+    // })
+    // tippy('#sharer', {
+    //   content: "Sdílet",
+    //   placement: 'right'
+    // })
   }
 }
 customElements.define("image-gallery", Gallery);
-
