@@ -14,8 +14,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import tippy from "tippy.js"
-import 'tippy.js/dist/tippy.css';
 
 // Helpers
 import { Images } from "../js/core";
