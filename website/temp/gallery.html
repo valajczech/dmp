@@ -1,47 +1,41 @@
+ <div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+    ${this._rawImageArray.map((img) => {
+      return `<div class="mySlides">
+        <div class="numbertext">1 / 4</div>
+        <img src="${img.imageSrc}" style="height: 400px ;">
+      </div>`
+    })}
+    <!-- Next/previous controls -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-<div class="gallery">
-  <div class="thumbnail">
-    <img
-      src="${
-      this._rawImageArray[this.currentIndex].imageSrc
-    }"
-      id="thumbnail-img"
-    />
-  </div>
-</div>
-<div class="gallery-modal" id="modal">
-  <div class="gallery-controls">
-    <span class="close" id="close-modal">&times;</span>
-  </div>
-  <div class="swiper">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-      <!-- Slides -->
+    <!-- Caption text -->
+    <div class="caption-container">
+      <p id="caption"></p>
     </div>
 
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev navigation"></div>
-    <div class="swiper-button-next navigation"></div>
-
-  </div>
-</div>
-<div class="swiper-slide">
-  <div class="swiper-img">
-    <img
-      src="${
-    this._rawImageArray[this.currentIndex].imageSrc
-  }"
-      alt=""
-    />
-  </div>
-  <div class="metadata">
-    <span class="typcn typcn-arrow-sorted-up up" id="popup-toggle"></span>
-    <div class="text-content">
-      <p id="name">!NAME!</p>
-      <p id="desc">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque vitae inventore voluptas! Dolore, quas doloremque.
-      </p>
-    </div>
+    <!-- Thumbnail image controls -->
   </div>
 </div>
 
+
+
+
+<!--thumbnail images-->
+<div class="column">
+  <img class="demo" src="img1.jpg" onclick="currentSlide(1)" alt="Nature">
+</div>
+
+<div class="column">
+  <img class="demo" src="img2.jpg" onclick="currentSlide(2)" alt="Snow">
+</div>
+
+<div class="column">
+  <img class="demo" src="img3.jpg" onclick="currentSlide(3)" alt="Mountains">
+</div>
+
+<div class="column">
+  <img class="demo" src="img4.jpg" onclick="currentSlide(4)" alt="Lights">
+</div>
