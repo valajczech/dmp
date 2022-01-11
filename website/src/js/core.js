@@ -63,11 +63,11 @@ export class Images {
       await db.collection("settings").doc("mainpage_slideshow").get()
     ).data().image_interval;
   }
-  static async addLike(imgObject) {
+  static async addLike(imgId) {
     console.log(imgObject);
     await db
       .collection("uploadedPictures")
-      .doc(imgObject.imgDocID)
+      .doc(imgId)
       .update({
         total_likes: firebase.firestore.FieldValue.increment(1),
       })
