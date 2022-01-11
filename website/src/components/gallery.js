@@ -29,7 +29,7 @@ export class Gallery extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log(this._rawImageArray);
+    // console.log(this._rawImageArray);
     this.innerHTML = `  
     <div class="gallery">
     <div class="thumbnail">
@@ -62,6 +62,10 @@ export class Gallery extends HTMLElement {
               <p id="${item.imageId}_desc" class="desc">
                 Načítání
               </p>
+              <div class="controls">
+                <p id="${item.imageId}_total_likes"></p>
+                <!---<span id="sharer" class="typcn typcn-export"></span>--->
+              </div>
               </div>
             </div>
             </div>
@@ -76,14 +80,21 @@ export class Gallery extends HTMLElement {
   </div>
     `;
 
-        this._rawImageArray.forEach(obj => {
-          Images.getImage(obj.imageId).then(img => {
-            document.querySelector(`#${obj.imageId}_name`).innerText = String(img.name);
-            document.querySelector(`#${obj.imageId}_desc`).innerText = String(img.desc) || "Žádný popis";
-            console.log(img.name);
-          })
-        })
-    
+    this._rawImageArray.forEach((obj) => {
+      Images.getImage(obj.imageId).then((img) => {
+        document.querySelector(`#${obj.imageId}_name`).innerText = String(
+          img.name
+        );
+        document.querySelector(`#${obj.imageId}_desc`).innerText =
+          String(img.desc) || "Žádný popis";
+        document.querySelector(`#${obj.imageId}_total_likes`).innerHTML =
+          `${String(img.totalLikes)} <span id="like-heart" data-id="${
+            obj.imageId
+          }" class="typcn typcn typcn-heart"></span>` ||
+          `0 <span id="like-heart" data-id="${obj.imageId}" class="typcn typcn typcn-heart"></span>`;
+        //console.log(img.name);
+      });
+    });
 
     //! SWIPER
     Swiper.use([Navigation, Pagination]);
@@ -110,27 +121,63 @@ export class Gallery extends HTMLElement {
     this.querySelector("#close-modal").onclick = function () {
       document.querySelector("#modal").classList.remove("open");
     };
-
+    // Popup toggle
     this.querySelectorAll("#popup-toggle").forEach((el) => {
       el.onclick = (e) => {
         e.target.parentNode.classList.toggle("modal-open");
         e.target.classList.toggle("toggle-rotated");
       };
     });
+    // Add likes on click
+    this.querySelectorAll("#like-heart").forEach((el) => {
+      el.onclick = (e) => {
+        console.log("yeet");
+        //Images.addLike(e.target.dataset.id,)
+      };
+    });
+
+    // Keyboard shortcuts
+    window.onkeydown = (e) => {
+      console.log(e.keyCode);
+      switch (e.keyCode) {
+        case 27: {
+          document.querySelector("#modal").classList.remove("open");
+          break;
+        }
+        case 37: {
+          // Previous gallery item
+          swiper.slidePrev();
+          break;
+        }
+        case 39: {
+          // Next gallery item
+          swiper.slideNext();
+          break;
+        }
+      }
+    };
+    // Periodically change images
+    window.setInterval(() => {
+      let imageEl = document.querySelector("#thumbnail-img");
+      if (this.currentIndex + 1 < this._rawImageArray.length) {
+        this.currentIndex += 1;
+      } else {
+        this.currentIndex = 0;
+      }
+      imageEl.setAttribute(
+        "src",
+        this._rawImageArray[this.currentIndex].imageSrc
+      );
+      if (!document.querySelector("#modal").classList.contains("open")) {
+        swiper.slideTo(this.currentIndex);
+      }
+    }, 3000);
 
     // Tooltips
     tippy("#thumbnail-img", {
       content: "Klikněte pro otevření galerie!",
       placement: "auto",
     });
-    // tippy('#total_likes', {
-    //   content: "Lajkněte tuto fotku!",
-    //   placement: 'left'
-    // })
-    // tippy('#sharer', {
-    //   content: "Sdílet",
-    //   placement: 'right'
-    // })
   }
 }
 customElements.define("image-gallery", Gallery);
