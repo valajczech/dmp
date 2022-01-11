@@ -4,6 +4,7 @@
 import { async } from "regenerator-runtime";
 import "../css/components/gallery.css";
 
+
 import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css";
 
@@ -12,6 +13,9 @@ import Swiper, { Navigation, Pagination, Thumbs } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+
+import tippy from "tippy.js"
+import 'tippy.js/dist/tippy.css';
 
 // Helpers
 import { Images } from "../js/core";
@@ -24,7 +28,9 @@ export class Gallery extends HTMLElement {
   constructor(imageArray) {
     super();
     this._rawImageArray = imageArray;
+
     this.currentIndex = 0;
+
     this.total = imageArray.length;
   }
 
@@ -180,4 +186,6 @@ export class Gallery extends HTMLElement {
     });
   }
 }
+
 customElements.define("image-gallery", Gallery);
+
