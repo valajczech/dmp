@@ -22,12 +22,8 @@ class Dropzone extends React.Component {
   }
   componentDidMount() {
     emitter.addListener("deleteLocalImage", (payloadId) => {
-      //console.log("id:", payload);
       tempData = tempData.filter((img) => img._tempId !== payloadId);
       this.setState({ data: tempData });
-      // tempData.forEach((img) => {
-      //   console.log(img);
-      // })
     });
   }
   openFileDialog = () => {

@@ -10,7 +10,7 @@ class Menu extends HTMLElement {
   constructor() {
     super();
   }
-     connectedCallback() {
+  connectedCallback() {
     // Get correct albums to work with
     //collections = await Storage.getCollectionsFromStorage();
     //this.collections = collections;
@@ -20,7 +20,7 @@ class Menu extends HTMLElement {
     <div class="menu-content">
       <ul class="menu-list">
         <li><a class="menulink" href="/prologue">Úvodem</a></li>
-        <li><a class="menulink" href="#">Nejnovější</a></li>
+        <li><a class="menulink" id="latest" href="#">Nejnovější</a></li>
         <li id="collections-dropdown">
         <p class="menulink" >Soubory<p>
           <div class="collections hidden">
@@ -38,6 +38,14 @@ class Menu extends HTMLElement {
       this.collections = Storage.getCollectionsFromStorage();
       const list = this.querySelector(".collections");
       this.collections.forEach((item) => {
+        if (item.id == "1642016809701") {
+          // Add this under the 'nejnovejsi route'
+          this.querySelector("#latest").setAttribute(
+            "href",
+            `collection?collectionId=${item.id}`
+          );
+          return;
+        }
         let albumDOM = document.createElement("li");
         albumDOM.innerHTML = `
         <a class="menulink" href="collection?collectionId=${item.id}">${item.name}</a>

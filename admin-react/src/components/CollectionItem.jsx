@@ -1,5 +1,5 @@
 import React from "react";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaLock } from "react-icons/fa";
 import emmiter from "../utils/EventEmitter";
 import "../style/components/CollectionItem.css";
 import { Storage } from "../helpers/storage";
@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 class CollectionItem extends React.Component {
   constructor(props) {
     super(props);
+    this.isDeletable = props.isDeletable;
   }
   removeThisCollection = () => {
     // Removes this collection from the db and emits a delete event to CollectionsPage
@@ -16,6 +17,7 @@ class CollectionItem extends React.Component {
   };
 
   render() {
+    console.log(this.props.title, this.isDeletable);
     return (
       <div className="collection-item">
         <div className="collection-preview-image">
@@ -37,9 +39,13 @@ class CollectionItem extends React.Component {
             </span>
           </div>
           <div className="controls">
-            <button id="delete" onClick={this.removeThisCollection}>
-              <FaTrash />
-            </button>
+            {this.isDeletable ? ( 
+              <button id="delete" onClick={this.removeThisCollection}>
+                <FaTrash />
+              </button>
+            ) : (
+              <FaLock id="delete"/>
+            )}
           </div>
         </div>
       </div>

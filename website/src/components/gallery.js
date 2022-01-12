@@ -180,7 +180,7 @@ export class Gallery extends HTMLElement {
     // Tooltips
     tippy("#thumbnail-img", {
       content: "Klikněte pro otevření galerie!",
-      placement: "auto",
+      placement: "bottom",
     });
   }
 }
