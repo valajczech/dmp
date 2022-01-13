@@ -45,7 +45,9 @@ class Menu extends HTMLElement {
             `collection?collectionId=${item.id}`
           );
           return;
-        }
+        } else if (item.id == "1642100551696") {
+          return;
+          }
         let albumDOM = document.createElement("li");
         albumDOM.innerHTML = `
         <a class="menulink" href="collection?collectionId=${item.id}">${item.name}</a>
