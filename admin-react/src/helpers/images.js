@@ -112,6 +112,7 @@ export const Images = {
         await updateDoc(doc(db, "uploadedPictures", imgId), {
           url: downloadURL,
         });
+        return downloadURL;
       },
       name: async (imgId, newName, oldName) => {
         await updateDoc(doc(db, "uploadedPictures", imgId), {
