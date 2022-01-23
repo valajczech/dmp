@@ -39,7 +39,7 @@ class CollectionDetail extends React.Component {
             ).connectedImages.map((img) => {
               return (
                 <div id="collection-image" key={img.imageId}>
-                  <Link to={`/pictures/${img.imageId}`} pro>
+                  <Link to={`/pictures/${img.imageId}`} >
                     <img src={img.imageSrc} />
                   </Link>
                 </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import "../style/routes/Pictures.css";
-import PictureListItem from "../components/PictureListItem";
+import { Link } from "react-router-dom";
+import { FaHeart, FaImage } from "react-icons/fa";
 
 // Helpers
 import { Storage } from "../helpers/storage";
@@ -39,34 +40,79 @@ class Pictures extends React.Component {
     return (
       <div className="pictures">
         <h3>Všechny fotografie</h3>
-        <table id="pictures-table">
-          <thead>
-            <tr id="table-head">
-              <th>Název</th>
-              <th id="size">Velikost</th>
-              <th id="likes">Počet Lajků</th>
-              <th id="date">Naposledy modifikováno</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.data.map((item) => (
-              <PictureListItem
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                size={item.size}
-                likes={item.total_likes}
-                collections={item.collections} // This has to be array of objects because
-                src={item.url}
-                lastModified={item.uploadDate}
-                description={item.description}
-              />
-            ))}
-          </tbody>
-        </table>
+        <div className="imagelist">
+          <div className="head">
+            <div className="dataset">
+              <span>Název</span>
+            </div>
+            <div className="dataset">
+              <span>Počet lajků</span>
+            </div>
+            <div className="dataset">
+              <span>Velikost</span>
+            </div>
+            <div className="dataset">
+              <span>Datum nahrání</span>
+            </div>
+          </div>
+          {this.state.data.map((item) => (
+            <Link to={`/pictures/${item.id}`} key={item.id}>
+              <div className="picture-list-item">
+                <div className="dataset">
+                  <span className="icon">
+                    <FaImage />
+                    {item.name}
+                  </span>
+                </div>
+                <div className="dataset">
+                  <span id="likes">
+                    {item.total_likes}
+                    <FaHeart />
+                  </span>
+                </div>
+                <div className="dataset">
+                  <span>{Images.Meta.returnFileSize(item.size)}</span>
+                </div>
+                <div className="dataset">
+                  <span>{item.uploadDate}</span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     );
   }
 }
 
 export default Pictures;
+
+/*
+{this.state.data.map((item) => (
+              <tr className="picture-list-item">
+                <Link to={`/pictures/${item.id}`}>
+                  <div>
+                    <span>
+                      <FaImage />
+                      {item.name}
+                    </span>
+                  </div>
+                  <div>
+                    <span id="size">
+                      {Images.Meta.returnFileSize(item.size) || "?"}
+                    </span>
+                  </div>
+                  <div>
+                    <span id="likes">
+                      {item.likes || 0}
+                      <FaHeart />
+                    </span>
+                  </div>
+                  <div>
+                    <span id="date">{item.uploadDate}</span>
+                  </div>
+                </Link>
+              </tr>
+            ))}
+
+*/

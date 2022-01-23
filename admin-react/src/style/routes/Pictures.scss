@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
- // margin: 0px 10vw;
+  // margin: 0px 10vw;
   padding: 15px;
   border-radius: 10px;
   background-color: $primary-background;
@@ -15,23 +15,55 @@
     margin-bottom: 25px;
     font-weight: 600;
   }
-  table {
+  .imagelist {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
-    thead {
-      text-align: left;
-      th {
-        color: $primary-gray;
-        padding-bottom: 5px;
-        padding: 15px 20px;
+    .dataset {
+      width: calc(100% / 4);
+      padding: 15px 10px;
+    }
+    .head {
+      display: flex;
+      border-bottom: solid $primary-gray 1px;
+      .dataset {
+        span {
+          color: $primary-gray;
+          font-weight: 400;
+        }
       }
-      #date {
-        text-align: center;
-      }
-      #likes {
-        text-align: right;
-      }
-      #size {
-        text-align: center;
+    }
+    a {
+      text-decoration: none;
+      .picture-list-item {
+        display: flex;
+        .dataset {
+          color: $white;
+          .icon {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            svg {
+              padding: 10px;
+              border-radius: 5px;
+              background-color: $primary-background-darker;
+              color: $primary-blue;
+            }
+          }
+          #likes {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            svg {
+              color: $primary-blue;
+            }
+          }
+          }
+        &:hover {
+          background-color: $primary-background-darker;
+          border-radius: 5px;
+        }
       }
     }
   }

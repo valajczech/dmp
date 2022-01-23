@@ -1,3 +1,5 @@
+//! Deprecated
+
 import React from "react";
 import "../style/components/PictureListItem.css";
 import {
