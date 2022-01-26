@@ -47,6 +47,61 @@
   overflow-y: scroll;
 }
 
+.latest-images .list .dataset {
+  width: calc(100% / 4);
+  padding: 15px 10px;
+}
+
+.latest-images .list a {
+  text-decoration: none;
+}
+
+.latest-images .list a .picture-list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #2a2d3e;
+  border-radius: 5px;
+}
+
+.latest-images .list a .picture-list-item .dataset {
+  color: #eceff4;
+}
+
+.latest-images .list a .picture-list-item .dataset .icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.latest-images .list a .picture-list-item .dataset .icon svg {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #212332;
+  color: #2196f3;
+}
+
+.latest-images .list a .picture-list-item .dataset #likes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.latest-images .list a .picture-list-item .dataset #likes svg {
+  color: #2196f3;
+}
+
 .latest-images .list #list-empty {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -73,65 +128,5 @@
   display: none;
   border-radius: 10px;
   background-color: #747f8f;
-}
-
-.latest-images .list .image-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 15px;
-  padding: 10px;
-}
-
-.latest-images .list .image-wrapper .name {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 15px;
-}
-
-.latest-images .list .image-wrapper .name svg {
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #212332;
-  color: #2196f3;
-}
-
-.latest-images .list .image-wrapper .metadata {
-  width: 150px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  gap: 10px;
-  text-align: center;
-}
-
-.latest-images .list .image-wrapper .metadata span {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 5px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 /*# sourceMappingURL=LatestImages.css.map */

@@ -168,6 +168,67 @@
   gap: 5px;
 }
 
+.picture-detail .picture-content .collection-tags .add-new .col-wrapper {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  width: 100vw;
+  height: 100vh;
+}
+
+.picture-detail .picture-content .collection-tags .add-new .col-wrapper .content {
+  background-color: #2a2d3e;
+  width: 50%;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.picture-detail .picture-content .collection-tags .add-new .col-wrapper .content .col-controls {
+  text-align: right;
+}
+
+.picture-detail .picture-content .collection-tags .add-new .col-wrapper .content #col-header {
+  font-size: 1.2rem;
+}
+
+.picture-detail .picture-content .collection-tags .add-new .col-wrapper .content .col-data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.picture-detail .picture-content .collection-tags .add-new .col-wrapper .content .col-data .col-record {
+  padding: 10px 20px;
+  background-color: #212332;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: solid #212332 2px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.picture-detail .picture-content .collection-tags .add-new .col-wrapper .content .col-data .col-record span svg {
+  color: #2196f3;
+}
+
+.picture-detail .picture-content .collection-tags .add-new .col-wrapper .content .col-data .col-record:hover {
+  background-color: #2a2d3e;
+}
+
 .picture-detail .picture-content .metadata-wrapper {
   width: 250px;
   border: solid #2a2d3e 3px;
@@ -362,5 +423,9 @@
 .picture-detail .picture-content .metadata-wrapper .footer button:hover {
   background-color: #c92626;
   color: #eceff4;
+}
+
+.open {
+  display: block !important;
 }
 /*# sourceMappingURL=PictureDetail.css.map */

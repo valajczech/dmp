@@ -36,6 +36,7 @@ class PictureDetail extends React.Component {
       isBeingDeleted: false,
       nameInputChanged: false,
       descInputChanged: false,
+      collectionPopupOn: false,
     };
     this.newNameInput = React.createRef();
     this.newDescInput = React.createRef();
@@ -70,6 +71,16 @@ class PictureDetail extends React.Component {
       descInputChanged: false,
     });
     emitter.emit("updateEssentialData");
+  };
+  updateEssentialData = async () => {
+    // Correctly update local Images
+    this.setState({ data: await Images.Get.detailedImageList() }, () => {
+      Storage.Images.set(this.state.data);
+    });
+    // Correctly update local collections
+    Storage.Collections.set(await Collections.Get.detailedCollectionList());
+    this.setState({pictureObject: Storage.Images.getSpecific(this.state.pictureId)})
+    this.forceUpdate();
   };
   render() {
     return (
@@ -106,8 +117,7 @@ class PictureDetail extends React.Component {
                         );
 
                         // Update the local data
-                        //! Doesnt update local data
-                        emitter.emit("updateEssentialData");
+                        this.updateEssentialData()
                       }}
                     >
                       <FaTimes />
@@ -117,59 +127,72 @@ class PictureDetail extends React.Component {
                 })}
               </div>
               <div className="add-new">
-                <button>
+                <button
+                  onClick={() => {
+                    this.setState({ collectionPopupOn: true });
+                    console.log(this.state.collectionPopupOn);
+                  }}
+                >
                   <span>
                     <FaFolder />
                     Přidat
                   </span>
                 </button>
-                <div className="col-wrapper">
-                  <div className="col-controls">
-                    <button
-                      onClick={() => {
-                        this.setState({ collectionPopupOn: false });
-                      }}
-                    >
-                      <FaTimes />
-                    </button>
-                  </div>
-                  <span id="col-header">Dostupné alba: </span>
-                  <div className="col-data">
-                    {Storage.Collections.get().map((col) => {
-                      if (
-                        !this.state.pictureObject.collections.includes({
-                          id: col.id,
-                          name: col.name,
-                        })
-                      ) {
-                        return (
-                          <div
-                            key={col.id}
-                            className="col-record"
-                            onClick={async () => {
-                              // Update the doc in db
-                              Images.Image.addCollection(
-                                col.id,
-                                col.name,
-                                this.props.id
-                              );
-                              // Add this image to according collection
-                              Collections.Collection.addImage(
-                                col.id,
-                                this.props.id,
-                                this.props.src
-                              );
-                              // Update the local data
-                              emitter.emit("updateEssentialData");
-                            }}
-                          >
-                            <span className="colToBeSelected">
-                              <FaFolder /> {col.name}
-                            </span>
-                          </div>
-                        );
-                      }
-                    })}
+                <div
+                  className={
+                    this.state.collectionPopupOn
+                      ? "col-wrapper open"
+                      : "col-wrapper"
+                  }
+                >
+                  <div className="content">
+                    <div className="col-controls">
+                      <button
+                        onClick={() => {
+                          this.setState({ collectionPopupOn: false });
+                        }}
+                      >
+                        <FaTimes />
+                      </button>
+                    </div>
+                    <span id="col-header">Dostupné alba: </span>
+                    <div className="col-data">
+                      {Storage.Collections.get().map((col) => {
+                        if (
+                          !this.state.pictureObject.collections.includes({
+                            id: col.id,
+                            name: col.name,
+                          })
+                        ) {
+                          return (
+                            <div
+                              key={col.id}
+                              className="col-record"
+                              onClick={async () => {
+                                // Update the doc in db
+                                Images.Image.addCollection(
+                                  col.id,
+                                  col.name,
+                                  this.state.pictureId
+                                );
+                                // Add this image to according collection
+                                Collections.Collection.addImage(
+                                  col.id,
+                                  this.state.pictureId,
+                                  this.state.pictureObject.url
+                                );
+                                // Update the local data
+                                this.updateEssentialData();
+                              }}
+                            >
+                              <span className="colToBeSelected">
+                                <FaFolder /> {col.name}
+                              </span>
+                            </div>
+                          );
+                        }
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>

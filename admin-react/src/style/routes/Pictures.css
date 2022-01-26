@@ -24,29 +24,84 @@
   font-weight: 600;
 }
 
-.pictures table {
+.pictures .imagelist {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: 100%;
 }
 
-.pictures table thead {
-  text-align: left;
+.pictures .imagelist .dataset {
+  width: calc(100% / 4);
+  padding: 15px 10px;
 }
 
-.pictures table thead th {
+.pictures .imagelist .head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: solid #747f8f 1px;
+}
+
+.pictures .imagelist .head .dataset span {
   color: #747f8f;
-  padding-bottom: 5px;
-  padding: 15px 20px;
+  font-weight: 400;
 }
 
-.pictures table thead #date {
-  text-align: center;
+.pictures .imagelist a {
+  text-decoration: none;
 }
 
-.pictures table thead #likes {
-  text-align: right;
+.pictures .imagelist a .picture-list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-.pictures table thead #size {
-  text-align: center;
+.pictures .imagelist a .picture-list-item .dataset {
+  color: #eceff4;
+}
+
+.pictures .imagelist a .picture-list-item .dataset .icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.pictures .imagelist a .picture-list-item .dataset .icon svg {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #212332;
+  color: #2196f3;
+}
+
+.pictures .imagelist a .picture-list-item .dataset #likes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.pictures .imagelist a .picture-list-item .dataset #likes svg {
+  color: #2196f3;
+}
+
+.pictures .imagelist a .picture-list-item:hover {
+  background-color: #212332;
+  border-radius: 5px;
 }
 /*# sourceMappingURL=Pictures.css.map */

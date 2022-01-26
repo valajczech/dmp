@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import "../style/components/Dropzone.css";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { Images } from "../helpers/images";
@@ -54,12 +55,10 @@ class Dropzone extends React.Component {
     }
   };
   startUpload = async () => {
-    console.log(this.state.isUploading);
     const storage = getStorage();
     if (this.state.data.length > 0) {
       // The base array is not empty, we can proceed with upload
-      console.log("0) ", this.state.data);
-      this.state.data.forEach(async (img) => {
+      this.state.data.forEach(async (img, index) => {
         // Create Firestore doc
         let imageDocId = await Images.Image.uploadToFirestore(img);
         // Create Storage reference based on docId
@@ -70,9 +69,10 @@ class Dropzone extends React.Component {
         let uploadTask = await uploadBytesResumable(storageRef, img._file);
         let imageUrl = await getDownloadURL(uploadTask.ref);
         await Images.Image.Update.downloadURL(imageDocId, imageUrl);
-      });
-      this.setState({
-        isUploading: false,
+        this.setState({
+          isUploading: false
+        });
+        window.location.replace("https://dashboard-dmp-bures.web.app/")
       });
     }
   };

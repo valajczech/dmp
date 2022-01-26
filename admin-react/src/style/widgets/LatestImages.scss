@@ -24,6 +24,42 @@
     flex-direction: column;
     gap: 10px;
     overflow-y: scroll;
+    .dataset {
+      width: calc(100% / 4);
+      padding: 15px 10px;
+    }
+    a {
+      text-decoration: none;
+      .picture-list-item {
+        display: flex;
+        align-items: center;
+        background-color: $primary-background;
+        border-radius: 5px;
+        .dataset {
+          color: $white;
+          .icon {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            svg {
+              padding: 10px;
+              border-radius: 5px;
+              background-color: $primary-background-darker;
+              color: $primary-blue;
+            }
+          }
+          #likes {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            svg {
+              color: $primary-blue;
+            }
+          }
+        }
+        
+      }
+    }
     #list-empty {
       display: flex;
       align-items: center;
@@ -45,38 +81,38 @@
       display: none;
       border-radius: 10px;
       background-color: $primary-gray;
-    }
-    .image-wrapper {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      padding: 10px;
-      .name {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-        svg {
-          padding: 10px;
-          border-radius: 5px;
-          background-color: $primary-background-darker;
-          color: $primary-blue;
-        }
-      }
-      .metadata {
-        width: 150px;
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-        text-align: center;
-        span {
-          display: flex;
-          gap: 5px;
-          align-items: center;
-        }
-      }
+      // }
+      // .image-wrapper {
+      //   display: flex;
+      //   flex-direction: row;
+      //   justify-content: space-between;
+      //   align-items: center;
+      //   gap: 15px;
+      //   padding: 10px;
+      //   .name {
+      //     display: flex;
+      //     align-items: center;
+      //     justify-content: center;
+      //     gap: 15px;
+      //     svg {
+      //       padding: 10px;
+      //       border-radius: 5px;
+      //       background-color: $primary-background-darker;
+      //       color: $primary-blue;
+      //     }
+      //   }
+      //   .metadata {
+      //     width: 150px;
+      //     display: flex;
+      //     justify-content: space-between;
+      //     gap: 10px;
+      //     text-align: center;
+      //     span {
+      //       display: flex;
+      //       gap: 5px;
+      //       align-items: center;
+      //     }
+      //   }
     }
   }
 }
