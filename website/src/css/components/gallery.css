@@ -28,7 +28,7 @@ image-gallery {
   height: 100vh;
   transform: translate(-50%, -50%);
   background-color: black;
-  z-index: 1;
+  z-index: 9999;
   color: white;
 }
 .gallery-controls {
@@ -61,8 +61,12 @@ image-gallery {
   display: flex;
   flex-direction: column;
 }
+.swiper-wrapper {
+  color: black;
+}
 .swiper-slide {
   height: 100vh !important;
+  color: white;
 }
 
 .swiper-slide > .swiper-img {
