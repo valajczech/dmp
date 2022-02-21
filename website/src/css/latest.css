@@ -14,6 +14,10 @@
   cursor: pointer;
   margin: 10px;
 }
+.btn-selected {
+  background-color: white;
+  color: black;
+}
 .image-chunk {
   display: none;
   grid-template-columns: repeat(3, 200px);
@@ -37,3 +41,4 @@
 .single-image:hover > img {
   filter: brightness(1.1);
 }
+

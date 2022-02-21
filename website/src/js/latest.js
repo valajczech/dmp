@@ -30,9 +30,17 @@ const splitArrayIntoChunks = (array, itemsPerChunk) => {
 
 function goToChunk(chunkIndex) {
   const chunkList = document.querySelectorAll(".image-chunk");
+  const btns = document.querySelectorAll(".pagination-button");
+
   chunkList[currentIndex].style.display = "none";
   chunkList[chunkIndex].style.display = "grid";
+  
+  btns[currentIndex].classList.remove("btn-selected");
+  btns[chunkIndex].classList.add("btn-selected");
+
   currentIndex = chunkIndex;
+
+
 }
 
 // Correctly getting the whole collectionObject
@@ -66,7 +74,6 @@ collectionObject.imageChunks.forEach((item, index) => {
   const buttons = document.querySelectorAll(".pagination-button");
   buttons.forEach((btn, index) => {
     btn.addEventListener("click", () => {
-      console.log("going to chunk:", index);
       goToChunk(index);
     })
   })
@@ -85,4 +92,7 @@ collectionObject.imageChunks.forEach((item, index) => {
   imagesTable.appendChild(imageChunk);
   imagesTable.children[0].style.display = "grid";
 });
+
+// Show the correct page index initially
+document.querySelectorAll(".pagination-button")[0].classList.add("btn-selected");
 
