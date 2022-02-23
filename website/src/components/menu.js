@@ -33,7 +33,6 @@ class Menu extends HTMLElement {
         </ul>
     </div>
     `;
-
     try {
       this.collections = Storage.getCollectionsFromStorage();
       const list = this.querySelector(".collections");
@@ -47,7 +46,6 @@ class Menu extends HTMLElement {
     } catch (error) {
       console.error(err);
     }
-
     this.querySelector("#collections-dropdown").onclick = () => {
       this.querySelector(".collections").classList.toggle("hidden");
     };
