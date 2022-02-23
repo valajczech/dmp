@@ -4,7 +4,6 @@
 import { async } from "regenerator-runtime";
 import "../css/components/gallery.css";
 
-
 import tippy from "tippy.js";
 import "tippy.js/dist/tippy.css";
 
@@ -14,26 +13,27 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-
 // Helpers
 import { Images } from "../js/core";
+var swiper;
 
 export class Gallery extends HTMLElement {
   /**
    * @param {[]} imageArray Constructor takes array of items to display
    */
 
-  constructor(imageArray) {
+  constructor(imageArray, periodic) {
     super();
     this._rawImageArray = imageArray;
-
     this.currentIndex = 0;
-
     this.total = imageArray.length;
+    if (periodic == undefined || periodic == false || periodic == null) {
+      this.periodic = false;
+    } else if (periodic == true) {
+      this.periodic = true;
+    }
   }
-
   connectedCallback() {
-    console.log(this._rawImageArray);
     this.innerHTML = `  
     <div class="gallery">
     <div class="thumbnail">
@@ -84,25 +84,9 @@ export class Gallery extends HTMLElement {
   </div>
     `;
 
-    this._rawImageArray.forEach((obj) => {
-      Images.getImage(obj.imageId).then((img) => {
-        document.querySelector(`#${obj.imageId}_name`).innerText = String(
-          img.name
-        );
-        document.querySelector(`#${obj.imageId}_desc`).innerText =
-          String(img.desc) || "Žádný popis";
-        document.querySelector(`#${obj.imageId}_total_likes`).innerHTML =
-          `${String(img.totalLikes)} <span id="like-heart" data-id="${
-            obj.imageId
-          }" class="typcn typcn typcn-heart"></span>` ||
-          `0 <span id="like-heart" data-id="${obj.imageId}" class="typcn typcn typcn-heart"></span>`;
-        //console.log(img.name);
-      });
-    });
-
     //! SWIPER
     Swiper.use([Navigation, Pagination]);
-    const swiper = new Swiper(".swiper", {
+    swiper = new Swiper(".swiper", {
       // Optional parameters
       direction: "horizontal",
       loop: false,
@@ -117,6 +101,21 @@ export class Gallery extends HTMLElement {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
+    });
+
+    this._rawImageArray.forEach((obj) => {
+      Images.getImage(obj.imageId).then((img) => {
+        document.querySelector(`#${obj.imageId}_name`).innerText = String(
+          img.name
+        );
+        document.querySelector(`#${obj.imageId}_desc`).innerText =
+          String(img.desc) || "Žádný popis";
+        document.querySelector(`#${obj.imageId}_total_likes`).innerHTML =
+          `${String(img.totalLikes)} <span id="like-heart" data-id="${
+            obj.imageId
+          }" class="typcn typcn typcn-heart"></span>` ||
+          `0 <span id="like-heart" data-id="${obj.imageId}" class="typcn typcn typcn-heart"></span>`;
+      });
     });
 
     this.querySelector(".thumbnail").onclick = function () {
@@ -136,13 +135,11 @@ export class Gallery extends HTMLElement {
     this.querySelectorAll("#like-heart").forEach((el) => {
       el.onclick = (e) => {
         console.log("yeet");
-        //Images.addLike(e.target.dataset.id,)
       };
     });
 
     // Keyboard shortcuts
     window.onkeydown = (e) => {
-      console.log(e.keyCode);
       switch (e.keyCode) {
         case 27: {
           document.querySelector("#modal").classList.remove("open");
@@ -161,21 +158,23 @@ export class Gallery extends HTMLElement {
       }
     };
     // Periodically change images
-    window.setInterval(() => {
-      let imageEl = document.querySelector("#thumbnail-img");
-      if (this.currentIndex + 1 < this._rawImageArray.length) {
-        this.currentIndex += 1;
-      } else {
-        this.currentIndex = 0;
-      }
-      imageEl.setAttribute(
-        "src",
-        this._rawImageArray[this.currentIndex].imageSrc
-      );
-      if (!document.querySelector("#modal").classList.contains("open")) {
-        swiper.slideTo(this.currentIndex);
-      }
-    }, 3000);
+    if (this.periodic == true) {
+      window.setInterval(() => {
+        let imageEl = document.querySelector("#thumbnail-img");
+        if (this.currentIndex + 1 < this._rawImageArray.length) {
+          this.currentIndex += 1;
+        } else {
+          this.currentIndex = 0;
+        }
+        imageEl.setAttribute(
+          "src",
+          this._rawImageArray[this.currentIndex].imageSrc
+        );
+        if (!document.querySelector("#modal").classList.contains("open")) {
+          swiper.slideTo(this.currentIndex);
+        }
+      }, 3000);
+    }
 
     // Tooltips
     tippy("#thumbnail-img", {
@@ -183,7 +182,16 @@ export class Gallery extends HTMLElement {
       placement: "bottom",
     });
   }
+  openFromLatest(imgId) {
+    var desiredImage = this._rawImageArray.findIndex(
+      (img) => img.imageId == imgId
+    );
+    swiper.slideTo(desiredImage);
+    document.querySelector("#modal").classList.add("open");
+  }
+  closeFromLatest() {
+    document.querySelector("#modal").classList.remove("open");
+  }
 }
 
 customElements.define("image-gallery", Gallery);
-

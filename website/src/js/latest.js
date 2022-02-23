@@ -6,12 +6,13 @@
 
 // Imports
 import { Storage } from "./core";
-import "../css/latest.css"
+import { Gallery } from "../components/gallery";
+import "../css/latest.css";
 
 // Variables
 var perChunk = 0; // Default value
 var collectionObject = new Object();
-var currentIndex = 0; 
+var currentIndex = 0;
 const latestCollectionId = "1642016809701";
 
 // Function for splitting the array into chunks
@@ -34,13 +35,11 @@ function goToChunk(chunkIndex) {
 
   chunkList[currentIndex].style.display = "none";
   chunkList[chunkIndex].style.display = "grid";
-  
+
   btns[currentIndex].classList.remove("btn-selected");
   btns[chunkIndex].classList.add("btn-selected");
 
   currentIndex = chunkIndex;
-
-
 }
 
 // Correctly getting the whole collectionObject
@@ -58,6 +57,10 @@ collectionObject.imageChunks = splitArrayIntoChunks(
   perChunk
 );
 
+const gallery = new Gallery(collectionObject.images);
+gallery.classList.add("latest-gallery");
+document.body.appendChild(gallery);
+
 // Create buttons inside the pagination element
 // And append the images into the table
 let paginationWraper = document.querySelector(".pagination");
@@ -66,7 +69,7 @@ collectionObject.imageChunks.forEach((item, index) => {
   // Create the buttons
   let paginationEl = document.createElement("div");
   paginationEl.innerHTML = `
-  <button class="pagination-button">${index+1}</button>
+  <button class="pagination-button">${index + 1}</button>
   `;
   paginationWraper.appendChild(paginationEl);
   // Make them work
@@ -75,24 +78,31 @@ collectionObject.imageChunks.forEach((item, index) => {
   buttons.forEach((btn, index) => {
     btn.addEventListener("click", () => {
       goToChunk(index);
-    })
-  })
+    });
+  });
   // Images in the wrapper
   let imageChunk = document.createElement("div");
   imageChunk.classList.add("image-chunk");
   let imagesTable = document.querySelector(".table-content");
-  item.forEach((img) => {
+  item.forEach((img, index) => {
     let image = document.createElement("div");
-    image.classList.add("single-image")
+    image.classList.add("single-image");
+    image.setAttribute("data-id", img.imageId);
     image.innerHTML = `
     <img src="${img.imageSrc}" style="height: 350px"/>
     `;
     imageChunk.appendChild(image);
+
+    // On click open gallery
+    image.addEventListener("click", () => {
+      gallery.openFromLatest(img.imageId);
+    });
   });
   imagesTable.appendChild(imageChunk);
   imagesTable.children[0].style.display = "grid";
 });
 
 // Show the correct page index initially
-document.querySelectorAll(".pagination-button")[0].classList.add("btn-selected");
-
+document
+  .querySelectorAll(".pagination-button")[0]
+  .classList.add("btn-selected");
