@@ -1,0 +1,47 @@
+.table-wrapper {
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 25px 10px;
+}
+.pagination-button {
+  outline: none;
+  background-color: black;
+  padding: 5px 10px;
+  color: white;
+  border: solid black 1px;
+  cursor: pointer;
+  margin: 10px;
+}
+.btn-selected {
+  background-color: white;
+  color: black;
+}
+.image-chunk {
+  display: none;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: auto;
+  justify-content: center;
+  column-gap: 25px;
+  row-gap: 25px;
+}
+.single-image {
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+.single-image > img {
+  height: 200px;
+  width: auto;
+}
+.single-image:hover > img {
+  filter: brightness(1.1);
+}
+
+.latest-gallery .thumbnail {
+  display: none;
+}

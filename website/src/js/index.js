@@ -10,5 +10,5 @@ let collectionObject = Storage.getSpecific("1642100551696");
 // Gallery init
 const galleryWrapper = document.querySelector("#gallery-wrapper");
 
-galleryWrapper.appendChild(new Gallery(collectionObject.images));
+galleryWrapper.appendChild(new Gallery(collectionObject.images, true));
 
