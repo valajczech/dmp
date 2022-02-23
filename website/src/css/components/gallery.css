@@ -28,7 +28,7 @@ image-gallery {
   height: 100vh;
   transform: translate(-50%, -50%);
   background-color: black;
-  z-index: 1;
+  z-index: 9999;
   color: white;
 }
 .gallery-controls {
@@ -61,8 +61,12 @@ image-gallery {
   display: flex;
   flex-direction: column;
 }
+.swiper-wrapper {
+  color: black;
+}
 .swiper-slide {
   height: 100vh !important;
+  color: white;
 }
 
 .swiper-slide > .swiper-img {
@@ -98,6 +102,9 @@ image-gallery {
   width: 50%;
   padding: 10px;
 }
+.text-content >p {
+  font-size: 1rem !important;
+}
 
 .controls {
   display: flex;
@@ -107,7 +114,7 @@ image-gallery {
   gap: 25px;
   padding: 15px 0px;
 }
-.controls span {
+.controls p {
   font-size: 20px;
   cursor: pointer;
 }
@@ -116,7 +123,6 @@ image-gallery {
 }
 p:hover {
   color: white;
-  font-weight: bold;
   transition: 0.6s ease;
   border-radius: 3px;
   user-select: none;

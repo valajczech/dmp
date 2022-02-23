@@ -33,7 +33,7 @@ export class Gallery extends HTMLElement {
   }
 
   connectedCallback() {
-    // console.log(this._rawImageArray);
+    console.log(this._rawImageArray);
     this.innerHTML = `  
     <div class="gallery">
     <div class="thumbnail">
