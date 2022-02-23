@@ -136,7 +136,7 @@ export class Gallery extends HTMLElement {
       el.onclick = (e) => {
         console.log("yeet");
       };
-    });
+    });;
 
     // Keyboard shortcuts
     window.onkeydown = (e) => {
