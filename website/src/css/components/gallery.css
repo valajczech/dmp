@@ -51,10 +51,8 @@ image-gallery {
 #close-modal:hover {
   color: white;
 }
-
 .navigation::after {
   font-size: 20px !important;
-
   color: white;
   padding: 10px;
   width: 50vw;
@@ -86,10 +84,13 @@ image-gallery {
 .swiper-slide > .swiper-img > img {
   height: 100vh;
 }
-.swiper-slide > .metadata {
+.text-content {
   position: absolute;
-  width: 600px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
 
+  width: 600px;
 
   display: flex;
   flex-direction: column;
@@ -97,8 +98,24 @@ image-gallery {
   align-items: center;
   max-height: 100vh;
   overflow-y: scroll;
+
+
 }
-.metadata::-webkit-scrollbar {
+
+#popup-toggle {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+
+  opacity: 0.5;
+  transition-duration: 0.3s;
+}
+#popup-toggle:hover {
+  opacity: 1;
+  color: white;
+}
+
+.text-content::-webkit-scrollbar {
   display: none;
 }
 .swiper-slide > .metadata > #popup-toggle {
@@ -144,15 +161,12 @@ p:hover {
   -webkit-user-select: none;
 }
 
-#popup-toggle:hover {
-  color: #8b8b8b;
-}
 /* Utility classes */
 .open {
   display: block;
 }
 .modal-open {
-  transform: translateY(-100%);
+  transform: translate(-50%, -200%);
 }
 .toggle-rotated {
   transform: rotate(180deg) !important;

@@ -13,4 +13,4 @@ let collectionObject = Storage.getSpecific(collectionId);
 const galleryWrapper = document.querySelector("#gallery-wrapper");
 
 document.querySelector(".collectionName").innerText = collectionObject.name;
-galleryWrapper.appendChild(new Gallery(collectionObject.images,true));
+galleryWrapper.appendChild(new Gallery(collectionObject.images,true, true));

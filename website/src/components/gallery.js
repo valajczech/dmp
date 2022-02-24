@@ -22,11 +22,13 @@ export class Gallery extends HTMLElement {
    * @param {[]} imageArray Constructor takes array of items to display
    */
 
-  constructor(imageArray, periodic) {
+  constructor(imageArray, periodic, showDescription) {
     super();
     this._rawImageArray = imageArray;
     this.currentIndex = 0;
     this.total = imageArray.length;
+
+    showDescription == undefined || showDescription == false ? this.showDescription = false : this.showDescription = true;
     if (periodic == undefined || periodic == false || periodic == null) {
       this.periodic = false;
     } else if (periodic == true) {
@@ -34,6 +36,7 @@ export class Gallery extends HTMLElement {
     }
   }
   connectedCallback() {
+    console.log(this.showDescription);
     this.innerHTML = `  
     <div class="gallery">
     <div class="thumbnail">
@@ -52,6 +55,7 @@ export class Gallery extends HTMLElement {
       <div class="swiper-wrapper">
         <!-- Slides -->
         ${this._rawImageArray.map((item) => {
+          // Jesus I want to write this using jsx and Gatsby
           return `
             <div class="swiper-slide">
             <div class="swiper-img">
@@ -59,19 +63,23 @@ export class Gallery extends HTMLElement {
                 src="${item.imageSrc}"
               />
             </div>
-            <div class="metadata">
-              <span class="typcn typcn-arrow-sorted-up up" id="popup-toggle" data-imageID=${item.imageId}></span>
-              <div class="text-content">
-              <p id="${item.imageId}_name" class="name">Načítání</p>
-              <p id="${item.imageId}_desc" class="desc">
-                Načítání
-              </p>
-              <div class="controls">
-                <p id="${item.imageId}_total_likes"></p>
-                <!---<span id="sharer" class="typcn typcn-export"></span>--->
-              </div>
-              </div>
+            ${
+              this.showDescription
+                ? `<div class="metadata">
+            <span class="typcn typcn-arrow-sorted-up up" id="popup-toggle" data-imageID=${item.imageId}></span>
+            <div class="text-content">
+            <p id="${item.imageId}_name" class="name">Načítání</p>
+            <p id="${item.imageId}_desc" class="desc">
+              Načítání
+            </p>
+            <div class="controls">
+              <p id="${item.imageId}_total_likes"></p>
+              <!---<span id="sharer" class="typcn typcn-export"></span>--->
             </div>
+            </div>
+          </div>`
+                : ``
+            }
             </div>
           `;
         })}
@@ -124,10 +132,12 @@ export class Gallery extends HTMLElement {
     this.querySelector("#close-modal").onclick = function () {
       document.querySelector("#modal").classList.remove("open");
     };
+    
     // Popup toggle
     this.querySelectorAll("#popup-toggle").forEach((el) => {
       el.onclick = (e) => {
-        e.target.parentNode.classList.toggle("modal-open");
+        document.querySelectorAll(".text-content")[swiper.activeIndex].classList.toggle("modal-open")
+        // e.target.parentNode.classList.toggle("modal-open");
         e.target.classList.toggle("toggle-rotated");
       };
     });
@@ -136,7 +146,7 @@ export class Gallery extends HTMLElement {
       el.onclick = (e) => {
         console.log("yeet");
       };
-    });;
+    });
 
     // Keyboard shortcuts
     window.onkeydown = (e) => {

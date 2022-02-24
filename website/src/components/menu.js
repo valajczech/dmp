@@ -37,6 +37,9 @@ class Menu extends HTMLElement {
       this.collections = Storage.getCollectionsFromStorage();
       const list = this.querySelector(".collections");
       this.collections.forEach((item) => {
+        if (item.id == "1642100551696" || item.id == "1642016809701") {
+          return;
+        }
         let albumDOM = document.createElement("li");
         albumDOM.innerHTML = `
         <a class="menulink" href="collection?collectionId=${item.id}">${item.name}</a>
