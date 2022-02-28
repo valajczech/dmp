@@ -10,7 +10,7 @@ import { Gallery } from "../components/gallery";
 import "../css/latest.css";
 
 // Variables
-var perChunk = 0; // Default value
+var perChunk = 6; 
 var collectionObject = new Object();
 var currentIndex = 0;
 const latestCollectionId = "1642016809701";
@@ -46,18 +46,18 @@ function goToChunk(chunkIndex) {
 collectionObject = Storage.getSpecific(latestCollectionId);
 
 // Optimize for image count
-if (collectionObject.images.lenght > 9) {
-  perChunk = 9;
-} else {
-  perChunk = 3;
-}
+// if (collectionObject.images.lenght > 9) {
+//   perChunk = 9;
+// } else {
+//   perChunk = 3;
+// }
 // Split the array
 collectionObject.imageChunks = splitArrayIntoChunks(
   collectionObject.images,
   perChunk
 );
 
-const gallery = new Gallery(collectionObject.images);
+const gallery = new Gallery(collectionObject.images, false);
 gallery.classList.add("latest-gallery");
 document.body.appendChild(gallery);
 
