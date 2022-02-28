@@ -17,6 +17,27 @@ import "swiper/css/pagination";
 import { Images } from "../js/core";
 var swiper;
 
+function removeAllText(element) {
+  // loop through all the nodes of the element
+  var nodes = element.childNodes;
+
+  for (var i = 0; i < nodes.length; i++) {
+    var node = nodes[i];
+
+    // if it's a text node, remove it
+    if (node.nodeType == Node.TEXT_NODE) {
+      node.parentNode.removeChild(node);
+
+      i--; // have to update our incrementor since we just removed a node from childNodes
+    }
+
+    // if it's an element, repeat this process
+    else if (node.nodeType == Node.ELEMENT_NODE) {
+      removeAllText(node);
+    }
+  }
+}
+
 export class Gallery extends HTMLElement {
   /**
    * @param {[]} imageArray Constructor takes array of items to display
@@ -28,7 +49,9 @@ export class Gallery extends HTMLElement {
     this.currentIndex = 0;
     this.total = imageArray.length;
 
-    showDescription == undefined || showDescription == false ? this.showDescription = false : this.showDescription = true;
+    showDescription == undefined || showDescription == false
+      ? (this.showDescription = false)
+      : (this.showDescription = true);
     if (periodic == undefined || periodic == false || periodic == null) {
       this.periodic = false;
     } else if (periodic == true) {
@@ -36,7 +59,6 @@ export class Gallery extends HTMLElement {
     }
   }
   connectedCallback() {
-    console.log(this.showDescription);
     this.innerHTML = `  
     <div class="gallery">
     <div class="thumbnail">
@@ -132,11 +154,13 @@ export class Gallery extends HTMLElement {
     this.querySelector("#close-modal").onclick = function () {
       document.querySelector("#modal").classList.remove("open");
     };
-    
+
     // Popup toggle
     this.querySelectorAll("#popup-toggle").forEach((el) => {
       el.onclick = (e) => {
-        document.querySelectorAll(".text-content")[swiper.activeIndex].classList.toggle("modal-open")
+        document
+          .querySelectorAll(".text-content")
+          [swiper.activeIndex].classList.toggle("modal-open");
         // e.target.parentNode.classList.toggle("modal-open");
         e.target.classList.toggle("toggle-rotated");
       };
@@ -185,6 +209,9 @@ export class Gallery extends HTMLElement {
         }
       }, 3000);
     }
+
+    let wrapper = document.querySelector(".swiper-wrapper");
+    removeAllText(wrapper);
 
     // Tooltips
     tippy("#thumbnail-img", {
