@@ -37,6 +37,10 @@ class Pictures extends React.Component {
   };
 
   render() {
+    this.state.data.sort((a, b) => {
+      return new Date(b.uploadDate) - new Date(a.uploadDate);
+    });
+
     return (
       <div className="pictures">
         <h3>Všechny fotografie</h3>
