@@ -45,3 +45,16 @@
 .latest-gallery .thumbnail {
   display: none;
 }
+
+@media screen and (max-width: 1200px) {
+  .image-chunk {
+    grid-template-columns: repeat(2, 200px);
+    grid-template-rows: repeat(3, 200px);
+  }
+}
+@media screen and (max-width: 500px) {
+  .image-chunk {
+    grid-template-columns: repeat(1, 200px);
+    grid-template-rows: repeat(6, 200px);
+  }
+}
