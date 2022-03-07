@@ -16,8 +16,10 @@ class LatestImages extends React.Component {
     this.setState({ data: Storage.Images.get() });
   }
   render() {
-    //TODO:
-    //! Max 5
+    this.state.data.sort((a, b) => {
+      return new Date(b.uploadDate) - new Date(a.uploadDate);
+    });
+
     return (
       <div className="latest-images">
         <div className="header-controls">
