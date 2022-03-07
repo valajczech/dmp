@@ -76,6 +76,8 @@ image-gallery {
 .swiper-slide {
   height: 100vh !important;
   color: white;
+  margin:  0;
+  padding: 0;
 }
 
 .swiper-slide > .swiper-img {
@@ -104,7 +106,7 @@ image-gallery {
 
 #popup-toggle {
   position: absolute;
-  bottom: 10px;
+  bottom: 25px;
   left: 50%;
 
   opacity: 0.5;
@@ -225,4 +227,34 @@ img.hover-shadow {
 
 .hidden {
   display: none !important;
+}
+
+#text {
+  display: none;
+}
+/* Media queries */
+
+
+@media only screen and (max-width: 1200px) {
+  .gallery > .thumbnail > #thumbnail-img {
+    width: 100%;
+  }
+  .swiper-slide {
+    width: 100vw !important;
+  }
+  .swiper-img {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .swiper-img > img  {
+    width: 100vw;
+    height: auto !important;
+  }
+  .navigation {
+    bottom: 0px !important;
+    top: auto !important;
+    margin: 0px 25px;
+  }
 }
