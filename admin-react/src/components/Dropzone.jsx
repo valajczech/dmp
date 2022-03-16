@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import "../style/components/Dropzone.css";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { Images } from "../helpers/images";
@@ -22,12 +23,8 @@ class Dropzone extends React.Component {
   }
   componentDidMount() {
     emitter.addListener("deleteLocalImage", (payloadId) => {
-      //console.log("id:", payload);
       tempData = tempData.filter((img) => img._tempId !== payloadId);
       this.setState({ data: tempData });
-      // tempData.forEach((img) => {
-      //   console.log(img);
-      // })
     });
   }
   openFileDialog = () => {
@@ -57,42 +54,25 @@ class Dropzone extends React.Component {
       this.setState({ data: this.state.data.concat(tempData) });
     }
   };
-  startUpload = () => {
-    this.setState({
-      isUploading: true,
-    });
-
+  startUpload = async () => {
     const storage = getStorage();
     if (this.state.data.length > 0) {
-      console.log(this.state.data.length);
-      this.state.data.forEach((img) => {
-        // Todo: rework the script it saves its ref with ID instead  of name!
-        //! BUG: Only uploads src of the first image, it skips it
-        // Upload to Firebase Storage
-        // Create ref in Firestore
-
-        Images.Image.uploadToFirestore(img).then((docID) => {
-          // Upload to storage via the docID
-          const storageRef = ref(
-            storage,
-            "gs://dmp-bures.appspot.com/" + docID
-          );
-          // Create upload task
-          //! uploads only some of selected files
-          const uploadTask = uploadBytesResumable(storageRef, img._file).then(
-            (snap) => {
-              getDownloadURL(snap.ref).then(async (url) => {
-                // Set the url in corresponding img doc
-                await Images.Image.Update.downloadURL(docID, url).then(() => {
-                  this.setState({
-                    isUploading: false,
-                  });
-                  window.location.reload();
-                });
-              });
-            }
-          );
+      // The base array is not empty, we can proceed with upload
+      this.state.data.forEach(async (img, index) => {
+        // Create Firestore doc
+        let imageDocId = await Images.Image.uploadToFirestore(img);
+        // Create Storage reference based on docId
+        let storageRef = await ref(
+          storage,
+          "gs://dmp-bures.appspot.com/" + imageDocId
+        );
+        let uploadTask = await uploadBytesResumable(storageRef, img._file);
+        let imageUrl = await getDownloadURL(uploadTask.ref);
+        await Images.Image.Update.downloadURL(imageDocId, imageUrl);
+        this.setState({
+          isUploading: false
         });
+        window.location.replace("https://dashboard-dmp-bures.web.app/")
       });
     }
   };
@@ -111,7 +91,13 @@ class Dropzone extends React.Component {
             })}
           </div>
         </div>
-        <div className="uploader" onClick={this.startUpload}>
+        <div
+          className="uploader"
+          onClick={() => {
+            this.startUpload();
+            this.setState({ isUploading: true });
+          }}
+        >
           <button
             disabled={
               this.state.isUploading

@@ -69,6 +69,7 @@ class CollectionsPage extends React.Component {
                 title={item.name}
                 total={item.connectedImages.length}
                 images={item.connectedImages}
+                isDeletable={item.id == "1642016809701" || item.id == "1642100551696" ? false : true}
               />
             );
           })}
