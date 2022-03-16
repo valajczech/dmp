@@ -4,6 +4,7 @@ body {
   -ms-user-select: none;
   user-select: none;
   font-family: "Open Sans", sans-serif;
+
 }
 
 image-gallery {
@@ -93,7 +94,14 @@ image-gallery {
   transform: translateX(-50%);
 
   width: 600px;
+}
+.navigation::after {
+  font-size: 20px !important;
 
+  color: white;
+  padding: 10px;
+  width: 50vw;
+  height: 350px;
   display: flex;
   flex-direction: column;
   transition-duration: 0.3s;
@@ -210,6 +218,7 @@ img.hover-shadow {
 
 .hidden {
   display: none !important;
+
 }
 
 .active,

@@ -1,0 +1,20 @@
+name: Deploy
+on:
+  push:
+    branches: 
+      - main
+      - master
+
+jobs:
+  build:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Execute remote git pull 
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSHKEY }}
+        port: ${{ secrets.PORT }}
+        script: cd files/oc-bures && git pull && pwd && ls -ls && echo "Call build script"
