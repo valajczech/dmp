@@ -20,4 +20,4 @@ jobs:
         port: ${{ secrets.PORT }}
         script: cd files/oc-bures && git pull && pwd && ls -la
     - name: Call Build script
-      script: cd ../scripts && chmod +x  buildAndDeploy.sh && ./buildAndDeploy.sh
+      run: cd ../scripts && chmod +x  buildAndDeploy.sh && ./buildAndDeploy.sh
