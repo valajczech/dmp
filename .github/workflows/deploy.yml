@@ -1,13 +1,14 @@
-name: Deploy
+name: Deploy to VPS
 on:
   push:
     branches: 
       - main
       - master
+      - 2022-16-03_CICD
 
 jobs:
   build:
-    name: Deploy
+    name: Deploy to VPS
     runs-on: ubuntu-latest
     steps:
     - name: Execute remote git pull 
@@ -17,4 +18,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSHKEY }}
         port: ${{ secrets.PORT }}
-        script: cd files/oc-bures && git pull && pwd && ls -ls && echo "Call build script"
+        script: cd files/oc-bures && git pull && pwd && ls -la && cd scripts && chmod +x buildAndDeploy.sh && ./buildAndDeploy.sh
