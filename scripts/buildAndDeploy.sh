@@ -11,7 +11,7 @@ echo "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥�
 echo "🏁 Starting build process for WEBSITE 🏁"
 echo "________________________________________"
 # WEBSITE
-cd website
+cd ../website
 echo "⬇️ Installing dependencies"
 npm install
 echo "👷 Building"
