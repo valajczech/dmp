@@ -17,4 +17,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSHKEY }}
         port: ${{ secrets.PORT }}
-        script: cd files/oc-bures && git pull && pwd && ls -ls && echo "Call build script"
+        script: cd files/oc-bures && cd scripts && chmod +x buildAndDeploy.sh && ./buildAndDeploy.sh
