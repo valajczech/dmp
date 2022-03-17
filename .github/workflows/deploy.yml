@@ -18,6 +18,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSHKEY }}
         port: ${{ secrets.PORT }}
-        script: cd files/oc-bures && git pull
-    - name: Execute build script
-      run: cd files/oc-bures && pwd && ls -la && cd scripts
+        script: cd files/oc-bures && git pull && pwd && ls -la && cd scripts
