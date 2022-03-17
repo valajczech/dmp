@@ -1,13 +1,14 @@
-name: Deploy
+name: Deploy to VPS
 on:
   push:
     branches: 
       - main
       - master
+      - 2022-16-03_CICD
 
 jobs:
   build:
-    name: Deploy
+    name: Deploy to VPS
     runs-on: ubuntu-latest
     steps:
     - name: Execute remote git pull 
