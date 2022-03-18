@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "../style/routes/CollectionDetail.css";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
@@ -40,7 +40,7 @@ class CollectionDetail extends React.Component {
               return (
                 <div id="collection-image" key={img.imageId}>
                   <Link to={`/pictures/${img.imageId}`} >
-                    <img src={img.imageSrc} />
+                    <img alt="From this collection" src={img.imageSrc} />
                   </Link>
                 </div>
               );

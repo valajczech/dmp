@@ -1,9 +1,6 @@
 import React from "react";
 import "../style/components/SummaryWidget.css";
 class SummaryWidget extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div className="summary-widget">

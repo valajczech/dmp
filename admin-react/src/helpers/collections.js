@@ -4,10 +4,7 @@ import {
   doc,
   collection,
   query,
-  orderBy,
-  limit,
   where,
-  getDoc,
   getDocs,
   setDoc,
   deleteDoc,
@@ -22,7 +19,7 @@ const collectionsRef = collection(db, "albums");
 export const Collections = {
   Get: {
     detailedCollectionList: async () => {
-      let res = new Array();
+      let res = [];
       const query = await getDocs(collectionsRef);
       query.forEach((doc) => {
         res.push(doc.data());

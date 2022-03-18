@@ -2,15 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../style/routes/PictureDetail.css";
 
-import {
-  FaHeart,
-  FaImage,
-  FaTimes,
-  FaInfo,
-  FaFolder,
-  FaEdit,
-  FaSave,
-} from "react-icons/fa";
+import { FaTimes, FaInfo, FaFolder, FaEdit, FaSave } from "react-icons/fa";
 
 // Helpers
 import { Images } from "../helpers/images";
@@ -18,7 +10,6 @@ import { Storage } from "../helpers/storage";
 import { Collections } from "../helpers/collections";
 
 import emitter from "../utils/EventEmitter";
-import emmiter from "../utils/EventEmitter";
 import BackButton from "../components/BackButton";
 
 // TODO:
@@ -80,7 +71,9 @@ class PictureDetail extends React.Component {
     });
     // Correctly update local collections
     Storage.Collections.set(await Collections.Get.detailedCollectionList());
-    this.setState({pictureObject: Storage.Images.getSpecific(this.state.pictureId)})
+    this.setState({
+      pictureObject: Storage.Images.getSpecific(this.state.pictureId),
+    });
     this.forceUpdate();
   };
   render() {
@@ -92,7 +85,7 @@ class PictureDetail extends React.Component {
         <div className="picture-content">
           <div className="image-wrapper">
             <div className="image">
-              <img src={this.state.pictureObject.url} />
+              <img alt="" src={this.state.pictureObject.url} />
             </div>
             <div className="collection-tags">
               <div className="selected">
@@ -116,7 +109,7 @@ class PictureDetail extends React.Component {
                         );
 
                         // Update the local data
-                        this.updateEssentialData()
+                        this.updateEssentialData();
                       }}
                     >
                       <FaTimes />
