@@ -19,6 +19,7 @@ import { Collections } from "../helpers/collections";
 
 import emitter from "../utils/EventEmitter";
 import emmiter from "../utils/EventEmitter";
+import BackButton from "../components/BackButton";
 
 // TODO:
 // 1. Build the DOM structure [x]
@@ -86,9 +87,7 @@ class PictureDetail extends React.Component {
     return (
       <div className="picture-detail">
         <div className="top-controls">
-          <Link to="/pictures">
-            <button id="back">Zpět</button>
-          </Link>
+          <BackButton />
         </div>
         <div className="picture-content">
           <div className="image-wrapper">

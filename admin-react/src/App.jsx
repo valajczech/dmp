@@ -1,6 +1,6 @@
-  import "./style/App.css";
+import "./style/App.css";
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Components
 import { AuthProvider } from "./components/auth/AuthProvider";
@@ -17,37 +17,57 @@ import NoMatch from "./routes/NoMatch";
 import CollectionDetail from "./routes/CollectionDetail";
 import PictureDetail from "./routes/PictureDetail";
 
-require("dotenv").config();
-class App extends React.Component {
-  componentDidMount() {}
+function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <Switch>
+          <Route path="/login" component={Login} />
+          <PrivateRoute exact path="/" component={Dashboard} />
+          <PrivateRoute exact path="/upload" component={UploadPage} />
+          <PrivateRoute exact path="/pictures" component={Pictures} />
+          <PrivateRoute exact path="/pictures/:id" component={PictureDetail} />
+          <PrivateRoute exact path="/collections" component={CollectionsPage} />
+          <PrivateRoute path="/collections/:id" component={CollectionDetail} />
+          <PrivateRoute exact path="/about" component={About} />
 
-  render() {
-    return (
-      <AuthProvider>
-        <Router>
-          <Switch>
-            <Route path="/login" component={Login} />
-            <PrivateRoute exact path="/" component={Dashboard} />
-            <PrivateRoute exact path="/upload" component={UploadPage} />
-            <PrivateRoute exact path="/pictures" component={Pictures} />
-            <PrivateRoute exact path="/pictures/:id" component={PictureDetail} />
-            <PrivateRoute
-              exact
-              path="/collections"
-              component={CollectionsPage}
-            />
-            <PrivateRoute
-              path="/collections/:id"
-              component={CollectionDetail}
-            />
-            <PrivateRoute exact path="/about" component={About} />
-
-            <Route path="*" component={NoMatch} />
-          </Switch>
-        </Router>
-      </AuthProvider>
-    );
-  }
+          <Route path="*" component={NoMatch} />
+        </Switch>
+      </Router>
+    </AuthProvider>
+  );
 }
+
+// class App extends React.Component {
+//   componentDidMount() {}
+
+//   render() {
+//     return (
+//       <AuthProvider>
+//         <Router>
+//           <Switch>
+//             <Route path="/login" component={Login} />
+//             <PrivateRoute exact path="/" component={Dashboard} />
+//             <PrivateRoute exact path="/upload" component={UploadPage} />
+//             <PrivateRoute exact path="/pictures" component={Pictures} />
+//             <PrivateRoute exact path="/pictures/:id" component={PictureDetail} />
+//             <PrivateRoute
+//               exact
+//               path="/collections"
+//               component={CollectionsPage}
+//             />
+//             <PrivateRoute
+//               path="/collections/:id"
+//               component={CollectionDetail}
+//             />
+//             <PrivateRoute exact path="/about" component={About} />
+
+//             <Route path="*" component={NoMatch} />
+//           </Switch>
+//         </Router>
+//       </AuthProvider>
+//     );
+//   }
+// }
 
 export default App;
