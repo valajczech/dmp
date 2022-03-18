@@ -9,7 +9,7 @@ export const Storage = {
       return JSON.parse(localStorage.getItem("Images"));
     },
     getSpecific: (id) => {
-      return Storage.Images.get().find((obj) => obj.id == id);
+      return Storage.Images.get().find((obj) => obj.id === id);
     },
     set: (imageList) => {
       localStorage.setItem("Images", JSON.stringify(imageList));
@@ -21,7 +21,7 @@ export const Storage = {
       return JSON.parse(localStorage.getItem("Collections"));
     },
     getSpecific: (id) => {
-      return Storage.Collections.get().find((obj) => obj.id == id);
+      return Storage.Collections.get().find((obj) => obj.id === id);
       
     },
     set: (collectionList) => {

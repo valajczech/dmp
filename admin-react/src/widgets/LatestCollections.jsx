@@ -26,7 +26,7 @@ class LatestCollections extends React.Component {
           </Link>
         </div>
         <div className="list">
-          {this.state.data.length == 0 ? (
+          {this.state.data.length === 0 ? (
             <span id="list-empty">
               {" "}
               Prozatím nejsou vytvořeny žádná alba

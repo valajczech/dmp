@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { FaHeart, FaImage } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Images } from "../helpers/images";
@@ -29,7 +29,7 @@ class LatestImages extends React.Component {
           </Link>
         </div>
         <div className="list">
-          {this.state.data.length == 0 ? (
+          {this.state.data.length === 0 ? (
             <span id="list-empty">
               Prozatím nejsou nahrány žádné fotografie
             </span>

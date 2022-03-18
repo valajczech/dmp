@@ -30,7 +30,7 @@ export const Analytics = {
   },
   Likes: {
     getMostLikedImage: async () => {
-      let res = new Array();
+      let res = [];
       let q = query(
         imagesRef,
         where("total_likes", "!=", "undefined"),
@@ -57,7 +57,7 @@ export const Analytics = {
       ).size;
     },
     getTotalSize: async () => {
-      let total = new Number();
+      let total;
       const q = query(collection(db, "uploadedPictures"));
       const snap = await getDocs(q);
       snap.forEach((doc) => {
@@ -66,7 +66,6 @@ export const Analytics = {
         //! Or just rewrite the upload script so it represents raw value
         //! And then just  convert it using Images.Meta.returnFileSze()
         //! I'll do that.
-        let newSizeRecord = doc.data().size; //debug
         total = total + doc.data().size;
       });
       return total;

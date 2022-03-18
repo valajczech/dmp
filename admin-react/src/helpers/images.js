@@ -15,7 +15,6 @@ import {
 } from "firebase/firestore";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import date from "date-and-time";
-import { Collections } from "./collections";
 
 // Refs
 const imagesRef = collection(db, "uploadedPictures");
@@ -49,7 +48,7 @@ export const Images = {
   },
   Get: {
     detailedImageList: async () => {
-      let res = new Array();
+      let res = [];
       let query = await getDocs(imagesRef);
       query.forEach((doc) => {
         res.push(doc.data());
@@ -57,7 +56,7 @@ export const Images = {
       return res;
     },
     mostLikedImage: async () => {
-      let res = new Array();
+      let res = [];
       let q = await getDocs(query(imagesRef, orderBy("total_likes", "desc"), limit(1)));
       q.forEach((img) => {
         res.push(img.data());

@@ -1,6 +1,6 @@
 //TODO: force realtime updates on the clock, currently gets stuck on the time of the render
 
-import React, { useContext } from "react";
+import React from "react";
 import date from "date-and-time";
 import "../style/components/Topbar.css";
 import UserPopup from "./popups/UserPopup";

@@ -23,7 +23,7 @@ class MostLikedImage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {this.state.data == undefined ? (
+        {this.state.data === undefined ? (
           <div className="most-liked-image">
             <div className="img">
               <img src={Empty} id="empty" alt="" />

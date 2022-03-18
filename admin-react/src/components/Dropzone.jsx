@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import "../style/components/Dropzone.css";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { Images } from "../helpers/images";
@@ -38,14 +37,14 @@ class Dropzone extends React.Component {
         if (Images.Meta.isImage(file)) {
           // The Image is __image__ xd
           // Create an object and add it to this.state.data
-          let tempImage = new Object({
+          let tempImage = {
             name: file.name,
             _file: file,
             _tempId: file.lastModified,
             _local_src: URL.createObjectURL(file),
             size: file.size,
             type: file.type,
-          });
+          };
           tempData.push(tempImage);
         } else {
           alert("Soubor s názvem " + file.name + " není fotografie.");
