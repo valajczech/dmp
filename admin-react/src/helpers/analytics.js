@@ -57,15 +57,10 @@ export const Analytics = {
       ).size;
     },
     getTotalSize: async () => {
-      let total;
+      let total = 0;
       const q = query(collection(db, "uploadedPictures"));
       const snap = await getDocs(q);
       snap.forEach((doc) => {
-        //? Handle that the size is represented by a string
-        //? Can look like so: "15MB" but also "14.5KB"  - need to handle this!
-        //! Or just rewrite the upload script so it represents raw value
-        //! And then just  convert it using Images.Meta.returnFileSze()
-        //! I'll do that.
         total = total + doc.data().size;
       });
       return total;
