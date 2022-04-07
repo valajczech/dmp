@@ -62,6 +62,7 @@ class CollectionsPage extends React.Component {
         </div>
         <div className="all">
           {this.state.data.map((item) => {
+            console.log(item.connectedImages);
             return (
               <CollectionItem
                 key={item.id || item.name}

@@ -37,10 +37,11 @@ class CollectionDetail extends React.Component {
             {Storage.Collections.getSpecific(
               this.state.collectionId
             ).connectedImages.map((img) => {
+              console.log("Collection Detail:", img);
               return (
                 <div id="collection-image" key={img.imageId}>
-                  <Link to={`/pictures/${img.imageId}`} >
-                    <img alt="From this collection" src={img.imageSrc} />
+                  <Link to={`/pictures/${img.imageId}`}>
+                    <img alt="From this collection" src={img.imageThumbnailSrc} />
                   </Link>
                 </div>
               );

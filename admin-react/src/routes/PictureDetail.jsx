@@ -77,6 +77,7 @@ class PictureDetail extends React.Component {
     this.forceUpdate();
   };
   render() {
+    console.log(this.state.pictureObject);
     return (
       <div className="picture-detail">
         <div className="top-controls">
@@ -171,7 +172,8 @@ class PictureDetail extends React.Component {
                                 Collections.Collection.addImage(
                                   col.id,
                                   this.state.pictureId,
-                                  this.state.pictureObject.url
+                                  this.state.pictureObject.url,
+                                  this.state.pictureObject.thumbnailURL
                                 );
                                 // Update the local data
                                 this.updateEssentialData();

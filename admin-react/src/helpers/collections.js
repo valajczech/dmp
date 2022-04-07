@@ -70,12 +70,13 @@ export const Collections = {
     */
   },
   Collection: {
-    addImage: async (collectionId, imageId, imageSrc) => {
+    addImage: async (collectionId, imageId, imageSrc, imageThumbnailSrc) => {
       // Adds image ref to collections connectedImages array
       await updateDoc(doc(db, "albums", collectionId), {
         connectedImages: arrayUnion({
           imageId: imageId,
           imageSrc: imageSrc,
+          imageThumbnailSrc: imageThumbnailSrc
         }),
       });
     },

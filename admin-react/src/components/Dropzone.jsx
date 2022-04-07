@@ -62,8 +62,8 @@ class Dropzone extends React.Component {
     image.src = img._local_src;
     ctx.drawImage(image, 0, 0);
 
-    var MAX_WIDTH = 400;
-    var MAX_HEIGHT = 400;
+    var MAX_WIDTH = 500;
+    var MAX_HEIGHT = 500;
     var width = image.width;
     var height = image.height;
 
@@ -121,7 +121,7 @@ class Dropzone extends React.Component {
           isUploading: false,
         });
         //DEV:
-        // window.location.replace("/");
+         window.location.replace("/");
 
         // PROD:
         // window.location.replace("https://dashboard-dmp-bures.web.app/");

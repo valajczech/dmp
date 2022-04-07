@@ -22,7 +22,7 @@ class CollectionItem extends React.Component {
         <div className="collection-preview-image">
           {this.props.images[0] !== undefined ? (
             <Link to={`/collections/${this.props.id}`}>
-              <img id="img" alt="Collection Preview" src={this.props.images[0].imageSrc} />
+              <img id="img" alt="Collection Preview" src={this.props.images[0].imageThumbnailSrc} />
             </Link>
           ) : (
             <div id="img"></div>
