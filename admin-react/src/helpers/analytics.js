@@ -57,7 +57,7 @@ export const Analytics = {
       ).size;
     },
     getTotalSize: async () => {
-      let total = 0;
+      let total;
       const q = query(collection(db, "uploadedPictures"));
       const snap = await getDocs(q);
       snap.forEach((doc) => {

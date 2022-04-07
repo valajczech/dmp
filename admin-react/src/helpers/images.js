@@ -45,24 +45,6 @@ export const Images = {
         return (number / 1073741824).toFixed(1) + "GB";
       }
     },
-    dataURItoBlob: (dataURI) => {
-      // convert base64/URLEncoded data component to raw binary data held in a string
-      var byteString;
-      if (dataURI.split(",")[0].indexOf("base64") >= 0)
-        byteString = atob(dataURI.split(",")[1]);
-      else byteString = unescape(dataURI.split(",")[1]);
-
-      // separate out the mime component
-      var mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
-
-      // write the bytes of the string to a typed array
-      var ia = new Uint8Array(byteString.length);
-      for (var i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-      }
-
-      return new Blob([ia], { type: mimeString });
-    },
   },
   Get: {
     detailedImageList: async () => {
@@ -75,9 +57,7 @@ export const Images = {
     },
     mostLikedImage: async () => {
       let res = [];
-      let q = await getDocs(
-        query(imagesRef, orderBy("total_likes", "desc"), limit(1))
-      );
+      let q = await getDocs(query(imagesRef, orderBy("total_likes", "desc"), limit(1)));
       q.forEach((img) => {
         res.push(img.data());
       });
@@ -131,11 +111,7 @@ export const Images = {
         await updateDoc(doc(db, "uploadedPictures", imgId), {
           url: downloadURL,
         });
-      },
-      thumbnailURL: async (imgId, thumbnailURL) => {
-        await updateDoc(doc(db, "uploadedPictures", imgId), {
-          thumbnailURL: thumbnailURL,
-        });
+        return downloadURL;
       },
       name: async (imgId, newName, oldName) => {
         await updateDoc(doc(db, "uploadedPictures", imgId), {
@@ -166,7 +142,6 @@ export const Images = {
         size: data.size,
         type: data.type,
         url: "",
-        thumbnailURL: "",
         uploadDate: date.format(new Date(), "ddd, MMM DD YYYY"),
         total_likes: 0,
         collections: [],

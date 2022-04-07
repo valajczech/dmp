@@ -53,78 +53,25 @@ class Dropzone extends React.Component {
       this.setState({ data: this.state.data.concat(tempData) });
     }
   };
-  resizeImage = (img) => {
-    // Take an image, render it on canvas, resize it and upload it.
-    var canvas = document.createElement("canvas");
-    var ctx = canvas.getContext("2d");
-    var image = document.createElement("img");
-
-    image.src = img._local_src;
-    ctx.drawImage(image, 0, 0);
-
-    var MAX_WIDTH = 400;
-    var MAX_HEIGHT = 400;
-    var width = image.width;
-    var height = image.height;
-
-    if (width > height) {
-      if (width > MAX_WIDTH) {
-        height *= MAX_WIDTH / width;
-        width = MAX_WIDTH;
-      }
-    } else {
-      if (height > MAX_HEIGHT) {
-        width *= MAX_HEIGHT / height;
-        height = MAX_HEIGHT;
-      }
-    }
-    canvas.width = width;
-    canvas.height = height;
-    ctx.drawImage(image, 0, 0, width, height);
-
-    return Images.Meta.dataURItoBlob(canvas.toDataURL("image/webp"));    
-
-    // console.log(canvas.toDataURL("image/webp"));
-    // return new File(canvas.toDataURL("image/webp"), img.name);
-  };
   startUpload = async () => {
     const storage = getStorage();
     if (this.state.data.length > 0) {
       // The base array is not empty, we can proceed with upload
-      this.state.data.forEach(async (img) => {
-        // Create Firestore doc of the base image
+      this.state.data.forEach(async (img, index) => {
+        // Create Firestore doc
         let imageDocId = await Images.Image.uploadToFirestore(img);
-        // Create Storage reference based on docId of the base image
+        // Create Storage reference based on docId
         let storageRef = await ref(
           storage,
           "gs://dmp-bures.appspot.com/" + imageDocId
         );
         let uploadTask = await uploadBytesResumable(storageRef, img._file);
         let imageUrl = await getDownloadURL(uploadTask.ref);
-
         await Images.Image.Update.downloadURL(imageDocId, imageUrl);
-
-        // Repeat the proccess for thumbnail
-        let thumbnailStorageRef = await ref(
-          storage,
-          "gs://dmp-bures.appspot.com/" + imageDocId + "_thumb"
-        );
-        let thumbnailTask = await uploadBytesResumable(
-          thumbnailStorageRef,
-          this.resizeImage(img),
-          { contentType: "image/webp" }
-        );
-        let thumbnailURL = await getDownloadURL(thumbnailTask.ref);
-        await Images.Image.Update.thumbnailURL(imageDocId, thumbnailURL);
-
         this.setState({
-          isUploading: false,
+          isUploading: false
         });
-        //DEV:
-        // window.location.replace("/");
-
-        // PROD:
-        // window.location.replace("https://dashboard-dmp-bures.web.app/");
+        window.location.replace("https://dashboard-dmp-bures.web.app/")
       });
     }
   };
