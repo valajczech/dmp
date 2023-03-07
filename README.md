@@ -1,9 +1,7 @@
-## Orexin Customer | Mgr. Milan Bureš
+## DMP | Long-term complex absolvent project
 
 Webpage + Content management system fully hosted on Firebase.      
  
-*This projects uses custom made CMS, not OrexinCMS*
-
 __Webpage preview:__  [HERE](https://dmp-bures.firebaseapp.com//)  
 __Admin Dashboard preview:__  [HERE](https://admin-dmp-bures.firebaseapp.com/)  
 ### Webpage
